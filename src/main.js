@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import 'bootstrap/scss/bootstrap.scss'
+import './style/style.scss'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
