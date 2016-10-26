@@ -1,17 +1,22 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ title }}</h1>
+    <h4>{{ text }}</h1>
+    <pricing></pricing>
   </div>
 </template>
 
 <script>
+import Pricing from './Pricing.vue'
 export default {
   name: 'home',
   data () {
     return {
-      msg: 'Transport One'
+      title: 'Transport One',
+      text: 'Transport One est...'
     }
-  }
+  },
+  components: { 'pricing': Pricing }
 }
 </script>
 
