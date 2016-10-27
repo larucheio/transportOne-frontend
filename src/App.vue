@@ -13,7 +13,7 @@
             <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
           </li>
           <li class="nav-item active">
-            <router-link class="nav-link" to="/tarifs">Tarifs</router-link>
+            <router-link class="nav-link" to="/reservation">Reservation</router-link>
           </li>
           <li class="nav-item active">
             <router-link class="nav-link" to="/partenaires">Partenaires</router-link>
