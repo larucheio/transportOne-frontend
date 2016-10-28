@@ -19,7 +19,7 @@ export default {
   components: { 'pricing': Pricing },
   methods: {
     showBooking: function () {
-      this.$router.push('/tarifs')
+      this.$router.push('/reservation')
     }
   }
 }
