@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import Auth0Lock from 'auth0-lock'
 const options = {
   theme: {
     primaryColor: 'black'
