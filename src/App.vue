@@ -2,7 +2,8 @@
   <div class="container">
     <nav class="navbar navbar-light bg-faded">
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
-      <button class="btn btn-outline-success float-xs-right" type="submit">Se connecter</button>
+      <button class="btn btn-outline-success float-xs-right" type="submit" @click="login" v-show="!authenticated">Se connecter</button>
+      <button class="btn btn-outline-success float-xs-right" type="submit" @click="logout" v-show="authenticated">Se deconnecter</button>
       <div class="collapse navbar-toggleable-xs" id="navbar-header">
         <a class="navbar-brand" href="#">Transport One</a>
         <ul class="nav navbar-nav">
@@ -31,7 +32,42 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      authenticated: false,
+      lock: new Auth0Lock('YeVkfyiwcEJoBBu3CNY9GUtFwb7bGVPQ', 'maxirozay.eu.auth0.com')
+    }
+  },
+  ready() {
+    var self = this;
+    this.authenticated = checkAuth();
+    this.lock.on("authenticated", function(authResult) {
+      self.lock.getProfile(authResult.idToken, function(error, profile) {
+        if (error) {
+          // Handle error
+          return;
+        }
 
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('profile', JSON.stringify(profile));
+        self.authenticated = true;
+        self.lock.hide();
+      });
+    });
+  },
+  methods: {
+    login() {
+      this.lock.show();
+    },
+    logout() {
+      var self = this;
+      localStorage.removeItem('id_token');
+      localStorage.removeItem('profile');
+      self.authenticated = false;
+    }
+  }
+}
 </script>
 
 <style>
