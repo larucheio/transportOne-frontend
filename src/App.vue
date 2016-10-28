@@ -32,16 +32,25 @@
 </template>
 
 <script>
+const options = {
+  theme: {
+    primaryColor: 'black'
+  },
+  languageDictionary: {
+    emailInputPlaceholder: "name@email.com",
+    title: "Se connecter"
+  }
+};
 export default {
   data() {
     return {
       authenticated: false,
-      lock: new Auth0Lock('YeVkfyiwcEJoBBu3CNY9GUtFwb7bGVPQ', 'maxirozay.eu.auth0.com')
+      lock: new Auth0Lock('YeVkfyiwcEJoBBu3CNY9GUtFwb7bGVPQ', 'maxirozay.eu.auth0.com', options)
     }
   },
-  ready() {
-    var self = this;
-    this.authenticated = checkAuth();
+  created() {
+    var self = this
+    this.authenticated = checkAuth()
     this.lock.on("authenticated", function(authResult) {
       self.lock.getProfile(authResult.idToken, function(error, profile) {
         if (error) {
@@ -49,25 +58,35 @@ export default {
           return;
         }
 
-        localStorage.setItem('id_token', authResult.idToken);
-        localStorage.setItem('profile', JSON.stringify(profile));
-        self.authenticated = true;
-        self.lock.hide();
-      });
-    });
+        localStorage.setItem('id_token', authResult.idToken)
+        localStorage.setItem('profile', JSON.stringify(profile))
+        self.authenticated = true
+        self.lock.hide()
+      })
+    })
   },
   methods: {
     login() {
-      this.lock.show();
+      this.lock.show()
     },
     logout() {
-      var self = this;
-      localStorage.removeItem('id_token');
-      localStorage.removeItem('profile');
-      self.authenticated = false;
+      var self = this
+      localStorage.removeItem('id_token')
+      localStorage.removeItem('profile')
+      self.authenticated = false
     }
   }
 }
+
+// Utility to check auth status
+function checkAuth() {
+  if(localStorage.getItem('id_token')) {
+    return true
+  } else {
+    return false
+  }
+}
+
 </script>
 
 <style>
