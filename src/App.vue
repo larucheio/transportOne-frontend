@@ -38,10 +38,11 @@ const options = {
     primaryColor: 'black'
   },
   languageDictionary: {
-    emailInputPlaceholder: "name@email.com",
-    title: "Se connecter"
+    emailInputPlaceholder: 'name@email.com',
+    title: 'Se connecter'
   }
-};
+}
+
 export default {
   data() {
     return {
