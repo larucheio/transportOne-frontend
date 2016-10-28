@@ -80,7 +80,7 @@
 </template>
 
 <script>
-let test = {
+let data = {
   regions: ["plo", "carouge"],
   showRoundTrip: false,
   from1: '',
@@ -94,7 +94,7 @@ let test = {
 }
 export default {
   data: function () {
-    return test
+    return data
   },
   methods: {
     getPrice: function (event) {
