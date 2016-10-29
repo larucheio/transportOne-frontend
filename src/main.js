@@ -1,8 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import 'bootstrap/scss/bootstrap.scss'
 import './style/style.scss'
+
+const $ = require('jquery')
+window.jQuery = $
+window.$ = $
+const tether = require('tether')
+window.Tether = tether
+require('bootstrap')
+
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
