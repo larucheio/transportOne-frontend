@@ -32,7 +32,9 @@
 </template>
 
 <script>
+/* global localStorage */
 import Auth0Lock from 'auth0-lock'
+
 const options = {
   theme: {
     primaryColor: 'black'
@@ -44,22 +46,21 @@ const options = {
 }
 
 export default {
-  data() {
+  data () {
     return {
       authenticated: false,
       lock: new Auth0Lock('YeVkfyiwcEJoBBu3CNY9GUtFwb7bGVPQ', 'maxirozay.eu.auth0.com', options)
     }
   },
-  created() {
-    var self = this
+  created () {
+    let self = this
     this.authenticated = checkAuth()
-    this.lock.on("authenticated", function(authResult) {
-      self.lock.getProfile(authResult.idToken, function(error, profile) {
+    this.lock.on('authenticated', function (authResult) {
+      self.lock.getProfile(authResult.idToken, function (error, profile) {
         if (error) {
           // Handle error
-          return;
+          return
         }
-
         localStorage.setItem('id_token', authResult.idToken)
         localStorage.setItem('profile', JSON.stringify(profile))
         self.authenticated = true
@@ -68,11 +69,11 @@ export default {
     })
   },
   methods: {
-    login() {
+    login () {
       this.lock.show()
     },
-    logout() {
-      var self = this
+    logout () {
+      let self = this
       localStorage.removeItem('id_token')
       localStorage.removeItem('profile')
       self.authenticated = false
@@ -81,14 +82,13 @@ export default {
 }
 
 // Utility to check auth status
-function checkAuth() {
-  if(localStorage.getItem('id_token')) {
+function checkAuth () {
+  if (localStorage.getItem('id_token')) {
     return true
   } else {
     return false
   }
 }
-
 </script>
 
 <style>
