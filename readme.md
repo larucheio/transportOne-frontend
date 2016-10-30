@@ -25,3 +25,8 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+ ## Environnement variable
+
+ Copy `example.prod.env.js` to `prod.env.js` and fill up correctly the variables.
