@@ -47,7 +47,7 @@ export default {
   data () {
     return {
       authenticated: false,
-      lock: new Auth0Lock('YeVkfyiwcEJoBBu3CNY9GUtFwb7bGVPQ', 'maxirozay.eu.auth0.com', options)
+      lock: new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options)
     }
   },
   created () {
