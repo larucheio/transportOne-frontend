@@ -75,13 +75,14 @@
       <div style="margin-top:10px;">
         <button type="submit" class="btn btn-default btn-block" @click="getPrice">Devis</button>
       </div>
+      <p>{{price}}</p>
     </form>
   </div>
 </template>
 
 <script>
 let data = {
-  regions: ["plo", "carouge"],
+  regions: ['plo', 'carouge'],
   showRoundTrip: false,
   from1: '',
   to1: '',
@@ -90,7 +91,8 @@ let data = {
   date1: new Date().today,
   time1: new Date().timeNow,
   date2: new Date().today,
-  time2: new Date().timeNow
+  time2: new Date().timeNow,
+  price: 0
 }
 export default {
   data: function () {
@@ -99,8 +101,37 @@ export default {
   methods: {
     getPrice: function (event) {
       this.$emit('getPrice')
+      this.price = 0
+      var AWS = require('aws-sdk')
+      AWS.config.credentials = { 'accessKeyId': process.env.AWS_ACCESS_KEY_ID, 'secretAccessKey': process.env.AWS_SECRET_ACCESS_KEY }
+      AWS.config.update({region: 'us-east-1'})
+      let table = new AWS.DynamoDB({apiVersion: '2012-08-10', params: {TableName: 'TransportOne-pricing'}})
+
+      let key = this.from1 + '/' + this.to1
+      table.getItem({Key: {travel: {S: key}}}, function (err, data, price) {
+        if (err) {
+          alert('Le prix n\'a pas été trouvé')
+        } else {
+          addToPrice(parseInt(data.Item.CHF.N, 10))
+        }
+      })
+
+      if (this.showRoundTrip) {
+        key = this.from2 + '/' + this.to2
+        table.getItem({Key: {travel: {S: key}}}, function (err, data, price) {
+          if (err) {
+            alert('Le prix n\'a pas été trouvé')
+          } else {
+            addToPrice(parseInt(data.Item.CHF.N, 10))
+          }
+        })
+      }
     }
   }
+}
+
+function addToPrice (price) {
+  data.price += price
 }
 </script>
 
