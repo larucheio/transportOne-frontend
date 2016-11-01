@@ -82,12 +82,12 @@
 
 <script>
 let data = {
-  regions: ['plo', 'carouge'],
+  regions: ['AEROPORT DE GENEVE', 'GARE DE GENEVE-CORNAVIN', 'AUTRE DESTINATION', 'AIRE-LA-VILLE', 'ANIERES', 'AVULLY', 'AVUSY', 'BARDONNEX', 'BELLEVUE', 'BERNEX', 'CAROUGE', 'CARTIGNY', 'CELIGNY', 'CHANCY', 'CHENE-BOUGERIES', 'CHENE-BOURG', ' CHOULEX', 'COLLEX-BOSSY', 'COLLONGE-BELLERIVE', 'COLOGNY', 'CONFIGNON', 'CORSIER', 'DARDAGNY', 'GENTHOD', 'GRAND-SACONNEX', ' GY', 'HERMANCE', 'JUSSY', 'LACONNEX', 'LANCY', 'MEINIER', 'MEYRIN', 'ONEX', 'PERLY-CERTOUX', 'PLAN-LES-OUATES', ' PREGNY-CHAMBESY', 'PRESINGE', 'PUPLINGE', 'RUSSIN', 'SATIGNY', 'SORAL', 'THONEX', 'TROINEX', 'VANDOEUVRES', 'VERNIER', 'VERSOIX', 'VEYRIER', 'VILLE DE GENEVE'],
   showRoundTrip: false,
-  from1: '',
-  to1: '',
-  from2: '',
-  to2: '',
+  from1: 'AEROPORT DE GENEVE',
+  to1: 'AEROPORT DE GENEVE',
+  from2: 'AEROPORT DE GENEVE',
+  to2: 'AEROPORT DE GENEVE',
   date1: new Date().today,
   time1: new Date().timeNow,
   date2: new Date().today,
@@ -107,17 +107,7 @@ export default {
       AWS.config.update({region: 'us-east-1'})
       let table = new AWS.DynamoDB({apiVersion: '2012-08-10', params: {TableName: 'TransportOne-pricing'}})
 
-      let key = this.from1 + '/' + this.to1
-      table.getItem({Key: {travel: {S: key}}}, function (err, data, price) {
-        if (err) {
-          alert('Le prix n\'a pas été trouvé')
-        } else {
-          addToPrice(parseInt(data.Item.CHF.N, 10))
-        }
-      })
-
-      if (this.showRoundTrip) {
-        key = this.from2 + '/' + this.to2
+      function getPriceFromDB (key) {
         table.getItem({Key: {travel: {S: key}}}, function (err, data, price) {
           if (err) {
             alert('Le prix n\'a pas été trouvé')
@@ -125,6 +115,11 @@ export default {
             addToPrice(parseInt(data.Item.CHF.N, 10))
           }
         })
+      }
+      
+      getPriceFromDB(this.from1 + '/' + this.to1)
+      if (this.showRoundTrip) {
+        getPriceFromDB(this.from2 + '/' + this.to2)
       }
     }
   }
