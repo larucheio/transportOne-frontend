@@ -82,12 +82,12 @@
 
 <script>
 let data = {
-  regions: ["plo", "carouge"],
+  regions: regions,
   showRoundTrip: false,
-  from1: '',
-  to1: '',
-  from2: '',
-  to2: '',
+  from1: regions[0],
+  to1: regions[0],
+  from2: regions[0],
+  to2: regions[0],
   date1: new Date().today,
   time1: new Date().timeNow,
   date2: new Date().today,
