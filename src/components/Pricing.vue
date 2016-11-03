@@ -76,6 +76,7 @@
         <button type="submit" class="btn btn-default btn-block" @click="getPrice">Devis</button>
       </div>
     </form>
+    <p>{{price}}</p>
   </div>
 </template>
 
@@ -90,7 +91,8 @@ let data = {
   date1: new Date().today,
   time1: new Date().timeNow,
   date2: new Date().today,
-  time2: new Date().timeNow
+  time2: new Date().timeNow,
+  price: 0
 }
 export default {
   data: function () {
@@ -99,6 +101,18 @@ export default {
   methods: {
     getPrice: function (event) {
       this.$emit('getPrice')
+      this.price = 0
+      this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.from1}@${this.to1}`)
+      .then((response) => {
+        this.price += response.body.CHF
+      }, (response) => {})
+
+      if (this.showRoundTrip) {
+        this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.from2}@${this.to2}`)
+        .then((response) => {
+          this.price += response.body.CHF
+        }, (response) => {})
+      }
     }
   }
 }
