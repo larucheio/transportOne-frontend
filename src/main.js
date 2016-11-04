@@ -13,6 +13,8 @@ require('bootstrap')
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
+window.regions = ['AEROPORT DE GENEVE', 'GARE DE GENEVE-CORNAVIN', 'AUTRE DESTINATION', 'AIRE-LA-VILLE', 'ANIERES', 'AVULLY', 'AVUSY', 'BARDONNEX', 'BELLEVUE', 'BERNEX', 'CAROUGE', 'CARTIGNY', 'CELIGNY', 'CHANCY', 'CHENE-BOUGERIES', 'CHENE-BOURG', ' CHOULEX', 'COLLEX-BOSSY', 'COLLONGE-BELLERIVE', 'COLOGNY', 'CONFIGNON', 'CORSIER', 'DARDAGNY', 'GENTHOD', 'GRAND-SACONNEX', ' GY', 'HERMANCE', 'JUSSY', 'LACONNEX', 'LANCY', 'MEINIER', 'MEYRIN', 'ONEX', 'PERLY-CERTOUX', 'PLAN-LES-OUATES', ' PREGNY-CHAMBESY', 'PRESINGE', 'PUPLINGE', 'RUSSIN', 'SATIGNY', 'SORAL', 'THONEX', 'TROINEX', 'VANDOEUVRES', 'VERNIER', 'VERSOIX', 'VEYRIER', 'VILLE DE GENEVE']
+
 const Home = resolve => require(['./components/Home.vue'], resolve)
 const HowItWorks = resolve => require(['./components/HowItWorks.vue'], resolve)
 const Vehicle = resolve => require(['./components/Vehicle.vue'], resolve)
