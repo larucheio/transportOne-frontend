@@ -2,8 +2,8 @@
   <div class="container">
     <nav class="navbar navbar-light bg-faded">
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
-      <button class="btn btn-outline-success float-xs-right" type="submit" @click="login" v-show="!authenticated">Se connecter</button>
-      <button class="btn btn-outline-success float-xs-right" type="submit" @click="logout" v-show="authenticated">Se deconnecter</button>
+      <button class="btn btn-outline-success float-xs-right" type="submit" @click="login" v-show="authenticated === 0">Se connecter</button>
+      <button class="btn btn-outline-success float-xs-right" type="submit" @click="logout" v-show="authenticated > 0">Se deconnecter</button>
       <div class="collapse navbar-toggleable-xs" id="navbar-header">
         <a class="navbar-brand" href="#">Transport One</a>
         <ul class="nav navbar-nav">
@@ -21,6 +21,9 @@
           </li>
           <li class="nav-item active">
             <router-link class="nav-link" to="/contact">Contact</router-link>
+          </li>
+          <li class="nav-item active">
+            <router-link class="nav-link" to="/admin" v-show="authenticated === 2">Admin</router-link>
           </li>
         </ul>
       </div>
@@ -46,7 +49,7 @@ const options = {
 export default {
   data () {
     return {
-      authenticated: false,
+      authenticated: 0,
       lock: new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options)
     }
   },
@@ -61,7 +64,7 @@ export default {
         }
         localStorage.setItem('id_token', authResult.idToken)
         localStorage.setItem('profile', JSON.stringify(profile))
-        self.authenticated = true
+        self.authenticated = checkAuth()
         self.lock.hide()
       })
     })
@@ -74,17 +77,21 @@ export default {
       let self = this
       localStorage.removeItem('id_token')
       localStorage.removeItem('profile')
-      self.authenticated = false
+      self.authenticated = 0
+      this.$router.push('/home')
     }
   }
 }
 // Utility to check auth status
 function checkAuth () {
   if (localStorage.getItem('id_token')) {
-    return true
-  } else {
-    return false
+    if (localStorage.getItem('profile') && JSON.parse(localStorage.getItem('profile')).isAdmin) {
+      return 2
+    } else {
+      return 1
+    }
   }
+  return 0
 }
 </script>
 
