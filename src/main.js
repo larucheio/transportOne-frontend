@@ -29,7 +29,7 @@ const routes = [
   { path: '/admin', component: Admin },
   { path: '/*', redirect: '/home' }
 ]
-const router = new VueRouter({
+export const router = new VueRouter({
   routes // short for routes: routes
 })
 const App = Vue.extend(require('./App.vue'))

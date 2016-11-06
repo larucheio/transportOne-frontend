@@ -84,11 +84,7 @@ export default {
       this.lock.show()
     },
     logout () {
-      this.isAuthenticated = false
-      this.isAdmin = false
-      localStorage.removeItem('id_token')
-      localStorage.removeItem('profile')
-      this.$router.push('/home')
+      auth.logout()
     }
   }
 }

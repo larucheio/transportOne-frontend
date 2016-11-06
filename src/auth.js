@@ -1,3 +1,5 @@
+import {router} from './main'
+
 export default {
   isAuthenticated () {
     if (localStorage.getItem('id_token'))
@@ -14,5 +16,10 @@ export default {
     return {
       'Authorization': `Bearer ${localStorage.getItem('id_token')}`
     }
+  },
+  logout () {
+    localStorage.removeItem('id_token')
+    localStorage.removeItem('profile')
+    router.go('/home')
   }
 }
