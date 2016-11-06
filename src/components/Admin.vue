@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import auth from '../auth'
+
 export default {
   data () {
     return {
@@ -67,11 +69,10 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (localStorage.getItem('profile') && JSON.parse(localStorage.getItem('profile')).isAdmin) {
+    if (auth.isAdmin())
       next()
-    } else {
+    else
       next('/')
-    }
   },
 }
 </script>
