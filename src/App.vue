@@ -26,7 +26,9 @@
       </div>
     </nav>
     <div class="col-sm-9">
-      <router-view></router-view>
+      <transition name="component-fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -96,5 +98,12 @@ function checkAuth () {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .3s ease;
+}
+.component-fade-enter, .component-fade-leave-active {
+  opacity: 0;
 }
 </style>
