@@ -1,40 +1,213 @@
 <template>
-  <div class="hello">
-    <pricing></pricing>
+  <div>
+    <pricing v-on:setPrice="getDevisData"></pricing>
+    <form v-if="showForm">
+      <strong>Prix: {{price}}</strong>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="firstName">Prénom</label>
+            <input type="text" class="form-control" id="firstName" placeholder="John" v-model.lazy="user.firstName">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="lastName">Nom</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Doe" v-model.lazy="user.lastName">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel" class="form-control" id="phone" placeholder="022 123 45 67" v-model.lazy="user.tel">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="nom@domain.ch" v-model.lazy="user.email">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="from1">Adresse de départ</label>
+            <input type="text" class="form-control" id="from1" placeholder="1 chemin de départ 1204 Genève" v-model.lazy="travel1.from">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="to1">Adresse d'arrivé</label>
+            <input type="text" class="form-control" id="to1" placeholder="1 chemin d'arrivé 1204 Genève" v-model.lazy="travel1.to">
+          </div>
+        </div>
+      </div>
+      <div class="row" v-if="travel2.exist">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="from1">Adresse de départ pour le retour</label>
+            <input type="text" class="form-control" id="from2" placeholder="1 chemin de départ 1204 Genève" v-model.lazy="travel2.from">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="to1">Adresse d'arrivé pour le retour</label>
+            <input type="text" class="form-control" id="to2" placeholder="1 chemin d'arrivé 1204 Genève" v-model.lazy="travel2.to">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Attente</span>
+          <small id="attenteHelp" class="form-text text-muted">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
+        </label>
+      </div>
+      <div class="row">
+        <label class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Comission</span>
+          <small id="comissionHelp" class="form-text text-muted">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
+        </label>
+      </div>
+      <div class="row">
+        <label class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Plus de 4 personnes</span>
+          <small id="peopleHelp" class="form-text text-muted">Prix: 10fr</small>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-default btn-block" @click="book">Faire une demande de reservation</button>
+    </form>
+    <div id="booking-success-alert" class="alert alert-success" role="alert">
+      <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
+    </div>
+    <div id="booking-error-alert" class="alert alert-danger" role="alert">
+      <i class="fa fa-times" aria-hidden="true"></i> {{error}}
+    </div>
+    <div id="map" style="margin-top:10px;"></div>
   </div>
 </template>
 
 <script>
 import Pricing from './Pricing.vue'
+let data = {
+  user: {firstName: '', lastName: '', tel: '', email: ''},
+  price: 0,
+  travel1: {from: null, to: null, date: null, time: null},
+  travel2: {from: null, to: null, date: null, time: null, exist: false},
+  options: {waiting: false, comission: false, groupe: false},
+  directionsService: null,
+  directionsDisplay: null,
+  error: '',
+  showForm: false
+}
 export default {
   name: 'home',
   data () {
-    return {
-      title: 'Transport One',
-      text: 'Transport One est...'
-    }
+    return data
   },
-  components: { 'pricing': Pricing }
+  components: { 'pricing': Pricing },
+  mounted () {
+    this.initMap()
+    $('#booking-success-alert').hide()
+    $('#booking-error-alert').hide()
+  },
+  methods: {
+    initMap () {
+      const map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 46.2, lng: 6.1667},
+        zoom: 11,
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: true,
+        streetViewControl: false,
+        rotateControl: true,
+        fullscreenControl: true
+      })
+      map.addListener('drag', function (e) {})
+      map.addListener('dragend', function (e) {})
+      this.directionsService = new google.maps.DirectionsService()
+      this.directionsDisplay = new google.maps.DirectionsRenderer()
+      this.directionsDisplay.setMap(map)
+    },
+    calcRoute () {
+      const request = {
+        origin: 'AEROPORT DE GENEVE',
+        destination: 'carouge',
+        travelMode: 'DRIVING'
+      }
+      const self = this
+      this.directionsService.route(request, function (result, status) {
+        if (status == 'OK') {
+          self.directionsDisplay.setDirections(result)
+        }
+      })
+    },
+    getDevisData (price, travel1, travel2) {
+      this.price = price
+      this.travel1.date = travel1.date
+      this.travel1.time = travel1.time
+      this.travel2.exist = travel2.exist
+      this.travel2.date = travel2.date
+      this.travel2.time = travel2.time
+      this.showForm = true
+      $('#booking-success-alert').hide()
+      $('#booking-error-alert').hide()
+    },
+    book () {
+      if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === ''
+      || this.travel1.from === '' || this.travel1.to === '' || this.travel1.date === null || this.travel1.time === null) {
+        this.error = 'Veuillez remplir le formulaire avant de reserver.'
+        $('#booking-error-alert').alert()
+        $('#booking-error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        return
+      }
+      let roundTrip = 'aucun'
+      if (this.travel2.exist) {
+        roundTrip = `de ${this.travel2.from} à ${this.travel2.to}, le ${this.travel2.date} à ${this.travel2.time}`
+      }
+      let waiting = ''
+      if (this.options.waiting) {
+        waiting = `attente, `
+      }
+      let comission = ''
+      if (this.options.comission) {
+        comission = `comission, `
+      }
+      let groupe = ''
+      if (this.options.groupe) {
+        groupe = `plus de 4 personnes`
+      }
+      const text = `Nom: ${this.user.firstName} ${this.user.lastName}
+Tel: ${this.user.tel} Email: ${this.user.email}
+Aller: de ${this.travel1.from} à ${this.travel1.to}, le ${this.travel1.date} à ${this.travel1.time}
+Retour: ${roundTrip}
+Options: ${waiting}${comission}${groupe}
+Prix du/des trajets: ${this.price}CHF`
+      const self = this
+      this.$http.post(`${process.env.AWS_API_ROOT}contact`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
+      .then((response) => {
+        self.calcRoute()
+        $('#booking-success-alert').alert()
+        $('#booking-success-alert').fadeTo(2000, 500).slideUp(500, function () {})
+      }, (response) => {
+        $('#booking-error-alert').alert()
+        $('#booking-error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+      })
+    }
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+#map {
+  height: 500px;
 }
 </style>
