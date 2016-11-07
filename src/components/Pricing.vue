@@ -76,7 +76,6 @@
         <button type="submit" class="btn btn-default btn-block" @click="getPrice">Devis</button>
       </div>
     </form>
-    <p>{{price}}</p>
   </div>
 </template>
 
@@ -105,12 +104,14 @@ export default {
       this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.from1}@${this.to1}`)
       .then((response) => {
         this.price += response.body.CHF
+        this.$emit('setPrice', response.body.CHF, this.showRoundTrip, this.date1, this.time1, this.date2, this.time2)
       }, (response) => {})
 
       if (this.showRoundTrip) {
         this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.from2}@${this.to2}`)
         .then((response) => {
           this.price += response.body.CHF
+          this.$emit('setPrice', response.body.CHF, this.showRoundTrip, this.date1, this.time1, this.date2, this.time2)
         }, (response) => {})
       }
     }
