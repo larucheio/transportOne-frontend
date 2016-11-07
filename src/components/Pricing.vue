@@ -27,13 +27,13 @@
         <div class="col-sm-6" style="margin-top:10px;">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-            <input type="date" class="form-control" id="date" placeholder="date" v-model.lazy="date1">
+            <input type="date" class="form-control" placeholder="date" v-model.lazy="date1">
           </div>
         </div>
         <div class="col-sm-6" style="margin-top:10px;">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-            <input type="time" class="form-control" id="hour" placeholder="hour" v-model.lazy="time1">
+            <input type="time" class="form-control" placeholder="hour" v-model.lazy="time1">
           </div>
         </div>
       </div>
@@ -61,22 +61,24 @@
           <div class="col-sm-6" style="margin-top:10px;">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-              <input type="date" class="form-control" id="date" placeholder="date" v-model.lazy="date2">
+              <input type="date" class="form-control" placeholder="date" v-model.lazy="date2">
             </div>
           </div>
           <div class="col-sm-6" style="margin-top:10px;">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-              <input type="time" class="form-control" id="hour" placeholder="hour" v-model.lazy="time2">
+              <input type="time" class="form-control" placeholder="hour" v-model.lazy="time2">
             </div>
           </div>
         </div>
       </div>
       <div style="margin-top:10px;">
         <button type="submit" class="btn btn-default btn-block" @click="getPrice">Devis</button>
+        <div id="error-alert" class="alert alert-danger" role="alert">
+          <i class="fa fa-times" aria-hidden="true"></i> {{error}}
+        </div>
       </div>
     </form>
-    <p>{{price}}</p>
   </div>
 </template>
 
@@ -88,31 +90,50 @@ let data = {
   to1: regions[0],
   from2: regions[0],
   to2: regions[0],
-  date1: new Date().today,
-  time1: new Date().timeNow,
-  date2: new Date().today,
-  time2: new Date().timeNow,
-  price: 0
+  date1: null,
+  time1: null,
+  date2: null,
+  time2: null,
+  error: null
 }
 export default {
   data: function () {
     return data
   },
+  mounted: function () {
+    $('#error-alert').hide()
+  },
   methods: {
     getPrice: function (event) {
+      if ((this.date1 === null || this.time1 === null) || (this.showRoundTrip === true && (this.date2 === null || this.time2 === null))) {
+        this.error = 'Veuillez remplir tous les champs'
+        $('#error-alert').alert()
+        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        return
+      }
       this.$emit('getPrice')
-      this.price = 0
+      let price
       this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.from1}@${this.to1}`)
       .then((response) => {
-        this.price += response.body.CHF
-      }, (response) => {})
-
-      if (this.showRoundTrip) {
-        this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.from2}@${this.to2}`)
-        .then((response) => {
-          this.price += response.body.CHF
-        }, (response) => {})
-      }
+        price = response.body.CHF
+        if (this.showRoundTrip) {
+          this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.from2}@${this.to2}`)
+          .then((response) => {
+            price += response.body.CHF
+            this.$emit('setPrice', price, this.showRoundTrip, this.date1, this.time1, this.date2, this.time2)
+          }, (response) => {
+            this.error = 'Erreur'
+            $('#error-alert').alert()
+            $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+          })
+        } else {
+          this.error = 'Erreur'
+          this.$emit('setPrice', price, this.showRoundTrip, this.date1, this.time1, this.date2, this.time2)
+        }
+      }, (response) => {
+        $('#error-alert').alert()
+        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+      })
     }
   }
 }
