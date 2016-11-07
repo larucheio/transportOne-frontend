@@ -2,8 +2,8 @@
   <div class="container">
     <nav class="navbar navbar-light bg-faded">
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
-      <button class="btn btn-outline-success float-xs-right" type="submit" @click="login" v-show="!authenticated">Se connecter</button>
-      <button class="btn btn-outline-success float-xs-right" type="submit" @click="logout" v-show="authenticated">Se deconnecter</button>
+      <button class="btn btn-outline-success float-xs-right" type="submit" @click="login" v-show="!isAuthenticated">Se connecter</button>
+      <button class="btn btn-outline-success float-xs-right" type="submit" @click="logout" v-show="isAuthenticated">Se deconnecter</button>
       <div class="collapse navbar-toggleable-xs" id="navbar-header">
         <a class="navbar-brand" href="#">Transport One</a>
         <ul class="nav navbar-nav">
@@ -22,6 +22,9 @@
           <li class="nav-item active">
             <router-link class="nav-link" to="/contact">Contact</router-link>
           </li>
+          <li class="nav-item active">
+            <router-link class="nav-link" to="/admin" v-show="isAdmin">Admin</router-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -34,58 +37,28 @@
 </template>
 
 <script>
-/* global localStorage */
-import Auth0Lock from 'auth0-lock'
-const options = {
-  theme: {
-    primaryColor: 'black'
-  },
-  languageDictionary: {
-    emailInputPlaceholder: 'name@email.com',
-    title: 'Se connecter'
-  }
-}
+import auth from './auth'
 export default {
-  data () {
+  data() {
     return {
-      authenticated: false,
-      lock: new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options)
+      isAuthenticated: false,
+      isAdmin: false
     }
   },
-  created () {
-    let self = this
-    this.authenticated = checkAuth()
-    this.lock.on('authenticated', function (authResult) {
-      self.lock.getProfile(authResult.idToken, function (error, profile) {
-        if (error) {
-          // Handle error
-          return
-        }
-        localStorage.setItem('id_token', authResult.idToken)
-        localStorage.setItem('profile', JSON.stringify(profile))
-        self.authenticated = true
-        self.lock.hide()
-      })
-    })
+  mounted () {
+    auth.init()
   },
   methods: {
     login () {
-      this.lock.show()
+      auth.login()
     },
     logout () {
-      let self = this
-      localStorage.removeItem('id_token')
-      localStorage.removeItem('profile')
-      self.authenticated = false
+      auth.logout()
+    },
+    refreshAuthStatus () {
+      this.isAuthenticated = auth.isAuthenticated()
+      this.isAdmin = auth.isAdmin()
     }
-  }
-}
-// Utility to check auth status
-function checkAuth () {
-  if (localStorage.getItem('id_token')) {
-    return true
-  } else {
-    return false
   }
 }
 </script>

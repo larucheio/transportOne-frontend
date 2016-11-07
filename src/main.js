@@ -18,6 +18,7 @@ const Vehicle = resolve => require(['./components/Vehicle.vue'], resolve)
 const Reservation = resolve => require(['./components/Reservation.vue'], resolve)
 const Partners = resolve => require(['./components/Partners.vue'], resolve)
 const Contact = resolve => require(['./components/Contact.vue'], resolve)
+const Admin = resolve => require(['./components/Admin.vue'], resolve)
 const routes = [
   { path: '/home', component: Home },
   { path: '/commentcamarche', component: HowItWorks },
@@ -25,9 +26,10 @@ const routes = [
   { path: '/reservation', component: Reservation },
   { path: '/partenaires', component: Partners },
   { path: '/contact', component: Contact },
+  { path: '/admin', component: Admin },
   { path: '/*', redirect: '/home' }
 ]
-const router = new VueRouter({
+export const router = new VueRouter({
   routes // short for routes: routes
 })
 const App = Vue.extend(require('./App.vue'))
