@@ -150,13 +150,13 @@ export default {
         }
       })
     },
-    getDevisData (price, showRoundTrip, date1, time1, date2, time2) {
+    getDevisData (price, travel1, travel2) {
       this.price = price
-      this.travel1.date = date1
-      this.travel1.time = time1
-      this.travel2.exist = showRoundTrip
-      this.travel2.date = date2
-      this.travel2.time = time2
+      this.travel1.date = travel1.date
+      this.travel1.time = travel1.time
+      this.travel2.exist = travel2.exist
+      this.travel2.date = travel2.date
+      this.travel2.time = travel2.time
       this.showForm = true
       $('#booking-success-alert').hide()
       $('#booking-error-alert').hide()
