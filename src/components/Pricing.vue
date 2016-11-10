@@ -10,7 +10,7 @@
           <div class="input-group">
             <span class="input-group-addon">De</span>
             <select class="custom-select btn-block" v-model.lazy="travel1.from">
-              <option v-for="region in regions" v-bind:value="region">{{region}}</option>
+              <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
             </select>
           </div>
         </div>
@@ -18,7 +18,7 @@
           <div class="input-group">
             <span class="input-group-addon">à</span>
             <select class="custom-select btn-block" v-model.lazy="travel1.to">
-              <option v-for="region in regions" v-bind:value="region">{{region}}</option>
+              <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
             </select>
           </div>
         </div>
@@ -44,7 +44,7 @@
             <div class="input-group">
               <span class="input-group-addon">De</span>
               <select class="custom-select btn-block" v-model.lazy="travel2.from">
-                <option v-for="region in regions" v-bind:value="region">{{region}}</option>
+                <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
               </select>
             </div>
           </div>
@@ -52,7 +52,7 @@
             <div class="input-group">
               <span class="input-group-addon">à</span>
               <select class="custom-select btn-block" v-model.lazy="travel2.to">
-                <option v-for="region in regions" v-bind:value="region">{{region}}</option>
+                <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
               </select>
             </div>
           </div>
@@ -84,14 +84,28 @@
 
 <script>
 let data = {
-  regions: regions,
-  travel1: {from: regions[0], to: regions[0], date: '', time: ''},
-  travel2: {from: regions[0], to: regions[0], date: '', time: '', exist: false},
+  regions: null,
+  travel1: {from: null, to: null, date: '', time: ''},
+  travel2: {from: null, to: null, date: '', time: '', exist: false},
   error: null
 }
 export default {
   data: function () {
     return data
+  },
+  beforeCreate () {
+    this.$http.get(`${process.env.AWS_API_ROOT}regions`)
+    .then((response) => {
+      this.regions = response.body.data.Items.sort(function compare (a, b) {
+        if (a.priority + a.name < b.priority + b.name)
+        return -1;
+        return 1;
+      })
+      this.travel1.from = this.regions[0]
+      this.travel1.to = this.regions[0]
+      this.travel2.from = this.regions[0]
+      this.travel2.to = this.regions[0]
+    }, (response) => {})
   },
   mounted: function () {
     $('#error-alert').hide()
@@ -106,11 +120,11 @@ export default {
       }
       this.$emit('getPrice')
       let price
-      this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.travel1.from}@${this.travel1.to}`)
+      this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.travel1.from.id}@${this.travel1.to.id}`)
       .then((response) => {
         price = response.body.CHF
         if (this.travel2.exist) {
-          this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.travel2.from}@${this.travel2.to}`)
+          this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.travel2.from.id}@${this.travel2.to.id}`)
           .then((response) => {
             price += response.body.CHF
             this.$emit('setPrice', price, this.travel1, this.travel2)
