@@ -56,5 +56,8 @@ export default {
     localStorage.removeItem('profile')
     router.app.refreshAuthStatus()
     router.push('/home')
+  },
+  getProfile () {
+    return JSON.parse(localStorage.getItem('profile'))
   }
 }
