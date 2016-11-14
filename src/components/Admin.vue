@@ -125,14 +125,7 @@ export default {
   },
   mounted: function () {
     this.getRegions()
-    alert.hide('#success-alert-price')
-    alert.hide('#error-alert-price')
-    alert.hide('#success-alert-setRegion')
-    alert.hide('#error-alert-setRegion')
-    alert.hide('#success-alert-addRegion')
-    alert.hide('#error-alert-addRegion')
-    alert.hide('#success-alert-newsletter')
-    alert.hide('#error-alert-newsletter')
+    alert.hide()
   },
   methods: {
     getRegions: function () {
