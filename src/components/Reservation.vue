@@ -87,6 +87,11 @@
         <label for="comment">Commentaire</label>
         <textarea class="form-control" v-model="comment" id="comment"></textarea>
       </div>
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="isSubscribing">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
+      </label>
       <button type="submit" class="btn btn-default btn-block" @click="book">Faire une demande de reservation</button>
     </form>
     <div id="booking-success-alert" class="alert alert-success" role="alert">
@@ -113,7 +118,8 @@ let data = {
   directionsService: null,
   directionsDisplay: null,
   error: '',
-  showForm: false
+  showForm: false,
+  isSubscribing: true
 }
 export default {
   name: 'home',
@@ -175,6 +181,13 @@ export default {
         alert.show('#booking-error-alert')
         return
       }
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email)) {
+        this.subscribe()
+      } else {
+        this.error = `L'address email est invalide.`
+        alert.show('#booking-error-alert')
+        return
+      }
       let roundTrip = 'aucun'
       if (this.travel2.exist) {
         roundTrip = `de ${this.travel2.from} à ${this.travel2.to}, le ${this.travel2.date} à ${this.travel2.time}`
@@ -204,8 +217,15 @@ Commentaire: ${this.comment}`
         self.calcRoute()
         alert.show('#booking-success-alert')
       }, (response) => {
+        this.error = 'erreur'
         alert.show('#booking-error-alert')
       })
+    },
+    subscribe () {
+      if (this.isSubscribing) {
+        this.$http.post(`${process.env.AWS_API_ROOT}subscribtions/${this.user.email}`)
+        .then((response) => {}, (response) => {})
+      }
     }
   }
 }
