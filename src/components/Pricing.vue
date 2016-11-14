@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import alert from '../alert'
+
 let data = {
   regions: null,
   travel1: {from: null, to: null, date: '', time: ''},
@@ -108,14 +110,13 @@ export default {
     }, (response) => {})
   },
   mounted: function () {
-    $('#error-alert').hide()
+    alert.hide('#error-alert')
   },
   methods: {
     getPrice: function (event) {
       if ((this.travel1.date === '' || this.travel1.time === '') || (this.travel2.exist === true && (this.travel2.date === '' || this.travel2.time === ''))) {
         this.error = 'Veuillez remplir tous les champs'
-        $('#error-alert').alert()
-        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert')
         return
       }
       this.$emit('getPrice')
@@ -130,16 +131,14 @@ export default {
             this.$emit('setPrice', price, this.travel1, this.travel2)
           }, (response) => {
             this.error = 'Erreur'
-            $('#error-alert').alert()
-            $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+            alert.show('#error-alert')
           })
         } else {
           this.error = 'Erreur'
           this.$emit('setPrice', price, this.travel1, this.travel2)
         }
       }, (response) => {
-        $('#error-alert').alert()
-        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert')
       })
     }
   }

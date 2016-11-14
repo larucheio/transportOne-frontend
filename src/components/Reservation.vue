@@ -97,6 +97,8 @@
 
 <script>
 import Pricing from './Pricing.vue'
+import alert from '../alert'
+
 let data = {
   user: {firstName: '', lastName: '', tel: '', email: ''},
   price: 0,
@@ -158,15 +160,14 @@ export default {
       this.travel2.date = travel2.date
       this.travel2.time = travel2.time
       this.showForm = true
-      $('#booking-success-alert').hide()
-      $('#booking-error-alert').hide()
+      alert.hide('#booking-success-alert')
+      alert.hide('#booking-error-alert')
     },
     book () {
       if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === ''
       || this.travel1.from === '' || this.travel1.to === '' || this.travel1.date === null || this.travel1.time === null) {
         this.error = 'Veuillez remplir le formulaire avant de reserver.'
-        $('#booking-error-alert').alert()
-        $('#booking-error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#booking-error-alert')
         return
       }
       let roundTrip = 'aucun'
@@ -195,11 +196,9 @@ Prix du/des trajets: ${this.price}CHF`
       this.$http.post(`${process.env.AWS_API_ROOT}contact`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
       .then((response) => {
         self.calcRoute()
-        $('#booking-success-alert').alert()
-        $('#booking-success-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#booking-success-alert')
       }, (response) => {
-        $('#booking-error-alert').alert()
-        $('#booking-error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#booking-error-alert')
       })
     }
   }
