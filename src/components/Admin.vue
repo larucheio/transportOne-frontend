@@ -90,6 +90,20 @@
     <div id="error-alert-addRegion" class="alert alert-danger" role="alert">
       <i class="fa fa-times" aria-hidden="true"></i> Erreur
     </div>
+    <strong>Newsletter</strong>
+    <div class="input-group">
+      <span class="input-group-addon">Sujet</span>
+      <input type="text" class="form-control" v-model.lazy="newsletter.subject">
+    </div>
+    <label for="text" style="margin-t:10px;">Text</label>
+    <textarea class="form-control" id="text" v-model="newsletter.body" style="margin-bottom:10px;"></textarea>
+    <button class="btn btn-primary" @click="sendNewsletter">Envoyer</button>
+    <div id="success-alert-newsletter" class="alert alert-success" role="alert">
+      <i class="fa fa-check" aria-hidden="true"></i> Envoyé
+    </div>
+    <div id="error-alert-newsletter" class="alert alert-danger" role="alert">
+      <i class="fa fa-times" aria-hidden="true"></i> Erreur
+    </div>
   </div>
 </template>
 
@@ -105,7 +119,8 @@ export default {
       to: null,
       price: 0,
       regionToSet: {id: '', name: '', priority: 0},
-      regionToAdd: {name: '', priority: 0}
+      regionToAdd: {name: '', priority: 0},
+      newsletter: {subject: null, body: null}
     }
   },
   mounted: function () {
@@ -116,6 +131,8 @@ export default {
     alert.hide('#error-alert-setRegion')
     alert.hide('#success-alert-addRegion')
     alert.hide('#error-alert-addRegion')
+    alert.hide('#success-alert-newsletter')
+    alert.hide('#error-alert-newsletter')
   },
   methods: {
     getRegions: function () {
@@ -154,6 +171,14 @@ export default {
         alert.show('#success-alert-addRegion')
       }, (response) => {
         alert.show('#error-alert-addRegion')
+      })
+    },
+    sendNewsletter: function () {
+      this.$http.post(`${process.env.AWS_API_ROOT}subscribtions/broadcast`, {'data': this.newsletter.body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
+      .then((response) => {
+        alert.show('#success-alert-newsletter')
+      }, (response) => {
+        alert.show('#error-alert-newsletter')
       })
     }
   },
