@@ -110,7 +110,7 @@ export default {
     }, (response) => {})
   },
   mounted: function () {
-    alert.hide('#error-alert')
+    alert.hideAll()
   },
   methods: {
     getPrice: function (event) {

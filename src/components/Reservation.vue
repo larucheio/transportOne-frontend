@@ -129,8 +129,7 @@ export default {
   components: { 'pricing': Pricing },
   mounted () {
     this.initMap()
-    $('#booking-success-alert').hide()
-    $('#booking-error-alert').hide()
+    alert.hideAll()
   },
   methods: {
     initMap () {
@@ -171,8 +170,7 @@ export default {
       this.travel2.date = travel2.date
       this.travel2.time = travel2.time
       this.showForm = true
-      alert.hide('#booking-success-alert')
-      alert.hide('#booking-error-alert')
+      alert.hideAll()
     },
     book () {
       if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === ''
