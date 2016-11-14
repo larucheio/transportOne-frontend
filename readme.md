@@ -30,3 +30,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
  ## Environnement variable
 
  Copy `example.prod.env.js` to `prod.env.js` and fill up correctly the variables.
+
+ ## API
+
+ To get get an endpoint, import the file `config/api.js` in a variable named `api`. Then use this variable to call any endpoint like `api.contact`.
