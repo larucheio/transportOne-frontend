@@ -17,6 +17,7 @@ const Reservation = resolve => require(['./components/Reservation.vue'], resolve
 const Partners = resolve => require(['./components/Partners.vue'], resolve)
 const Contact = resolve => require(['./components/Contact.vue'], resolve)
 const Admin = resolve => require(['./components/Admin.vue'], resolve)
+const Unsubscribe = resolve => require(['./components/Unsubscribe.vue'], resolve)
 const routes = [
   { path: '/home', component: Home },
   { path: '/commentcamarche', component: HowItWorks },
@@ -25,6 +26,7 @@ const routes = [
   { path: '/partenaires', component: Partners },
   { path: '/contact', component: Contact },
   { path: '/admin', component: Admin },
+  { path: '/unsubscribe', component: Unsubscribe },
   { path: '/*', redirect: '/home' }
 ]
 export const router = new VueRouter({
