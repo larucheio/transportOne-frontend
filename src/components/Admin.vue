@@ -125,14 +125,16 @@ export default {
   },
   mounted: function () {
     this.getRegions()
-    alert.hide('#success-alert-price')
-    alert.hide('#error-alert-price')
-    alert.hide('#success-alert-setRegion')
-    alert.hide('#error-alert-setRegion')
-    alert.hide('#success-alert-addRegion')
-    alert.hide('#error-alert-addRegion')
-    alert.hide('#success-alert-newsletter')
-    alert.hide('#error-alert-newsletter')
+    alert.hide([
+      '#success-alert-price',
+      '#error-alert-price',
+      '#success-alert-setRegion',
+      '#error-alert-setRegion',
+      '#success-alert-addRegion',
+      '#error-alert-addRegion',
+      '#success-alert-newsletter',
+      '#error-alert-newsletter'
+    ])
   },
   methods: {
     getRegions: function () {
@@ -185,10 +187,8 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (auth.isAdmin())
-      next()
-    else
-      next('/')
+    if (auth.isAdmin()) next()
+    else next('/')
   },
 }
 </script>

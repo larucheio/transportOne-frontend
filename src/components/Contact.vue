@@ -52,8 +52,7 @@ export default {
     }
   },
   mounted () {
-    alert.hide('#success-alert')
-    alert.hide('#error-alert')
+    alert.hide(['#success-alert', '#error-alert'])
   },
   methods: {
     sendMessage () {
