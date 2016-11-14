@@ -175,7 +175,7 @@ export default {
     },
     sendNewsletter: function () {
       const body = `<p>${this.newsletter.body}</p>
-<a href="http://localhost:8080/#/unsubscribe">Se désinscrire</a>`
+<a href="${process.env.SITE_URL}unsubscribe">Se désinscrire</a>`
       this.$http.post(`${process.env.AWS_API_ROOT}subscribtions/broadcast`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
       .then((response) => {
         alert.show('#success-alert-newsletter')
