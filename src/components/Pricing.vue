@@ -84,6 +84,7 @@
 
 <script>
 import alert from '../alert'
+import api from '../../config/api.js'
 
 let data = {
   regions: null,
@@ -96,7 +97,7 @@ export default {
     return data
   },
   beforeCreate () {
-    this.$http.get(`${process.env.AWS_API_ROOT}regions`)
+    this.$http.get(`${api.regions}`)
     .then((response) => {
       this.regions = response.body.data.Items.sort(function compare (a, b) {
         if (a.priority + a.name < b.priority + b.name)
@@ -121,11 +122,11 @@ export default {
       }
       this.$emit('getPrice')
       let price
-      this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.travel1.from.id}@${this.travel1.to.id}`)
+      this.$http.get(`${api.pricing}/${this.travel1.from.id}@${this.travel1.to.id}`)
       .then((response) => {
         price = response.body.CHF
         if (this.travel2.exist) {
-          this.$http.get(`${process.env.AWS_API_ROOT}pricing/${this.travel2.from.id}@${this.travel2.to.id}`)
+          this.$http.get(`${api.pricing}/${this.travel2.from.id}@${this.travel2.to.id}`)
           .then((response) => {
             price += response.body.CHF
             this.$emit('setPrice', price, this.travel1, this.travel2)
