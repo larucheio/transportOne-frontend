@@ -52,7 +52,7 @@ export default {
     }
   },
   mounted () {
-    alert.hide()
+    alert.hideAll()
   },
   methods: {
     sendMessage () {

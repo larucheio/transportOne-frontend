@@ -125,7 +125,7 @@ export default {
   },
   mounted: function () {
     this.getRegions()
-    alert.hide()
+    alert.hideAll()
   },
   methods: {
     getRegions: function () {

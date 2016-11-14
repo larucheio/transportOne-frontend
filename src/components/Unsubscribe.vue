@@ -25,7 +25,7 @@ export default {
     }
   },
   mounted: function () {
-    alert.hide()
+    alert.hideAll()
   },
   methods: {
     unsubscribe () {

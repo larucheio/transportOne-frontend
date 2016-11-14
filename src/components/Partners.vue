@@ -61,7 +61,7 @@ export default {
     }, (response) => {})
   },
   mounted: function () {
-    alert.hide()
+    alert.hideAll()
   },
   components: {
     'review': Review
