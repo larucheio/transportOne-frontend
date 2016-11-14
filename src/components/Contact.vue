@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import alert from '../alert'
+
 export default {
   data () {
     return {
@@ -50,21 +52,19 @@ export default {
     }
   },
   mounted () {
-    $('#success-alert').hide()
-    $('#error-alert').hide()
+    alert.hide('#success-alert')
+    alert.hide('#error-alert')
   },
   methods: {
     sendMessage () {
       if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === '') {
         this.error = `Veuillez remplir le formulaire avant de l'envoyer.`
-        $('#error-alert').alert()
-        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert')
         return
       }
       if (this.message.length < 100 || this.message.length > 2000) {
         this.error = `Le message doit contenir entre 100 et 2000 caractères.`
-        $('#error-alert').alert()
-        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert')
         return
       }
       const text = `Nom: ${this.user.firstName} ${this.user.lastName}
@@ -74,12 +74,10 @@ Message: ${this.message}`
       this.$http.post(`${process.env.AWS_API_ROOT}contact`, {'data': text, 'subject': 'Contact', 'source': this.user.email})
       .then((response) => {
         this.message = ''
-        $('#success-alert').alert()
-        $('#success-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#success-alert')
       }, (response) => {
         this.error = `Erreur, le message n'a pas pu être envoyé.`
-        $('#error-alert').alert()
-        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert')
       })
     }
   }

@@ -18,6 +18,8 @@
 
 <script>
 import auth from '../auth'
+import alert from '../alert'
+
 const Review = {
   template: `<div class="card card-block">
     <div class="media">
@@ -59,8 +61,8 @@ export default {
     }, (response) => {})
   },
   mounted: function () {
-    $('#success-alert').hide()
-    $('#error-alert').hide()
+    alert.hide('#success-alert')
+    alert.hide('#error-alert')
   },
   components: {
     'review': Review
@@ -79,14 +81,12 @@ export default {
     sendReview: function () {
       if (!auth.isAuthenticated()) {
         this.error = `Veuillez vous connecter pour envoyer un commentaire`
-        $('#error-alert').alert()
-        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert')
         return
       }
       if (this.newReview.length < 100 || this.newReview.length > 1000) {
         this.error = `Veuillez vous écrire au moins 100 caractères et au plus 1000 caractères`
-        $('#error-alert').alert()
-        $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert')
         return
       }
       const profile = auth.getProfile()
@@ -102,12 +102,10 @@ export default {
             'username': profile.given_name,
             'userPic': profile.picture})
           this.newReview = ''
-          $('#success-alert').alert()
-          $('#success-alert').fadeTo(2000, 500).slideUp(500, function () {})
+          alert.show('#success-alert')
         }, (response) => {
           this.error = `Le commentaire n'a pas pu être envoyé.`
-          $('#error-alert').alert()
-          $('#error-alert').fadeTo(2000, 500).slideUp(500, function () {})
+          alert.show('#error-alert')
         })
       }
     }

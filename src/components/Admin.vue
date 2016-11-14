@@ -95,6 +95,8 @@
 
 <script>
 import auth from '../auth'
+import alert from '../alert'
+
 export default {
   data () {
     return {
@@ -108,12 +110,12 @@ export default {
   },
   mounted: function () {
     this.getRegions()
-    $('#success-alert-price').hide()
-    $('#error-alert-price').hide()
-    $('#success-alert-setRegion').hide()
-    $('#error-alert-setRegion').hide()
-    $('#success-alert-addRegion').hide()
-    $('#error-alert-addRegion').hide()
+    alert.hide('#success-alert-price')
+    alert.hide('#error-alert-price')
+    alert.hide('#success-alert-setRegion')
+    alert.hide('#error-alert-setRegion')
+    alert.hide('#success-alert-addRegion')
+    alert.hide('#error-alert-addRegion')
   },
   methods: {
     getRegions: function () {
@@ -131,21 +133,17 @@ export default {
     setPrice: function () {
       this.$http.post(`${process.env.AWS_API_ROOT}pricing/${this.from.id}@${this.to.id}`, {'CHF': this.price})
       .then((response) => {
-        $('#success-alert-price').alert()
-        $('#success-alert-price').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#success-alert-price')
       }, (response) => {
-        $('#error-alert-price').alert()
-        $('#error-alert-price').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert-price')
       })
     },
     setRegion: function () {
       this.$http.post(`${process.env.AWS_API_ROOT}regions/${this.regionToSet.id}`, this.regionToSet)
       .then((response) => {
-        $('#success-alert-setRegion').alert()
-        $('#success-alert-setRegion').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#success-alert-setRegion')
       }, (response) => {
-        $('#error-alert-setRegion').alert()
-        $('#error-alert-setRegion').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert-setRegion')
       })
     },
     addRegion: function () {
@@ -153,11 +151,9 @@ export default {
       this.$http.post(`${process.env.AWS_API_ROOT}regions/${id}`, this.regionToAdd)
       .then((response) => {
         this.getRegions()
-        $('#success-alert-addRegion').alert()
-        $('#success-alert-addRegion').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#success-alert-addRegion')
       }, (response) => {
-        $('#error-alert-addRegion').alert()
-        $('#error-alert-addRegion').fadeTo(2000, 500).slideUp(500, function () {})
+        alert.show('#error-alert-addRegion')
       })
     }
   },
