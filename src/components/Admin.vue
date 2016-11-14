@@ -110,6 +110,7 @@
 <script>
 import auth from '../auth'
 import alert from '../alert'
+import api from '../../config/api.js'
 
 export default {
   data () {
@@ -136,7 +137,7 @@ export default {
   },
   methods: {
     getRegions: function () {
-      this.$http.get(`${process.env.AWS_API_ROOT}regions`)
+      this.$http.get(`${api.regions}`)
       .then((response) => {
         this.regions = response.body.data.Items.sort(function compare (a, b) {
           if (a.priority + a.name < b.priority + b.name) return -1
@@ -148,7 +149,7 @@ export default {
       }, (response) => {})
     },
     setPrice: function () {
-      this.$http.post(`${process.env.AWS_API_ROOT}pricing/${this.from.id}@${this.to.id}`, {'CHF': this.price})
+      this.$http.post(`${api.pricing}/${this.from.id}@${this.to.id}`, {'CHF': this.price})
       .then((response) => {
         alert.show('#success-alert-price')
       }, (response) => {
@@ -156,7 +157,7 @@ export default {
       })
     },
     setRegion: function () {
-      this.$http.post(`${process.env.AWS_API_ROOT}regions/${this.regionToSet.id}`, this.regionToSet)
+      this.$http.post(`${api.regions}/${this.regionToSet.id}`, this.regionToSet)
       .then((response) => {
         alert.show('#success-alert-setRegion')
       }, (response) => {
@@ -165,7 +166,7 @@ export default {
     },
     addRegion: function () {
       const id = this.regionToAdd.name.replace(/[^A-Za-z0-9]+/g, "")
-      this.$http.post(`${process.env.AWS_API_ROOT}regions/${id}`, this.regionToAdd)
+      this.$http.post(`${api.regions}/${id}`, this.regionToAdd)
       .then((response) => {
         this.getRegions()
         alert.show('#success-alert-addRegion')
@@ -176,7 +177,7 @@ export default {
     sendNewsletter: function () {
       const body = `<p>${this.newsletter.body}</p>
 <a href="${process.env.SITE_URL}unsubscribe">Se désinscrire</a>`
-      this.$http.post(`${process.env.AWS_API_ROOT}subscribtions/broadcast`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
+      this.$http.post(`${api.broadcast}`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
       .then((response) => {
         alert.show('#success-alert-newsletter')
       }, (response) => {

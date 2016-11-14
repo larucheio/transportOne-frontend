@@ -42,6 +42,7 @@
 
 <script>
 import alert from '../alert'
+import api from '../../config/api.js'
 
 export default {
   data () {
@@ -71,7 +72,7 @@ export default {
 Tel: ${this.user.tel} Email: ${this.user.email}
 Message: ${this.message}`
       const self = this
-      this.$http.post(`${process.env.AWS_API_ROOT}contact`, {'data': text, 'subject': 'Contact', 'source': this.user.email})
+      this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Contact', 'source': this.user.email})
       .then((response) => {
         this.message = ''
         alert.show('#success-alert')

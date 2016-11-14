@@ -19,6 +19,7 @@
 <script>
 import auth from '../auth'
 import alert from '../alert'
+import api from '../../config/api.js'
 
 const Review = {
   template: `<div class="card card-block">
@@ -51,7 +52,7 @@ export default {
     }
   },
   beforeCreate () {
-    this.$http.get(`${process.env.AWS_API_ROOT}reviews`)
+    this.$http.get(`${api.reviews}`)
     .then((response) => {
       this.reviews = response.body.data.Items
       if (this.reviews.length > 0 && this.reviews[this.reviews.length-1].page > 0) {
@@ -71,7 +72,7 @@ export default {
     getMoreReviews: function () {
       const page = this.reviews[this.reviews.length-1].page-1
       if (page >= 0) {
-        this.$http.get(`${process.env.AWS_API_ROOT}reviews?page=${page}`)
+        this.$http.get(`${api.reviews}?page=${page}`)
         .then((response) => {
           this.reviews = this.reviews.concat(response.body.data.Items)
           if (this.reviews[this.reviews.length-1].page === 0) this.showMorePage = false
@@ -90,7 +91,7 @@ export default {
         return
       }
       const profile = auth.getProfile()
-      this.$http.post(`${process.env.AWS_API_ROOT}reviews`,
+      this.$http.post(`${api.reviews}`,
         {'userId': profile.user_id,
         'review': this.newReview,
         'username': profile.given_name,

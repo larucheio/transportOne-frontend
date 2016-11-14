@@ -107,6 +107,7 @@
 <script>
 import Pricing from './Pricing.vue'
 import alert from '../alert'
+import api from '../../config/api.js'
 
 let data = {
   user: {firstName: '', lastName: '', tel: '', email: ''},
@@ -212,7 +213,7 @@ Options: ${waiting}${comission}${groupe}
 Prix du/des trajets: ${this.price}CHF
 Commentaire: ${this.comment}`
       const self = this
-      this.$http.post(`${process.env.AWS_API_ROOT}contact`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
+      this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
       .then((response) => {
         self.calcRoute()
         alert.show('#booking-success-alert')
@@ -223,7 +224,7 @@ Commentaire: ${this.comment}`
     },
     subscribe () {
       if (this.isSubscribing) {
-        this.$http.post(`${process.env.AWS_API_ROOT}subscribtions/${this.user.email}`)
+        this.$http.post(`${api.subscriptions}/${this.user.email}`)
         .then((response) => {}, (response) => {})
       }
     }
