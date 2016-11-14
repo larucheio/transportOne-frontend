@@ -83,6 +83,10 @@
           <small id="peopleHelp" class="form-text text-muted">Prix: 10fr</small>
         </label>
       </div>
+      <div class="form-group">
+        <label for="comment">Commentaire</label>
+        <textarea class="form-control" v-model="comment" id="comment"></textarea>
+      </div>
       <button type="submit" class="btn btn-default btn-block" @click="book">Faire une demande de reservation</button>
     </form>
     <div id="booking-success-alert" class="alert alert-success" role="alert">
@@ -105,6 +109,7 @@ let data = {
   travel1: {from: null, to: null, date: null, time: null},
   travel2: {from: null, to: null, date: null, time: null, exist: false},
   options: {waiting: false, comission: false, groupe: false},
+  comment: '',
   directionsService: null,
   directionsDisplay: null,
   error: '',
@@ -191,7 +196,8 @@ Tel: ${this.user.tel} Email: ${this.user.email}
 Aller: de ${this.travel1.from} à ${this.travel1.to}, le ${this.travel1.date} à ${this.travel1.time}
 Retour: ${roundTrip}
 Options: ${waiting}${comission}${groupe}
-Prix du/des trajets: ${this.price}CHF`
+Prix du/des trajets: ${this.price}CHF
+Commentaire: ${this.comment}`
       const self = this
       this.$http.post(`${process.env.AWS_API_ROOT}contact`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
       .then((response) => {
