@@ -113,6 +113,7 @@
 import Pricing from './Pricing.vue'
 import alert from '../alert'
 import api from '../../config/api.js'
+import auth from '../auth'
 
 let data = {
   user: {firstName: '', lastName: '', tel: '', email: ''},
@@ -136,6 +137,14 @@ export default {
   mounted () {
     this.initMap()
     alert.hideAll()
+    if (auth.isAuthenticated()) {
+      this.user.firstName = auth.getProfile().given_name
+      this.user.lastName = auth.getProfile().family_name
+      this.user.tel = auth.getProfile().user_metadata.tel
+      this.user.email = auth.getProfile().user_metadata.email
+      this.travel1.from = auth.getProfile().user_metadata.from
+      this.travel1.to = auth.getProfile().user_metadata.to
+    }
   },
   methods: {
     initMap () {
@@ -224,6 +233,7 @@ export default {
         this.error = 'erreur'
         alert.show('#booking-error-alert')
       })
+      auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
     },
     subscribe () {
       if (this.isSubscribing) {
