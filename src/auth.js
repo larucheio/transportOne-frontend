@@ -33,14 +33,12 @@ export default {
     })
   },
   isAuthenticated () {
-    if (localStorage.getItem('id_token'))
-      return true
+    if (localStorage.getItem('id_token')) return true
     return false
   },
   isAdmin () {
     const profile = localStorage.getItem('profile')
-    if (profile && JSON.parse(profile).isAdmin)
-      return true
+    if (profile && JSON.parse(profile).isAdmin) return true
     return false
   },
   getAuthHeader () {
@@ -59,5 +57,12 @@ export default {
   },
   getProfile () {
     return JSON.parse(localStorage.getItem('profile'))
+  },
+  setProfileAttribute (attribute) {
+    //exemple to set an attribute  setProfileAttribute({isAdmin: true})
+    router.app.$http.patch(`https://${process.env.AUTH0_DOMAIN}/api/v2/users/${this.getProfile().user_id}`,
+      {user_metadata: attribute},
+      {headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}`}}
+    ).then((response) => {}, (response) => {})
   }
 }
