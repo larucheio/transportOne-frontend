@@ -43,6 +43,7 @@
 <script>
 import alert from '../alert'
 import api from '../../config/api.js'
+import auth from '../auth'
 
 export default {
   data () {
@@ -54,6 +55,12 @@ export default {
   },
   mounted () {
     alert.hideAll()
+    if (auth.isAuthenticated()) {
+      this.user.firstName = auth.getProfile().given_name
+      this.user.lastName = auth.getProfile().family_name
+      this.user.tel = auth.getProfile().user_metadata.tel
+      this.user.email = auth.getProfile().user_metadata.email
+    }
   },
   methods: {
     sendMessage () {
@@ -79,6 +86,7 @@ Message: ${this.message}`
         this.error = `Erreur, le message n'a pas pu être envoyé.`
         alert.show('#error-alert')
       })
+      auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
     }
   }
 }
