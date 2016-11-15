@@ -17,6 +17,7 @@
 
 <script>
 import alert from '../alert'
+import api from '../../config/api.js'
 
 export default {
   data () {
@@ -29,7 +30,7 @@ export default {
   },
   methods: {
     unsubscribe () {
-      this.$http.delete(`${process.env.AWS_API_ROOT}subscribtions/${this.email}`)
+      this.$http.delete(`${api.subscriptions}/${this.email}`)
       .then((response) => {
         alert.show('#success-alert')
       }, (response) => {

@@ -30,3 +30,11 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
  ## Environnement variable
 
  Copy `example.prod.env.js` to `prod.env.js` and fill up correctly the variables.
+
+ ## API
+
+ The API root url must be configured in the environnement variables. You can obtain the url when you deploy your serverless backend (see [transport-one backend](https://github.com/larucheio/transportOne-backend) docs).
+
+ ### Endpoints
+
+The API endpoints are based on the [transport-one backend](https://github.com/larucheio/transportOne-backend). You can find a list of the endpoints on the config/api.js file.
