@@ -135,11 +135,11 @@ export default {
             alert.show('#error-alert')
           })
         } else {
-          this.error = 'Erreur'
           this.$emit('setPrice', price, this.travel1, this.travel2)
         }
       }, (response) => {
-        alert.show('#error-alert')
+        price = 'à partir de 25 CHF'
+        this.$emit('setPrice', price, this.travel1, this.travel2)
       })
     }
   }

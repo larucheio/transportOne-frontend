@@ -28,7 +28,7 @@
         </ul>
       </div>
     </nav>
-    <div class="col-sm-9">
+    <div>
       <transition name="component-fade" mode="out-in">
         <router-view></router-view>
       </transition>
