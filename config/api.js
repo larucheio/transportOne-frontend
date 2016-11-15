@@ -1,8 +1,10 @@
+const root = process.env.AWS_API
+
 module.exports = {
-  pricing: `${process.env.AWS_API}pricing`,
-  contact: `${process.env.AWS_API}contact`,
-  regions: `${process.env.AWS_API}regions`,
-  reviews: `${process.env.AWS_API}reviews`,
-  subscriptions: `${process.env.AWS_API}subscriptions`,
-  broadcast: `${process.env.AWS_API}subscriptions/broadcast`
+  pricing: `${root}pricing`,
+  contact: `${root}contact`,
+  regions: `${root}regions`,
+  reviews: `${root}reviews`,
+  subscriptions: `${root}subscriptions`,
+  broadcast: `${root}subscriptions/broadcast`
 }
