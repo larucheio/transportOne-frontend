@@ -1,10 +1,14 @@
 <template>
-  <div class="card">
-    <div class="btn-group btn-block" role="group">
-      <button id="one-way-btn" @click="travel2.exist = false" type="button" class="btn btn-secondary col-xs-6 active">Aller simple</button>
-      <button id="round-trip-btn" @click="travel2.exist = true" type="button" class="btn btn-secondary col-xs-6">Aller-retour</button>
+  <div>
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-toggle active col-xs-6" @click="travel2.exist = false">
+        <input type="radio">Aller simple
+      </label>
+      <label class="btn btn-toggle col-xs-6" @click="travel2.exist = true">
+        <input type="radio">Aller-retour
+      </label>
     </div>
-    <form style="padding:10px;">
+    <div class="form">
       <div class="row">
         <div class="col-sm-6" style="margin-top:10px;">
           <div class="input-group">
@@ -78,7 +82,7 @@
           <i class="fa fa-times" aria-hidden="true"></i> {{error}}
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -146,18 +150,22 @@ export default {
 }
 </script>
 
-<style scoped>
-.btn-secondary {
-  border: 0;
+<style scoped lang="scss">
+.btn-toggle {
+  background: rgba(black, 0.1);
+  border-radius: 0px;
+  &.active {
+    background: white;
+  }
+}
+.form {
+  background-color: #fff;
+  padding: 10px;
 }
 .input-group-addon {
   width: 50px;
-  background-color: #fff;
 }
 .custom-select {
   height: 44px;
-}
-.container {
-  background-color: #ccc;
 }
 </style>
