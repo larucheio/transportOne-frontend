@@ -5,9 +5,9 @@
       <div class="card col-sm-3">
         <h3>Prix: {{price}}</h3>
         <b>Aller</b>
-        <p>{{priceDetailsAller}}</p>
+        <p>{{priceDetailsTravel1}}</p>
         <b>Retour</b>
-        <p>{{priceDetailsRetour}}</p>
+        <p>{{priceDetailsTravel2}}</p>
       </div>
     </div>
     <div class="col-sm-9">
@@ -123,8 +123,8 @@ import auth from '../auth'
 let data = {
   user: {firstName: '', lastName: '', tel: '', email: ''},
   price: 'à partir de 25 CHF',
-  priceDetailsAller: 'Faite une demande de devis pour connaitre le prix exact',
-  priceDetailsRetour: 'Aucun',
+  priceDetailsTravel1: 'Faite une demande de devis pour connaitre le prix exact',
+  priceDetailsTravel2: 'Aucun',
   travel1: {from: null, to: null, date: null, time: null},
   travel2: {from: null, to: null, date: null, time: null, exist: false},
   options: {waiting: false, comission: false, groupe: false},
@@ -190,9 +190,9 @@ export default {
       this.travel2.exist = travel2.exist
       this.travel2.date = travel2.date
       this.travel2.time = travel2.time
-      this.priceDetailsAller = `de ${travel1.from.name} à ${travel1.to.name}, le ${travel1.date} à ${this.travel1.time}`
-      if (travel2.exist) this.priceDetailsRetour = `Retour de ${travel2.from.name} à ${travel2.to.name}, le ${this.travel2.date} à ${this.travel2.time}`
-      else this.priceDetailsRetour = 'Aucun'
+      this.priceDetailsTravel1 = `De ${travel1.from.name} à ${travel1.to.name}, le ${travel1.date} à ${this.travel1.time}.`
+      if (travel2.exist) this.priceDetailsTravel2 = `De ${travel2.from.name} à ${travel2.to.name}, le ${this.travel2.date} à ${this.travel2.time}.`
+      else this.priceDetailsTravel2 = 'Aucun'
       alert.hideAll()
     },
     book () {
@@ -231,8 +231,8 @@ Aller: de ${this.travel1.from} à ${this.travel1.to}, le ${this.travel1.date} à
 Retour: ${roundTrip}
 Options: ${waiting}${comission}${groupe}
 Prix du/des trajets: ${this.price}CHF
-Détails aller: ${this.priceDetailsAller}
-Détails retour: ${this.priceDetailsRetour}
+Détails aller: ${this.priceDetailsTravel1}
+Détails retour: ${this.priceDetailsTravel2}
 Commentaire: ${this.comment}`
       const self = this
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
