@@ -5,7 +5,7 @@
         <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
         <button class="btn btn-outline-success float-xs-right" type="submit" @click="login" v-show="!isAuthenticated">Se connecter</button>
         <button class="btn btn-outline-success float-xs-right" type="submit" @click="logout" v-show="isAuthenticated">Se deconnecter</button>
-        <div class="collapse navbar-toggleable-xs" id="navbar-header">
+        <div class="collapse navbar-toggleable-xs" id="navbar-header" data-toggle="collapse" data-target="#navbar-header">
           <a class="navbar-brand" href="#">Transport One</a>
           <ul class="nav navbar-nav">
             <li class="nav-item active">
