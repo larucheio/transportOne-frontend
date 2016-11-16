@@ -8,7 +8,7 @@
         <div class="collapse navbar-toggleable-xs" id="navbar-header">
           <a class="navbar-brand" href="#">Transport One</a>
           <ul class="nav navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item active" data-toggle="collapse" data-target="#navbar-header">
               <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
             </li>
             <li class="nav-item active">
