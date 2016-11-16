@@ -1,8 +1,12 @@
 <template>
   <div class="card">
-    <div class="btn-group btn-block" role="group">
-      <button id="one-way-btn" @click="travel2.exist = false" type="button" class="btn btn-secondary col-xs-6 active">Aller simple</button>
-      <button id="round-trip-btn" @click="travel2.exist = true" type="button" class="btn btn-secondary col-xs-6">Aller-retour</button>
+    <div class="btn-group btn-block" data-toggle="buttons">
+      <label class="btn btn-toggle active col-xs-6" @click="travel2.exist = false">
+        <input type="radio">Aller simple
+      </label>
+      <label class="btn btn-toggle col-xs-6" @click="travel2.exist = true">
+        <input type="radio">Aller-retour
+      </label>
     </div>
     <form style="padding:10px;">
       <div class="row">
@@ -150,6 +154,15 @@ export default {
 .btn-secondary {
   border: 0;
 }
+
+.btn-toggle {
+  background-color: lightgray;
+}
+
+.btn-toggle.active {
+  background-color: white;
+}
+
 .input-group-addon {
   width: 50px;
   background-color: #fff;
