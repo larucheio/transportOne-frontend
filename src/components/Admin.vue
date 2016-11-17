@@ -97,8 +97,8 @@
         <input type="text" class="form-control" v-model.lazy="newsletter.subject">
       </div>
       <div class="input-group">
-        <label for="text">Texte</label>
-        <textarea class="form-control" v-model="newsletter.body"></textarea>
+        <label for="text">Message</label>
+        <textarea class="form-control" rows="10" v-model="newsletter.body"></textarea>
       </div>
       <button class="btn btn-primary float-xs-right" @click="sendNewsletter">Envoyer</button>
     </div>
