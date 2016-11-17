@@ -79,7 +79,6 @@ $(window).scroll(function () {
 //collapse mobile menu on click
 $(document).ready(function () {
   $('.navbar-nav li a').click(function (event) {
-    console.log('aa')
     if ($(event.target).is('a')) $('.collapse').collapse('hide')
   })
 })
