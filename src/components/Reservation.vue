@@ -1,17 +1,21 @@
 <template>
   <div>
     <div class="row">
-      <pricing class="col-sm-9" v-on:setPrice="getDevisData"></pricing>
-      <div class="card col-sm-3">
-        <h3>Prix: {{price}}</h3>
-        <b>Aller</b>
-        <p>{{priceDetailsTravel1}}</p>
-        <b>Retour</b>
-        <p>{{priceDetailsTravel2}}</p>
+      <div class="col-lg-9">
+        <pricing v-on:setPrice="getDevisData"></pricing>
+      </div>
+      <div class="col-lg-3">
+        <div class="card card-block">
+          <h3 class="card-title">Prix: {{price}}</h3>
+          <b class="card-text">Aller</b>
+          <p class="card-text">{{priceDetailsTravel1}}</p>
+          <b class="card-text">Retour</b>
+          <p class="card-text">{{priceDetailsTravel2}}</p>
+        </div>
       </div>
     </div>
-    <div class="col-sm-9">
-      <form>
+    <div class="row">
+      <div class="col-lg-9">
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
@@ -68,7 +72,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div>
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting">
             <span class="custom-control-indicator"></span>
@@ -76,7 +80,7 @@
             <small id="attenteHelp" class="form-text text-muted">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
           </label>
         </div>
-        <div class="row">
+        <div>
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission">
             <span class="custom-control-indicator"></span>
@@ -84,7 +88,7 @@
             <small id="comissionHelp" class="form-text text-muted">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
           </label>
         </div>
-        <div class="row">
+        <div>
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
             <span class="custom-control-indicator"></span>
@@ -102,14 +106,14 @@
           <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
         </label>
         <button type="submit" class="btn btn-default btn-block" @click="book">Faire une demande de reservation</button>
-      </form>
-      <div id="booking-success-alert" class="alert alert-success" role="alert">
-        <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
+        <div id="booking-success-alert" class="alert alert-success" role="alert">
+          <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
+        </div>
+        <div id="booking-error-alert" class="alert alert-danger" role="alert">
+          <i class="fa fa-times" aria-hidden="true"></i> {{error}}
+        </div>
+        <div id="map" style="margin-top:10px;"></div>
       </div>
-      <div id="booking-error-alert" class="alert alert-danger" role="alert">
-        <i class="fa fa-times" aria-hidden="true"></i> {{error}}
-      </div>
-      <div id="map" style="margin-top:10px;"></div>
     </div>
   </div>
 </template>
