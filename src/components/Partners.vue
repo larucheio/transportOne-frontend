@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card card-block">
+    <div class="card card-block" v-if="isAuthenticated">
       <h5 class="card-title">Commentaire</h5>
       <textarea class="form-control" v-model="newReview" style="margin-bottom:10px;"></textarea>
       <button class="btn btn-primary" @click="sendReview">Envoyer</button>
@@ -48,7 +48,8 @@ export default {
       reviews: null,
       newReview: '',
       error: null,
-      showMorePage: false
+      showMorePage: false,
+      isAuthenticated: auth.isAuthenticated()
     }
   },
   beforeCreate () {
@@ -79,11 +80,6 @@ export default {
       }
     },
     sendReview: function () {
-      if (!auth.isAuthenticated()) {
-        this.error = `Veuillez vous connecter pour envoyer un commentaire`
-        alert.show('#error-alert')
-        return
-      }
       if (this.newReview.length < 100 || this.newReview.length > 1000) {
         this.error = `Veuillez vous écrire au moins 100 caractères et au plus 1000 caractères`
         alert.show('#error-alert')
