@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="padding-top:70px;">
-    <nav id="navbar" class="navbar navbar-fixed-top navbar-light bg-faded">  
+    <nav id="navbar" class="navbar navbar-fixed-top navbar-light bg-faded">
       <div class="container hidden-lg-up">
         <a class="navbar-brand" href="#">Transport One</a>
         <button class="navbar-toggler float-xs-right" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
@@ -74,6 +74,13 @@ $(window).scroll(function () {
     $('#navbar').slideDown(500, function () {})
   }
   lastScroll = $(window).scrollTop()
+})
+
+//collapse mobile menu on click
+$(document).ready(function () {
+  $('.navbar-nav li a').click(function (event) {
+    if ($(event.target).is('a')) $('.collapse').collapse('hide')
+  })
 })
 </script>
 
