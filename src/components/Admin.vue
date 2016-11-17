@@ -4,7 +4,7 @@
       <h6 class="card-title">Modifier un prix</h6>
       <div class="row">
         <div class="col-md-4">
-          <div class="input-group">
+          <div class="form-group">
             <label>Départ</label>
             <select class="custom-select btn-block" v-model.lazy="from">
               <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="input-group">
+          <div class="form-group">
             <label>Arrivée</label>
             <select class="custom-select btn-block" v-model.lazy="to">
               <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="input-group">
+          <div class="form-group">
             <label>Prix (CHF)</label>
             <input type="number" class="form-control"  placeholder="1.5" v-model.lazy="price">
           </div>
@@ -38,7 +38,7 @@
       <h6 class="card-title">Modifier une region</h6>
       <div class="row">
         <div class="col-md-4">
-          <div class="input-group">
+          <div class="form-group">
             <label>Region</label>
             <select class="custom-select btn-block" v-model.lazy="regionToSet">
               <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
@@ -46,13 +46,13 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="input-group">
+          <div class="form-group">
             <label>Nom</label>
             <input type="text" class="form-control" v-model.lazy="regionToSet.name">
           </div>
         </div>
         <div class="col-md-4">
-          <div class="input-group">
+          <div class="form-group">
             <label>Priorité</label>
             <input type="number" class="form-control" v-model.lazy="regionToSet.priority">
           </div>
@@ -70,13 +70,13 @@
       <h6 class="card-title">Ajouter une region</h6>
       <div class="row">
         <div class="col-md-8">
-          <div class="input-group">
+          <div class="form-group">
             <label>Nom</label>
             <input type="text" class="form-control" v-model.lazy="regionToAdd.name">
           </div>
         </div>
         <div class="col-md-4">
-          <div class="input-group">
+          <div class="form-group">
             <label>Priorité</label>
             <input type="number" class="form-control" v-model.lazy="regionToAdd.priority">
           </div>
@@ -92,11 +92,11 @@
     </div>
     <div class="card card-block">
       <h6 class="card-title">Newsletter</h6>
-      <div class="input-group">
+      <div class="form-group">
         <label>Sujet</label>
         <input type="text" class="form-control" v-model.lazy="newsletter.subject">
       </div>
-      <div class="input-group">
+      <div class="form-group">
         <label for="text">Message</label>
         <textarea class="form-control" rows="10" v-model="newsletter.body"></textarea>
       </div>
@@ -190,9 +190,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.input-group {
-  margin-bottom: 10px;
-}
-</style>
