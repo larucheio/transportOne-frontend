@@ -1,111 +1,119 @@
 <template>
   <div>
-    <pricing class="col-lg-9" v-on:setPrice="getDevisData"></pricing>
-    <div class="card col-lg-3">
-      <h3>Prix: {{price}}</h3>
-      <b>Aller</b>
-      <p>{{priceDetailsTravel1}}</p>
-      <b>Retour</b>
-      <p>{{priceDetailsTravel2}}</p>
+    <div class="row">
+      <div class="col-lg-9">
+        <pricing v-on:setPrice="getDevisData"></pricing>
+      </div>
+      <div class="col-lg-3">
+        <div class="card card-block">
+          <h3 class="card-title">Prix: {{price}}</h3>
+          <b class="card-text">Aller</b>
+          <p class="card-text">{{priceDetailsTravel1}}</p>
+          <b class="card-text">Retour</b>
+          <p class="card-text">{{priceDetailsTravel2}}</p>
+        </div>
+      </div>
     </div>
-    <div class="col-lg-9">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="firstName">Prénom</label>
-            <input type="text" class="form-control" id="firstName" placeholder="John" v-model.lazy="user.firstName">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="firstName">Prénom</label>
+              <input type="text" class="form-control" id="firstName" placeholder="John" v-model.lazy="user.firstName">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="lastName">Nom</label>
+              <input type="text" class="form-control" id="lastName" placeholder="Doe" v-model.lazy="user.lastName">
+            </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="lastName">Nom</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Doe" v-model.lazy="user.lastName">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="phone">Téléphone</label>
+              <input type="tel" class="form-control" id="phone" placeholder="022 123 45 67" v-model.lazy="user.tel">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="nom@domain.ch" v-model.lazy="user.email">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="phone">Téléphone</label>
-            <input type="tel" class="form-control" id="phone" placeholder="022 123 45 67" v-model.lazy="user.tel">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="from1">Adresse de départ</label>
+              <input type="text" class="form-control" id="from1" placeholder="1 chemin de départ 1204 Genève" v-model.lazy="travel1.from">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="to1">Adresse d'arrivé</label>
+              <input type="text" class="form-control" id="to1" placeholder="1 chemin d'arrivé 1204 Genève" v-model.lazy="travel1.to">
+            </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="nom@domain.ch" v-model.lazy="user.email">
+        <div class="row" v-if="travel2.exist">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="from1">Adresse de départ pour le retour</label>
+              <input type="text" class="form-control" id="from2" placeholder="1 chemin de départ 1204 Genève" v-model.lazy="travel2.from">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="to1">Adresse d'arrivé pour le retour</label>
+              <input type="text" class="form-control" id="to2" placeholder="1 chemin d'arrivé 1204 Genève" v-model.lazy="travel2.to">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="from1">Adresse de départ</label>
-            <input type="text" class="form-control" id="from1" placeholder="1 chemin de départ 1204 Genève" v-model.lazy="travel1.from">
-          </div>
+        <div>
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Attente</span>
+            <small id="attenteHelp" class="form-text text-muted">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
+          </label>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="to1">Adresse d'arrivé</label>
-            <input type="text" class="form-control" id="to1" placeholder="1 chemin d'arrivé 1204 Genève" v-model.lazy="travel1.to">
-          </div>
+        <div>
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Comission</span>
+            <small id="comissionHelp" class="form-text text-muted">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
+          </label>
         </div>
-      </div>
-      <div class="row" v-if="travel2.exist">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="from1">Adresse de départ pour le retour</label>
-            <input type="text" class="form-control" id="from2" placeholder="1 chemin de départ 1204 Genève" v-model.lazy="travel2.from">
-          </div>
+        <div>
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Plus de 4 personnes</span>
+            <small id="peopleHelp" class="form-text text-muted">Prix: 10fr</small>
+          </label>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="to1">Adresse d'arrivé pour le retour</label>
-            <input type="text" class="form-control" id="to2" placeholder="1 chemin d'arrivé 1204 Genève" v-model.lazy="travel2.to">
-          </div>
+        <div class="form-group">
+          <label for="comment">Commentaire</label>
+          <textarea class="form-control" v-model="comment" id="comment"></textarea>
         </div>
-      </div>
-      <div>
         <label class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting">
+          <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="isSubscribing">
           <span class="custom-control-indicator"></span>
-          <span class="custom-control-description">Attente</span>
-          <small id="attenteHelp" class="form-text text-muted">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
+          <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
         </label>
+        <button type="submit" class="btn btn-default btn-block" @click="book">Faire une demande de reservation</button>
+        <div id="booking-success-alert" class="alert alert-success" role="alert">
+          <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
+        </div>
+        <div id="booking-error-alert" class="alert alert-danger" role="alert">
+          <i class="fa fa-times" aria-hidden="true"></i> {{error}}
+        </div>
+        <div id="map" style="margin-top:10px;"></div>
       </div>
-      <div>
-        <label class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission">
-          <span class="custom-control-indicator"></span>
-          <span class="custom-control-description">Comission</span>
-          <small id="comissionHelp" class="form-text text-muted">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
-        </label>
-      </div>
-      <div>
-        <label class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
-          <span class="custom-control-indicator"></span>
-          <span class="custom-control-description">Plus de 4 personnes</span>
-          <small id="peopleHelp" class="form-text text-muted">Prix: 10fr</small>
-        </label>
-      </div>
-      <div class="form-group">
-        <label for="comment">Commentaire</label>
-        <textarea class="form-control" v-model="comment" id="comment"></textarea>
-      </div>
-      <label class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="isSubscribing">
-        <span class="custom-control-indicator"></span>
-        <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
-      </label>
-      <button type="submit" class="btn btn-default btn-block" @click="book">Faire une demande de reservation</button>
-      <div id="booking-success-alert" class="alert alert-success" role="alert">
-        <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
-      </div>
-      <div id="booking-error-alert" class="alert alert-danger" role="alert">
-        <i class="fa fa-times" aria-hidden="true"></i> {{error}}
-      </div>
-      <div id="map" style="margin-top:10px;"></div>
     </div>
   </div>
 </template>
