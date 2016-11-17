@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <div class="card card-block">
       <h6 class="card-title">Modifier un prix</h6>
       <div class="row">
