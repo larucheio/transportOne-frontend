@@ -68,7 +68,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div>
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting">
             <span class="custom-control-indicator"></span>
@@ -76,7 +76,7 @@
             <small id="attenteHelp" class="form-text text-muted">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
           </label>
         </div>
-        <div class="row">
+        <div>
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission">
             <span class="custom-control-indicator"></span>
@@ -84,7 +84,7 @@
             <small id="comissionHelp" class="form-text text-muted">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
           </label>
         </div>
-        <div class="row">
+        <div>
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
             <span class="custom-control-indicator"></span>
