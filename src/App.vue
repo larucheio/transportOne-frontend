@@ -2,12 +2,12 @@
   <div class="container" style="padding-top:70px;">
     <nav id="navbar" class="navbar navbar-fixed-top navbar-light bg-faded">
       <div class="container hidden-lg-up">
-        <a class="navbar-brand" href="#" data-toggle="collapse" data-target="#navbar-header">Transport One</a>
+        <router-link class="navbar-brand" to="/home">Transport One</router-link>
         <button class="navbar-toggler float-xs-right" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
       </div>
       <div class="container">
         <div class="collapse navbar-toggleable-md" id="navbar-header">
-          <a class="navbar-brand hidden-lg-down" href="#">Transport One</a>
+          <router-link class="navbar-brand hidden-lg-down" to="/home">Transport One</router-link>
           <ul class="nav navbar-nav">
             <li class="nav-item">
               <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
