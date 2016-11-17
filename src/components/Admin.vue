@@ -183,10 +183,8 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (auth.isAdmin())
-    next()
-    else
-    next('/')
+    if (auth.isAdmin()) next()
+    else next('/')
   },
 }
 </script>
