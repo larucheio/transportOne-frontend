@@ -19,16 +19,14 @@
             </select>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="input-group">
             <span class="input-group-addon">CHF</span>
             <input type="number" class="form-control"  placeholder="1.5" v-model.lazy="price">
           </div>
         </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-default" @click="setPrice"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-        </div>
       </div>
+      <button class="btn btn-primary float-xs-right" @click="setPrice">Sauvegarder</button>
     </div>
     <div id="success-alert-price" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -53,16 +51,14 @@
             <input type="text" class="form-control" v-model.lazy="regionToSet.name">
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="input-group">
             <span class="input-group-addon">Priorité</span>
             <input type="number" class="form-control" v-model.lazy="regionToSet.priority">
           </div>
         </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-default" @click="setRegion"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-        </div>
       </div>
+      <button class="btn btn-primary float-xs-right" @click="setRegion">Sauvegarder</button>
     </div>
     <div id="success-alert-setRegion" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -79,16 +75,14 @@
             <input type="text" class="form-control" v-model.lazy="regionToAdd.name">
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="input-group">
             <span class="input-group-addon">Priorité</span>
             <input type="number" class="form-control" v-model.lazy="regionToAdd.priority">
           </div>
         </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-default" @click="addRegion"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-        </div>
       </div>
+      <button class="btn btn-primary float-xs-right" @click="addRegion">Sauvegarder</button>
     </div>
     <div id="success-alert-addRegion" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -106,7 +100,7 @@
         <label for="text">Texte</label>
         <textarea class="form-control" id="text" v-model="newsletter.body"></textarea>
       </div>
-      <button class="btn btn-primary" @click="sendNewsletter">Envoyer</button>
+      <button class="btn btn-primary float-xs-right" @click="sendNewsletter">Envoyer</button>
     </div>
     <div id="success-alert-newsletter" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Envoyé
