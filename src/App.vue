@@ -7,7 +7,7 @@
       </div>
       <div class="container">
         <div class="collapse navbar-toggleable-md" id="navbar-header">
-          <router-link class="navbar-brand hidden-lg-down" to="/home">Transport One</router-link>
+          <router-link class="navbar-brand hidden-md-down" to="/home">Transport One</router-link>
           <ul class="nav navbar-nav">
             <li class="nav-item">
               <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
