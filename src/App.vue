@@ -2,7 +2,7 @@
   <div class="container" style="padding-top:70px;">
     <nav id="navbar" class="navbar navbar-fixed-top navbar-light bg-faded">
       <div class="container hidden-lg-up">
-        <a class="navbar-brand" href="#">Transport One</a>
+        <a class="navbar-brand" href="#" data-toggle="collapse" data-target="#navbar-header">Transport One</a>
         <button class="navbar-toggler float-xs-right" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
       </div>
       <div class="container">
