@@ -8,7 +8,7 @@
       <b>Retour</b>
       <p>{{priceDetailsTravel2}}</p>
     </div>
-    <div class="col-sm-9">
+    <div class="col-lg-9">
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
