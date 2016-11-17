@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="row">
-      <pricing class="col-sm-9" v-on:setPrice="getDevisData"></pricing>
-      <div class="card col-sm-3">
+      <pricing class="col-lg-9" v-on:setPrice="getDevisData"></pricing>
+      <div class="card col-lg-3">
         <h3>Prix: {{price}}</h3>
         <b>Aller</b>
         <p>{{priceDetailsTravel1}}</p>
