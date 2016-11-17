@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <strong>Modifier un prix</strong>
-    <div class="row" style="margin-bottom:10px;">
-      <div class="col-md-4" style="margin-top:10px;">
+    <div class="row">
+      <div class="col-md-4">
         <div class="input-group">
           <span class="input-group-addon">De</span>
           <select class="custom-select btn-block" v-model.lazy="from">
@@ -10,7 +10,7 @@
           </select>
         </div>
       </div>
-      <div class="col-md-4" style="margin-top:10px;">
+      <div class="col-md-4">
         <div class="input-group">
           <span class="input-group-addon">à</span>
           <select class="custom-select btn-block" v-model.lazy="to">
@@ -18,13 +18,13 @@
           </select>
         </div>
       </div>
-      <div class="col-md-3" style="margin-top:10px;">
+      <div class="col-md-3">
         <div class="input-group">
           <span class="input-group-addon">CHF</span>
           <input type="number" class="form-control"  placeholder="1.5" v-model.lazy="price">
         </div>
       </div>
-      <div class="col-md-1" style="margin-top:10px;">
+      <div class="col-md-1">
         <button type="submit" class="btn btn-default" @click="setPrice"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -35,8 +35,8 @@
       <i class="fa fa-times" aria-hidden="true"></i> Erreur
     </div>
     <strong>Modifier une region</strong>
-    <div class="row" style="margin-bottom:10px;">
-      <div class="col-md-4" style="margin-top:10px;">
+    <div class="row">
+      <div class="col-md-4">
         <div class="input-group">
           <span class="input-group-addon">Region</span>
           <select class="custom-select btn-block" v-model.lazy="regionToSet">
@@ -44,19 +44,19 @@
           </select>
         </div>
       </div>
-      <div class="col-md-4" style="margin-top:10px;">
+      <div class="col-md-4">
         <div class="input-group">
           <span class="input-group-addon">Nom</span>
           <input type="text" class="form-control" v-model.lazy="regionToSet.name">
         </div>
       </div>
-      <div class="col-md-3" style="margin-top:10px;">
+      <div class="col-md-3">
         <div class="input-group">
           <span class="input-group-addon">Priorité</span>
           <input type="number" class="form-control" v-model.lazy="regionToSet.priority">
         </div>
       </div>
-      <div class="col-md-1" style="margin-top:10px;">
+      <div class="col-md-1">
         <button type="submit" class="btn btn-default" @click="setRegion"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -67,20 +67,20 @@
       <i class="fa fa-times" aria-hidden="true"></i> Erreur
     </div>
     <strong>Ajouter une region</strong>
-    <div class="row" style="margin-bottom:10px;">
-      <div class="col-md-8" style="margin-top:10px;">
+    <div class="row">
+      <div class="col-md-8">
         <div class="input-group">
           <span class="input-group-addon">Nom</span>
           <input type="text" class="form-control" v-model.lazy="regionToAdd.name">
         </div>
       </div>
-      <div class="col-md-3" style="margin-top:10px;">
+      <div class="col-md-3">
         <div class="input-group">
           <span class="input-group-addon">Priorité</span>
           <input type="number" class="form-control" v-model.lazy="regionToAdd.priority">
         </div>
       </div>
-      <div class="col-md-1" style="margin-top:10px;">
+      <div class="col-md-1">
         <button type="submit" class="btn btn-default" @click="addRegion"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -95,8 +95,10 @@
       <span class="input-group-addon">Sujet</span>
       <input type="text" class="form-control" v-model.lazy="newsletter.subject">
     </div>
-    <label for="text" style="margin-t:10px;">Text</label>
-    <textarea class="form-control" id="text" v-model="newsletter.body" style="margin-bottom:10px;"></textarea>
+    <div class="input-group">
+      <label for="text">Text</label>
+      <textarea class="form-control" id="text" v-model="newsletter.body"></textarea>
+    </div>
     <button class="btn btn-primary" @click="sendNewsletter">Envoyer</button>
     <div id="success-alert-newsletter" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Envoyé
@@ -186,3 +188,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.input-group {
+  margin-bottom: 10px;
+}
+</style>
