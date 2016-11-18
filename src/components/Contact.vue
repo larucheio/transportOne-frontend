@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card card-block">
     <form>
       <div class="row">
         <div class="col-sm-6">
