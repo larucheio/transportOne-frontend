@@ -1,32 +1,32 @@
 <template>
-  <div class="hello">
-    <strong>Modifier un prix</strong>
-    <div class="row" style="margin-bottom:10px;">
-      <div class="col-md-4" style="margin-top:10px;">
-        <div class="input-group">
-          <span class="input-group-addon">De</span>
-          <select class="custom-select btn-block" v-model.lazy="from">
-            <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
-          </select>
+  <div>
+    <div class="card card-block">
+      <h6 class="card-title">Modifier un prix</h6>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Départ</label>
+            <select class="custom-select btn-block" v-model.lazy="from">
+              <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Arrivée</label>
+            <select class="custom-select btn-block" v-model.lazy="to">
+              <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Prix (CHF)</label>
+            <input type="number" class="form-control"  placeholder="1.5" v-model.lazy="price">
+          </div>
         </div>
       </div>
-      <div class="col-md-4" style="margin-top:10px;">
-        <div class="input-group">
-          <span class="input-group-addon">à</span>
-          <select class="custom-select btn-block" v-model.lazy="to">
-            <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-md-3" style="margin-top:10px;">
-        <div class="input-group">
-          <span class="input-group-addon">CHF</span>
-          <input type="number" class="form-control"  placeholder="1.5" v-model.lazy="price">
-        </div>
-      </div>
-      <div class="col-md-1" style="margin-top:10px;">
-        <button type="submit" class="btn btn-default" @click="setPrice"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-      </div>
+      <button class="btn btn-primary float-xs-right" @click="setPrice">Sauvegarder</button>
     </div>
     <div id="success-alert-price" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -34,31 +34,31 @@
     <div id="error-alert-price" class="alert alert-danger" role="alert">
       <i class="fa fa-times" aria-hidden="true"></i> Erreur
     </div>
-    <strong>Modifier une region</strong>
-    <div class="row" style="margin-bottom:10px;">
-      <div class="col-md-4" style="margin-top:10px;">
-        <div class="input-group">
-          <span class="input-group-addon">Region</span>
-          <select class="custom-select btn-block" v-model.lazy="regionToSet">
-            <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
-          </select>
+    <div class="card card-block">
+      <h6 class="card-title">Modifier une region</h6>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Region</label>
+            <select class="custom-select btn-block" v-model.lazy="regionToSet">
+              <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" class="form-control" v-model.lazy="regionToSet.name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Priorité</label>
+            <input type="number" class="form-control" v-model.lazy="regionToSet.priority">
+          </div>
         </div>
       </div>
-      <div class="col-md-4" style="margin-top:10px;">
-        <div class="input-group">
-          <span class="input-group-addon">Nom</span>
-          <input type="text" class="form-control" v-model.lazy="regionToSet.name">
-        </div>
-      </div>
-      <div class="col-md-3" style="margin-top:10px;">
-        <div class="input-group">
-          <span class="input-group-addon">Priorité</span>
-          <input type="number" class="form-control" v-model.lazy="regionToSet.priority">
-        </div>
-      </div>
-      <div class="col-md-1" style="margin-top:10px;">
-        <button type="submit" class="btn btn-default" @click="setRegion"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-      </div>
+      <button class="btn btn-primary float-xs-right" @click="setRegion">Sauvegarder</button>
     </div>
     <div id="success-alert-setRegion" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -66,23 +66,23 @@
     <div id="error-alert-setRegion" class="alert alert-danger" role="alert">
       <i class="fa fa-times" aria-hidden="true"></i> Erreur
     </div>
-    <strong>Ajouter une region</strong>
-    <div class="row" style="margin-bottom:10px;">
-      <div class="col-md-8" style="margin-top:10px;">
-        <div class="input-group">
-          <span class="input-group-addon">Nom</span>
-          <input type="text" class="form-control" v-model.lazy="regionToAdd.name">
+    <div class="card card-block">
+      <h6 class="card-title">Ajouter une region</h6>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" class="form-control" v-model.lazy="regionToAdd.name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Priorité</label>
+            <input type="number" class="form-control" v-model.lazy="regionToAdd.priority">
+          </div>
         </div>
       </div>
-      <div class="col-md-3" style="margin-top:10px;">
-        <div class="input-group">
-          <span class="input-group-addon">Priorité</span>
-          <input type="number" class="form-control" v-model.lazy="regionToAdd.priority">
-        </div>
-      </div>
-      <div class="col-md-1" style="margin-top:10px;">
-        <button type="submit" class="btn btn-default" @click="addRegion"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-      </div>
+      <button class="btn btn-primary float-xs-right" @click="addRegion">Sauvegarder</button>
     </div>
     <div id="success-alert-addRegion" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -90,14 +90,18 @@
     <div id="error-alert-addRegion" class="alert alert-danger" role="alert">
       <i class="fa fa-times" aria-hidden="true"></i> Erreur
     </div>
-    <strong>Newsletter</strong>
-    <div class="input-group">
-      <span class="input-group-addon">Sujet</span>
-      <input type="text" class="form-control" v-model.lazy="newsletter.subject">
+    <div class="card card-block">
+      <h6 class="card-title">Newsletter</h6>
+      <div class="form-group">
+        <label>Sujet</label>
+        <input type="text" class="form-control" v-model.lazy="newsletter.subject">
+      </div>
+      <div class="form-group">
+        <label for="text">Message</label>
+        <textarea class="form-control" rows="10" v-model="newsletter.body"></textarea>
+      </div>
+      <button class="btn btn-primary float-xs-right" @click="sendNewsletter">Envoyer</button>
     </div>
-    <label for="text" style="margin-t:10px;">Text</label>
-    <textarea class="form-control" id="text" v-model="newsletter.body" style="margin-bottom:10px;"></textarea>
-    <button class="btn btn-primary" @click="sendNewsletter">Envoyer</button>
     <div id="success-alert-newsletter" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Envoyé
     </div>
@@ -169,7 +173,7 @@ export default {
     },
     sendNewsletter: function () {
       const body = `<p>${this.newsletter.body}</p>
-<a href="${process.env.SITE_URL}unsubscribe">Se désinscrire</a>`
+      <a href="${process.env.SITE_URL}unsubscribe">Se désinscrire</a>`
       this.$http.post(`${api.broadcast}`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
       .then((response) => {
         alert.show('#success-alert-newsletter')
@@ -179,10 +183,8 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (auth.isAdmin())
-      next()
-    else
-      next('/')
+    if (auth.isAdmin()) next()
+    else next('/')
   },
 }
 </script>
