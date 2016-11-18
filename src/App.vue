@@ -100,6 +100,9 @@ $(document).ready(function () {
   color: #2c3e50;
   margin-top: 60px;
 }
+body {
+  background-color: #ecf0f1;
+}
 
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
