@@ -170,7 +170,4 @@ export default {
 .custom-select {
   height: 44px;
 }
-.container {
-  background-color: #ccc;
-}
 </style>
