@@ -58,8 +58,10 @@ export default {
     if (auth.isAuthenticated()) {
       this.user.firstName = auth.getProfile().given_name
       this.user.lastName = auth.getProfile().family_name
-      this.user.tel = auth.getProfile().user_metadata.tel
-      this.user.email = auth.getProfile().user_metadata.email
+      if (typeof auth.getProfile().user_metadata !== 'undefined') {
+        this.user.tel = auth.getProfile().user_metadata.tel
+        this.user.email = auth.getProfile().user_metadata.email
+      }
     }
   },
   methods: {
