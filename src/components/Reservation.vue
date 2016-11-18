@@ -150,10 +150,12 @@ export default {
     if (auth.isAuthenticated()) {
       this.user.firstName = auth.getProfile().given_name
       this.user.lastName = auth.getProfile().family_name
-      this.user.tel = auth.getProfile().user_metadata.tel
-      this.user.email = auth.getProfile().user_metadata.email
-      this.travel1.from = auth.getProfile().user_metadata.from
-      this.travel1.to = auth.getProfile().user_metadata.to
+      if (typeof auth.getProfile().user_metadata !== 'undefined') {
+        this.user.tel = auth.getProfile().user_metadata.tel
+        this.user.email = auth.getProfile().user_metadata.email
+        this.travel1.from = auth.getProfile().user_metadata.from
+        this.travel1.to = auth.getProfile().user_metadata.to
+      }
     }
   },
   methods: {
