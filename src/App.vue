@@ -3,7 +3,11 @@
     <nav id="navbar" class="navbar navbar-fixed-top navbar-light bg-faded">
       <div class="container hidden-lg-up">
         <router-link class="navbar-brand" to="/home">Transport One</router-link>
-        <button class="navbar-toggler float-xs-right" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="to-navbar-toggler float-xs-right" @click="animeHamburgerButton" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation">
+          <div class="to-bar1"></div>
+          <div class="to-bar2"></div>
+          <div class="to-bar3"></div>
+        </div>
       </div>
       <div class="container">
         <div class="collapse navbar-toggleable-md" id="navbar-header">
@@ -63,6 +67,9 @@ export default {
     refreshAuthStatus () {
       this.isAuthenticated = auth.isAuthenticated()
       this.isAdmin = auth.isAdmin()
+    },
+    animeHamburgerButton () {
+      $('.to-navbar-toggler').toggleClass("to-change");
     }
   }
 }
@@ -99,5 +106,33 @@ $(document).ready(function () {
 }
 .component-fade-enter, .component-fade-leave-active {
   opacity: 0;
+}
+
+.to-navbar-toggler {
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px;
+}
+.to-bar1, .to-bar2, .to-bar3 {
+    width: 20px;
+    height: 2px;
+    background-color: grey;
+    margin: 4px 0;
+    transition: 0.2s;
+    border-radius: 1px;
+}
+/* Rotate first bar */
+.to-change .to-bar1 {
+    -webkit-transform: rotate(45deg) translate(2px, 6px) ;
+    transform: rotate(45deg) translate(2px, 6px) ;
+}
+/* Fade out the second bar */
+.to-change .to-bar2 {
+    opacity: 0;
+}
+/* Rotate last bar */
+.to-change .to-bar3 {
+    -webkit-transform: rotate(-45deg) translate(2px, -7px) ;
+    transform: rotate(-45deg) translate(2px, -7px) ;
 }
 </style>
