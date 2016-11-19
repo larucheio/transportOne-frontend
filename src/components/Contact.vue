@@ -1,36 +1,38 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="firstName">Prénom</label>
-          <input type="text" class="form-control" id="firstName" placeholder="John" v-model.lazy="user.firstName">
+  <div class="card card-block">
+    <form>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="firstName">Prénom</label>
+            <input type="text" class="form-control" id="firstName" placeholder="John" v-model.lazy="user.firstName">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="lastName">Nom</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Doe" v-model.lazy="user.lastName">
+          </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="lastName">Nom</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Doe" v-model.lazy="user.lastName">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel" class="form-control" id="phone" placeholder="022 123 45 67" v-model.lazy="user.tel">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="nom@domain.ch" v-model.lazy="user.email">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="phone">Téléphone</label>
-          <input type="tel" class="form-control" id="phone" placeholder="022 123 45 67" v-model.lazy="user.tel">
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="nom@domain.ch" v-model.lazy="user.email">
-        </div>
-      </div>
-    </div>
-    <label for="message">Message</label>
-    <textarea class="form-control" v-model.lazy="message" id="message" style="margin-bottom:10px;" rows="10"></textarea>
-    <button class="btn btn-default btn-block" @click="sendMessage">Envoyer</button>
+      <label for="message">Message</label>
+      <textarea class="form-control" v-model.lazy="message" id="message" style="margin-bottom:10px;" rows="10"></textarea>
+      <button class="btn btn-default btn-block" @click="sendMessage">Envoyer</button>
+    </form>
     <div id="success-alert" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
     </div>
