@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div>
     <div class="btn-group btn-block" data-toggle="buttons">
       <label class="btn btn-toggle active col-xs-6" @click="travel2.exist = false">
         <input type="radio">Aller simple
@@ -8,79 +8,93 @@
         <input type="radio">Aller-retour
       </label>
     </div>
-    <form style="padding:10px;">
+    <form>
       <div class="row">
-        <div class="col-sm-6" style="margin-top:10px;">
-          <div class="input-group">
-            <span class="input-group-addon">De</span>
-            <select class="custom-select btn-block" v-model.lazy="travel1.from">
-              <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-6" style="margin-top:10px;">
-          <div class="input-group">
-            <span class="input-group-addon">à</span>
-            <select class="custom-select btn-block" v-model.lazy="travel1.to">
-              <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6" style="margin-top:10px;">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-            <input type="date" class="form-control" placeholder="date" v-model.lazy="travel1.date">
-          </div>
-        </div>
-        <div class="col-sm-6" style="margin-top:10px;">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-            <input type="time" class="form-control" placeholder="hour" v-model.lazy="travel1.time">
-          </div>
-        </div>
-      </div>
-      <div id="round-trip" style="margin-top:10px;" v-if="travel2.exist">
-        <h4>Retour</h4>
-        <div class="row">
-          <div class="col-sm-6" style="margin-top:10px;">
+        <div class="col-sm-6">
+          <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon">De</span>
-              <select class="custom-select btn-block" v-model.lazy="travel2.from">
-                <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-6" style="margin-top:10px;">
-            <div class="input-group">
-              <span class="input-group-addon">à</span>
-              <select class="custom-select btn-block" v-model.lazy="travel2.to">
+              <select class="form-control btn-block" v-model.lazy="travel1.from">
                 <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
               </select>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-6" style="margin-top:10px;">
+        <div class="col-sm-6">
+          <div class="form-group">
             <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-              <input type="date" class="form-control" placeholder="date" v-model.lazy="travel2.date">
-            </div>
-          </div>
-          <div class="col-sm-6" style="margin-top:10px;">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-              <input type="time" class="form-control" placeholder="hour" v-model.lazy="travel2.time">
+              <span class="input-group-addon">à</span>
+              <select class="form-control btn-block" v-model.lazy="travel1.to">
+                <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
+              </select>
             </div>
           </div>
         </div>
       </div>
-      <div style="margin-top:10px;">
-        <button type="submit" class="btn btn-default btn-block" @click="getPrice">Devis</button>
-        <div id="error-alert" class="alert alert-danger" role="alert">
-          <i class="fa fa-times" aria-hidden="true"></i> {{error}}
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+              <input type="date" class="form-control" v-model.lazy="travel1.date">
+            </div>
+          </div>
         </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+              <input type="time" class="form-control" v-model.lazy="travel1.time">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="round-trip" v-if="travel2.exist">
+        <h6>Retour</h6>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">De</span>
+                <select class="form-control btn-block" v-model.lazy="travel2.from">
+                  <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">à</span>
+                <select class="form-control btn-block" v-model.lazy="travel2.to">
+                  <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+                <input type="date" class="form-control" v-model.lazy="travel2.date">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                <input type="time" class="form-control" v-model.lazy="travel2.time">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" @click="getPrice">Devis</button>
+      <div id="error-alert" class="alert alert-danger" role="alert">
+        <i class="fa fa-times" aria-hidden="true"></i> {{error}}
       </div>
     </form>
   </div>
@@ -151,14 +165,12 @@ export default {
 </script>
 
 <style scoped>
-.btn-secondary {
-  border: 0;
-}
-
 .btn-toggle {
   background-color: lightgray;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right-width: 1px;
 }
-
 .btn-toggle.active {
   background-color: white;
 }
@@ -167,10 +179,12 @@ export default {
   width: 50px;
   background-color: #fff;
 }
-.custom-select {
-  height: 44px;
-}
-.container {
-  background-color: #ccc;
+
+form {
+  background-color: white;
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  padding: 10px;
+  margin-right: 1px;
 }
 </style>
