@@ -33,30 +33,27 @@
       <textarea class="form-control" v-model.lazy="message" id="message" style="margin-bottom:10px;" rows="10"></textarea>
       <button class="btn btn-default btn-block" @click="sendMessage">Envoyer</button>
     </form>
-    <div id="success-alert" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
-    </div>
-    <div id="error-alert" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i>  {{error}}
-    </div>
+    <alert ref="alert">{{alertMessage}}</alert>
   </div>
 </template>
 
 <script>
-import alert from '../alert'
+import Alert from './Alert.vue'
 import api from '../../config/api.js'
 import auth from '../auth'
 
 export default {
+  components:{
+    'alert': Alert
+  },
   data () {
     return {
       user: {firstName: '', lastName: '', tel: '', email: ''},
       message: '',
-      error: ''
+      alertMessage: ''
     }
   },
   mounted () {
-    alert.hideAll()
     if (auth.isAuthenticated()) {
       this.user.firstName = auth.getProfile().given_name
       this.user.lastName = auth.getProfile().family_name
@@ -69,13 +66,13 @@ export default {
   methods: {
     sendMessage () {
       if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === '') {
-        this.error = `Veuillez remplir le formulaire avant de l'envoyer.`
-        alert.show('#error-alert')
+        this.alertMessage = `Veuillez remplir le formulaire avant de l'envoyer.`
+        this.$refs.alert.showError()
         return
       }
       if (this.message.length < 100 || this.message.length > 2000) {
-        this.error = `Le message doit contenir entre 100 et 2000 caractères.`
-        alert.show('#error-alert')
+        this.alertMessage = `Le message doit contenir entre 100 et 2000 caractères.`
+        this.$refs.alert.showError()
         return
       }
       const text = `Nom: ${this.user.firstName} ${this.user.lastName}
@@ -85,10 +82,11 @@ Message: ${this.message}`
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Contact', 'source': this.user.email})
       .then((response) => {
         this.message = ''
-        alert.show('#success-alert')
+        this.alertMessage = `Message envoyé.`
+        this.$refs.alert.showSuccess()
       }, (response) => {
-        this.error = `Erreur, le message n'a pas pu être envoyé.`
-        alert.show('#error-alert')
+        this.alertMessage = `Erreur, le message n'a pas pu être envoyé.`
+        this.$refs.alert.showError()
       })
       auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
     }
