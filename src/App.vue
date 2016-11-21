@@ -75,12 +75,13 @@ export default {
 }
 let lastScroll = 0
 $(window).scroll(function () {
-  if ($(window).scrollTop() > lastScroll) {
-    $('#navbar').slideUp(500, function () {})
-  } else {
-    $('#navbar').slideDown(500, function () {})
+  if ($(window).scrollTop() - lastScroll > 50) {
+    $('#navbar').addClass("to-navbar-hidden")
+    lastScroll = $(window).scrollTop()
+  } else if ($(window).scrollTop() - lastScroll < -50) {
+    $('#navbar').removeClass("to-navbar-hidden")
+    lastScroll = $(window).scrollTop()
   }
-  lastScroll = $(window).scrollTop()
 })
 
 //collapse mobile menu on click
@@ -140,5 +141,13 @@ body {
 .to-change .to-bar3 {
     -webkit-transform: rotate(-45deg) translate(2px, -7px) ;
     transform: rotate(-45deg) translate(2px, -7px) ;
+}
+
+.navbar {
+  transition: 0.4s;
+}
+.to-navbar-hidden {
+  -webkit-transform: translate(0px, -100%);
+  transform: translate(0px, -100%);
 }
 </style>
