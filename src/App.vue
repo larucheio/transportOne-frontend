@@ -69,7 +69,7 @@ export default {
       this.isAdmin = auth.isAdmin()
     },
     animeHamburgerButton () {
-      $('.to-navbar-toggler').toggleClass("to-change");
+      $('.to-navbar-toggler').toggleClass("to-change")
     }
   }
 }
@@ -89,7 +89,7 @@ $(document).ready(function () {
   $('.navbar-nav li a, .navbar-brand').click(function (event) {
     if ($(event.target).is('a')) {
       $('.collapse').collapse('hide')
-      $('.to-navbar-toggler').toggleClass("to-change");
+      $('.to-navbar-toggler').toggleClass("to-change")
     }
   })
 })
@@ -130,8 +130,8 @@ body {
 }
 /* Rotate first bar */
 .to-change .to-bar1 {
-    -webkit-transform: rotate(45deg) translate(2px, 6px) ;
-    transform: rotate(45deg) translate(2px, 6px) ;
+    -webkit-transform: rotate(45deg) translate(2px, 6px);
+    transform: rotate(45deg) translate(2px, 6px);
 }
 /* Fade out the second bar */
 .to-change .to-bar2 {
@@ -139,8 +139,8 @@ body {
 }
 /* Rotate last bar */
 .to-change .to-bar3 {
-    -webkit-transform: rotate(-45deg) translate(2px, -7px) ;
-    transform: rotate(-45deg) translate(2px, -7px) ;
+    -webkit-transform: rotate(-45deg) translate(2px, -7px);
+    transform: rotate(-45deg) translate(2px, -7px);
 }
 
 .navbar {
