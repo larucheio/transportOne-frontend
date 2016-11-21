@@ -86,7 +86,10 @@ $(window).scroll(function () {
 //collapse mobile menu on click
 $(document).ready(function () {
   $('.navbar-nav li a, .navbar-brand').click(function (event) {
-    if ($(event.target).is('a')) $('.collapse').collapse('hide')
+    if ($(event.target).is('a')) {
+      $('.collapse').collapse('hide')
+      $('.to-navbar-toggler').toggleClass("to-change");
+    }
   })
 })
 </script>
