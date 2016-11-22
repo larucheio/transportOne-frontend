@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="card card-block" v-if="isAuthenticated">
-      <h5 class="card-title">Commentaire</h5>
-      <textarea class="form-control" v-model="newReview" style="margin-bottom:10px;"></textarea>
+      <custom-input ref="review" label="Commentaire" type="text" v-model="newReview" placeholder="Bonjour..." min="1" max="2000" rows="5"></custom-input>
       <button class="btn btn-primary" @click="sendReview">Envoyer</button>
     </div>
     <div id="success-alert" class="alert alert-success" role="alert">
@@ -80,6 +79,8 @@ export default {
       }
     },
     sendReview: function () {
+    const isReviewValid = this.$refs.review.isValid(this.newReview)
+    if (!isReviewValid) return
       if (this.newReview.length < 100 || this.newReview.length > 1000) {
         this.error = `Veuillez vous écrire au moins 100 caractères et au plus 1000 caractères`
         alert.show('#error-alert')

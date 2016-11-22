@@ -20,58 +20,34 @@
           <form>
             <div class="row">
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="firstName">Prénom</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="John" v-model.lazy="user.firstName">
-                </div>
+                <custom-input ref="firstName" label="Prénom" type="text" v-model="user.firstName" placeholder="John" min="1"></custom-input>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="lastName">Nom</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="Doe" v-model.lazy="user.lastName">
-                </div>
+                <custom-input ref="lastName" label="Nom" type="text" v-model="user.lastName" placeholder="Doe" min="1"></custom-input>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="phone">Téléphone</label>
-                  <input type="tel" class="form-control" id="phone" placeholder="022 123 45 67" v-model.lazy="user.tel">
-                </div>
+                <custom-input ref="tel" label="Téléphone" type="tel" v-model="user.tel" placeholder="022 123 45 67" regexp="^[+]?[0-9]{9,12}$" min="1" errorMessage="Le numéro n'est pas valide."></custom-input>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="nom@domain.ch" v-model.lazy="user.email">
-                </div>
+                <custom-input ref="email" label="Email" type="text" v-model="user.email" placeholder="nom@domain.ch" regexp="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" errorMessage="L'email n'est pas valide."></custom-input>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="from1">Adresse de départ</label>
-                  <input type="text" class="form-control" id="from1" placeholder="1 chemin de départ 1204 Genève" v-model.lazy="travel1.from">
-                </div>
+                <custom-input ref="from1" label="Adresse de départ" type="text" v-model="travel1.from" placeholder="1 chemin de départ 1204 Genève" min="1"></custom-input>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="to1">Adresse d'arrivé</label>
-                  <input type="text" class="form-control" id="to1" placeholder="1 chemin d'arrivé 1204 Genève" v-model.lazy="travel1.to">
-                </div>
+                <custom-input ref="to1" label="Adresse d'arrivé" type="text" v-model="travel1.to" placeholder="1 chemin d'arrivé 1204 Genève" min="1"></custom-input>
               </div>
             </div>
             <div class="row" v-if="travel2.exist">
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="from1">Adresse de départ pour le retour</label>
-                  <input type="text" class="form-control" id="from2" placeholder="1 chemin de départ 1204 Genève" v-model.lazy="travel2.from">
-                </div>
+                <custom-input ref="from2" label="Adresse de départ" type="text" v-model="travel2.from" placeholder="1 chemin de départ 1204 Genève" min="1"></custom-input>
               </div>
               <div class="col-sm-6">
-                <div class="form-group">
-                  <label for="to1">Adresse d'arrivé pour le retour</label>
-                  <input type="text" class="form-control" id="to2" placeholder="1 chemin d'arrivé 1204 Genève" v-model.lazy="travel2.to">
-                </div>
+                <custom-input ref="to2" label="Adresse d'arrivé" type="text" v-model="travel2.to" placeholder="1 chemin d'arrivé 1204 Genève" min="1"></custom-input>
               </div>
             </div>
             <div>
@@ -99,8 +75,7 @@
               </label>
             </div>
             <div class="form-group">
-              <label for="comment">Commentaire</label>
-              <textarea class="form-control" v-model="comment" id="comment"></textarea>
+              <custom-input ref="comment" label="Commentaire" type="text" v-model="comment" placeholder="Bonjour..." min="1" max="2000" rows="5"></custom-input>
             </div>
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="isSubscribing">
@@ -133,8 +108,8 @@ let data = {
   price: 'à partir de 25 CHF',
   priceDetailsTravel1: 'Faite une demande de devis pour connaitre le prix exact',
   priceDetailsTravel2: 'Aucun',
-  travel1: {from: null, to: null, date: null, time: null},
-  travel2: {from: null, to: null, date: null, time: null, exist: false},
+  travel1: {from: '', to: '', date: null, time: null},
+  travel2: {from: '', to: '', date: null, time: null, exist: false},
   options: {waiting: false, comission: false, groupe: false},
   comment: '',
   directionsService: null,
@@ -206,6 +181,16 @@ export default {
       alert.hideAll()
     },
     book () {
+      const isFirstNameValid = this.$refs.firstName.isValid(this.user.firstName)
+      const isLastNameValid = this.$refs.lastName.isValid(this.user.lastName)
+      const isTelValid = this.$refs.tel.isValid(this.user.tel)
+      const isEmailValid = this.$refs.email.isValid(this.user.email)
+      const isCommentValid = this.$refs.comment.isValid(this.comment)
+      const isFrom1Valid = this.$refs.from1.isValid(this.travel1.from)
+      const isTo1Valid = this.$refs.to1.isValid(this.travel1.to)
+      const isFrom2Valid = this.$refs.from2.isValid(this.travel2.from)
+      const isTo2Valid = this.$refs.to2.isValid(this.travel2.to)
+      if (!(isFirstNameValid && isLastNameValid && isTelValid && isEmailValid && isCommentValid && isFrom1Valid && isTo1Valid && isFrom2Valid && isTo2Valid)) return
       if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === ''
       || this.travel1.from === '' || this.travel1.to === '' || this.travel1.date === null || this.travel1.time === null) {
         this.error = 'Veuillez remplir le formulaire avant de reserver.'
