@@ -5,36 +5,34 @@
       <label for="email">Email à désinscrire</label>
       <input type="email" class="form-control" id="email" placeholder="nom@domain.ch" v-model.lazy="email">
       <button class="btn btn-primary" @click="unsubscribe" style="margin-top:10px;">Confirmer</button>
-      <div id="success-alert" class="alert alert-success" role="alert">
-        <i class="fa fa-check" aria-hidden="true"></i> Désinscrit!
-      </div>
-      <div id="error-alert" class="alert alert-danger" role="alert">
-        <i class="fa fa-times" aria-hidden="true"></i> Erreur
-      </div>
+      <alert ref="alert">{{alertMessage}}</alert>
     </div>
   </div>
 </template>
 
 <script>
-import alert from '../alert'
+import Alert from './Alert.vue'
 import api from '../../config/api.js'
 
 export default {
+  components:{
+    'alert': Alert
+  },
   data () {
     return {
-      email: null
+      email: null,
+      alertMessage: ''
     }
-  },
-  mounted: function () {
-    alert.hideAll()
   },
   methods: {
     unsubscribe () {
       this.$http.delete(`${api.subscriptions}/${this.email}`)
       .then((response) => {
-        alert.show('#success-alert')
+        this.alertMessage = 'Vous avez été désinscrit.'
+        this.$refs.alert.showSuccess()
       }, (response) => {
-        alert.show('#error-alert')
+        this.alertMessage = 'Erreur'
+        this.$refs.alert.showError()
       })
     }
   }

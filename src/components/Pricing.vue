@@ -93,24 +93,25 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary btn-block" @click="getPrice">Devis</button>
-      <div id="error-alert" class="alert alert-danger" role="alert">
-        <i class="fa fa-times" aria-hidden="true"></i> {{error}}
-      </div>
     </form>
+    <alert ref="alert">{{alertMessage}}</alert>
   </div>
 </template>
 
 <script>
-import alert from '../alert'
+import Alert from './Alert.vue'
 import api from '../../config/api.js'
 
 let data = {
   regions: null,
   travel1: {from: null, to: null, date: '', time: ''},
   travel2: {from: null, to: null, date: '', time: '', exist: false},
-  error: null
+  alertMessage: ''
 }
 export default {
+  components:{
+    'alert': Alert
+  },
   data: function () {
     return data
   },
@@ -128,14 +129,11 @@ export default {
       this.travel2.to = this.regions[0]
     }, (response) => {})
   },
-  mounted: function () {
-    alert.hideAll()
-  },
   methods: {
     getPrice: function (event) {
       if ((this.travel1.date === '' || this.travel1.time === '') || (this.travel2.exist === true && (this.travel2.date === '' || this.travel2.time === ''))) {
-        this.error = 'Veuillez remplir tous les champs'
-        alert.show('#error-alert')
+        this.alertMessage = 'Veuillez remplir tous les champs'
+        this.$refs.alert.showError()
         return
       }
       this.$emit('getPrice')
@@ -149,8 +147,8 @@ export default {
             price += response.body.CHF
             this.$emit('setPrice', price, this.travel1, this.travel2)
           }, (response) => {
-            this.error = 'Erreur'
-            alert.show('#error-alert')
+            this.alertMessage = 'Erreur'
+            this.$refs.alert.showError()
           })
         } else {
           this.$emit('setPrice', price, this.travel1, this.travel2)

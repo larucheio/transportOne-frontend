@@ -5,20 +5,15 @@
       <textarea class="form-control" v-model="newReview" style="margin-bottom:10px;"></textarea>
       <button class="btn btn-primary" @click="sendReview">Envoyer</button>
     </div>
-    <div id="success-alert" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Envoyé!
-    </div>
-    <div id="error-alert" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> {{error}}
-    </div>
     <review v-for="review in reviews" v-bind:review="review"></review>
     <button class="btn btn-primary" @click="getMoreReviews" v-show="showMorePage">Plus de commentaires</button>
+    <alert ref="alert">{{alertMessage}}</alert>
   </div>
 </template>
 
 <script>
 import auth from '../auth'
-import alert from '../alert'
+import Alert from './Alert.vue'
 import api from '../../config/api.js'
 
 const Review = {
@@ -47,7 +42,7 @@ export default {
     return {
       reviews: null,
       newReview: '',
-      error: null,
+      alertMessage: '',
       showMorePage: false,
       isAuthenticated: auth.isAuthenticated()
     }
@@ -62,11 +57,9 @@ export default {
       }
     }, (response) => {})
   },
-  mounted: function () {
-    alert.hideAll()
-  },
   components: {
-    'review': Review
+    'review': Review,
+    'alert': Alert
   },
   methods: {
     getMoreReviews: function () {
@@ -81,8 +74,8 @@ export default {
     },
     sendReview: function () {
       if (this.newReview.length < 100 || this.newReview.length > 1000) {
-        this.error = `Veuillez vous écrire au moins 100 caractères et au plus 1000 caractères`
-        alert.show('#error-alert')
+        this.alertMessage = `Veuillez vous écrire au moins 100 caractères et au plus 1000 caractères`
+        this.$refs.alert.showError()
         return
       }
       const profile = auth.getProfile()
@@ -98,10 +91,9 @@ export default {
             'username': profile.given_name,
             'userPic': profile.picture})
           this.newReview = ''
-          alert.show('#success-alert')
         }, (response) => {
-          this.error = `Le commentaire n'a pas pu être envoyé.`
-          alert.show('#error-alert')
+          this.alertMessage = `Le commentaire n'a pas pu être envoyé.`
+          this.$refs.alert.showError()
         })
       }
     }

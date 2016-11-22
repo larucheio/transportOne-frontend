@@ -110,21 +110,16 @@
             <button type="submit" class="btn btn-default btn-block" @click="book">Faire une demande de reservation</button>
           </form>
         </div>
-        <div id="booking-success-alert" class="alert alert-success" role="alert">
-          <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
-        </div>
-        <div id="booking-error-alert" class="alert alert-danger" role="alert">
-          <i class="fa fa-times" aria-hidden="true"></i> {{error}}
-        </div>
         <div id="map" style="margin-top:10px;"></div>
       </div>
     </div>
+    <alert ref="alert">{{alertMessage}}</alert>
   </div>
 </template>
 
 <script>
 import Pricing from './Pricing.vue'
-import alert from '../alert'
+import Alert from './Alert.vue'
 import api from '../../config/api.js'
 import auth from '../auth'
 
@@ -139,7 +134,7 @@ let data = {
   comment: '',
   directionsService: null,
   directionsDisplay: null,
-  error: '',
+  alertMessage: '',
   isSubscribing: true
 }
 export default {
@@ -147,10 +142,12 @@ export default {
   data () {
     return data
   },
-  components: { 'pricing': Pricing },
+  components: {
+    'pricing': Pricing,
+    'alert': Alert
+  },
   mounted () {
     this.initMap()
-    alert.hideAll()
     if (auth.isAuthenticated()) {
       this.user.firstName = auth.getProfile().given_name
       this.user.lastName = auth.getProfile().family_name
@@ -203,20 +200,19 @@ export default {
       this.priceDetailsTravel1 = `De ${travel1.from.name} à ${travel1.to.name}, le ${travel1.date} à ${this.travel1.time}.`
       if (travel2.exist) this.priceDetailsTravel2 = `De ${travel2.from.name} à ${travel2.to.name}, le ${this.travel2.date} à ${this.travel2.time}.`
       else this.priceDetailsTravel2 = 'Aucun'
-      alert.hideAll()
     },
     book () {
       if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === ''
       || this.travel1.from === '' || this.travel1.to === '' || this.travel1.date === null || this.travel1.time === null) {
-        this.error = 'Veuillez remplir le formulaire avant de reserver.'
-        alert.show('#booking-error-alert')
+        this.alertMessage = 'Veuillez remplir le formulaire avant de reserver.'
+        this.$refs.alert.showError()
         return
       }
       if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email)) {
         this.subscribe()
       } else {
-        this.error = `L'address email est invalide.`
-        alert.show('#booking-error-alert')
+        this.alertMessage = `L'address email est invalide.`
+        this.$refs.alert.showError()
         return
       }
       let roundTrip = 'aucun'
@@ -248,10 +244,11 @@ Commentaire: ${this.comment}`
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
       .then((response) => {
         self.calcRoute()
-        alert.show('#booking-success-alert')
+        this.alertMessage = 'La reservation à bien été envoyé. On vous contactera pour vous la confirmer.'
+        this.$refs.alert.showSuccess()
       }, (response) => {
-        this.error = 'erreur'
-        alert.show('#booking-error-alert')
+        this.alertMessage = 'Erreur'
+        this.$refs.alert.showError()
       })
       auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
     },

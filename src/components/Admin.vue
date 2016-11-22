@@ -28,12 +28,6 @@
       </div>
       <button class="btn btn-primary float-xs-right" @click="setPrice">Sauvegarder</button>
     </div>
-    <div id="success-alert-price" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-price" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
-    </div>
     <div class="card card-block">
       <h6 class="card-title">Modifier une region</h6>
       <div class="row">
@@ -60,12 +54,6 @@
       </div>
       <button class="btn btn-primary float-xs-right" @click="setRegion">Sauvegarder</button>
     </div>
-    <div id="success-alert-setRegion" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-setRegion" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
-    </div>
     <div class="card card-block">
       <h6 class="card-title">Ajouter une region</h6>
       <div class="row">
@@ -84,12 +72,6 @@
       </div>
       <button class="btn btn-primary float-xs-right" @click="addRegion">Sauvegarder</button>
     </div>
-    <div id="success-alert-addRegion" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-addRegion" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
-    </div>
     <div class="card card-block">
       <h6 class="card-title">Newsletter</h6>
       <div class="form-group">
@@ -102,21 +84,19 @@
       </div>
       <button class="btn btn-primary float-xs-right" @click="sendNewsletter">Envoyer</button>
     </div>
-    <div id="success-alert-newsletter" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Envoyé
-    </div>
-    <div id="error-alert-newsletter" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
-    </div>
+    <alert ref="alert">{{alertMessage}}</alert>
   </div>
 </template>
 
 <script>
 import auth from '../auth'
-import alert from '../alert'
+import Alert from './Alert.vue'
 import api from '../../config/api.js'
 
 export default {
+  components:{
+    'alert': Alert
+  },
   data () {
     return {
       regions: [],
@@ -125,12 +105,12 @@ export default {
       price: 0,
       regionToSet: {id: '', name: '', priority: 0},
       regionToAdd: {name: '', priority: 0},
-      newsletter: {subject: null, body: null}
+      newsletter: {subject: null, body: null},
+      alertMessage: ''
     }
   },
   mounted: function () {
     this.getRegions()
-    alert.hideAll()
   },
   methods: {
     getRegions: function () {
@@ -148,17 +128,21 @@ export default {
     setPrice: function () {
       this.$http.post(`${api.pricing}/${this.from.id}@${this.to.id}`, {'CHF': this.price})
       .then((response) => {
-        alert.show('#success-alert-price')
+        this.alertMessage = 'Sauvé'
+        this.$refs.alert.showSuccess()
       }, (response) => {
-        alert.show('#error-alert-price')
+        this.alertMessage = 'Erreur'
+        this.$refs.alert.showError()
       })
     },
     setRegion: function () {
       this.$http.post(`${api.regions}/${this.regionToSet.id}`, this.regionToSet)
       .then((response) => {
-        alert.show('#success-alert-setRegion')
+        this.alertMessage = 'Sauvé'
+        this.$refs.alert.showSuccess()
       }, (response) => {
-        alert.show('#error-alert-setRegion')
+        this.alertMessage = 'Erreur'
+        this.$refs.alert.showError()
       })
     },
     addRegion: function () {
@@ -166,9 +150,11 @@ export default {
       this.$http.post(`${api.regions}/${id}`, this.regionToAdd)
       .then((response) => {
         this.getRegions()
-        alert.show('#success-alert-addRegion')
+        this.alertMessage = 'Sauvé'
+        this.$refs.alert.showSuccess()
       }, (response) => {
-        alert.show('#error-alert-addRegion')
+        this.alertMessage = 'Erreur'
+        this.$refs.alert.showError()
       })
     },
     sendNewsletter: function () {
@@ -176,9 +162,11 @@ export default {
       <a href="${process.env.SITE_URL}unsubscribe">Se désinscrire</a>`
       this.$http.post(`${api.broadcast}`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
       .then((response) => {
-        alert.show('#success-alert-newsletter')
+        this.alertMessage = 'Envoyé'
+        this.$refs.alert.showSuccess()
       }, (response) => {
-        alert.show('#error-alert-newsletter')
+        this.alertMessage = 'Erreur'
+        this.$refs.alert.showError()
       })
     }
   },
