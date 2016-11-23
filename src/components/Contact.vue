@@ -18,7 +18,7 @@
         </div>
       </div>
       <custom-input ref="message" label="Message" type="text" v-model="newsmessage" placeholder="Bonjour..." min="1" max="2000" rows="10"></custom-input>
-      <button class="btn btn-default btn-block" @click="sendMessage">Envoyer</button>
+      <custom-button ref="sendButton" @click="sendMessage" text="Envoyer"></custom-button>
     </form>
     <div id="success-alert" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
@@ -75,11 +75,14 @@ export default {
 Tel: ${this.user.tel} Email: ${this.user.email}
 Message: ${this.message}`
       const self = this
+      this.$refs.sendButton.showPending()
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Contact', 'source': this.user.email})
       .then((response) => {
+        this.$refs.sendButton.showSuccess()
         this.message = ''
         alert.show('#success-alert')
       }, (response) => {
+        this.$refs.sendButton.showError()
         this.error = `Erreur, le message n'a pas pu être envoyé.`
         alert.show('#error-alert')
       })

@@ -23,7 +23,7 @@
           <custom-input ref="editPricePrice" label="Prix (CHF)" type="number" v-model="price" placeholder="10.5" min="1"></custom-input>
         </div>
       </div>
-      <button class="btn btn-primary float-xs-right" @click="setPrice">Sauvegarder</button>
+      <custom-button ref="editPriceSaveButton" @click="setPrice" text="Sauvegarder"></custom-button>
     </div>
     <div id="success-alert-price" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary float-xs-right" @click="setRegion">Sauvegarder</button>
+      <custom-button ref="editRegionSaveButton" @click="setRegion" text="Sauvegarder"></custom-button>
     </div>
     <div id="success-alert-setRegion" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -75,7 +75,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary float-xs-right" @click="addRegion">Sauvegarder</button>
+      <custom-button ref="addRegionSaveButton" @click="addRegion" text="Sauvegarder"></custom-button>
     </div>
     <div id="success-alert-addRegion" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Sauvé
@@ -91,7 +91,7 @@
       <div class="form-group">
         <custom-input ref="newsletterMessage" label="Message" type="text" v-model="newsletter.body" placeholder="Bonjour..." min="1" max="2000" rows="10"></custom-input>
       </div>
-      <button class="btn btn-primary float-xs-right" @click="sendNewsletter">Envoyer</button>
+      <custom-button ref="newsletterSendButton" @click="sendNewsletter" text="Sauvegarder"></custom-button>
     </div>
     <div id="success-alert-newsletter" class="alert alert-success" role="alert">
       <i class="fa fa-check" aria-hidden="true"></i> Envoyé
@@ -139,10 +139,13 @@ export default {
     setPrice: function () {
     const isPriceValid = this.$refs.setRegionPriority.isValid(this.price)
     if (!isPriceValid) return
+      this.$refs.editPriceSaveButton.showPending()
       this.$http.post(`${api.pricing}/${this.from.id}@${this.to.id}`, {'CHF': this.price})
       .then((response) => {
+        this.$refs.editPriceSaveButton.showSuccess()
         alert.show('#success-alert-price')
       }, (response) => {
+        this.$refs.editPriceSaveButton.showError()
         alert.show('#error-alert-price')
       })
     },
@@ -150,10 +153,13 @@ export default {
       const isNameValid = this.$refs.setRegionName.isValid(this.regionToSet.name)
       const isPriorityValid = this.$refs.setRegionPriority.isValid(this.regionToSet.priority)
       if (!(isNameValid && isPriorityValid)) return
+      this.$refs.editRegionSaveButton.showPending()
       this.$http.post(`${api.regions}/${this.regionToSet.id}`, this.regionToSet)
       .then((response) => {
+        this.$refs.editRegionSaveButton.showSuccess()
         alert.show('#success-alert-setRegion')
       }, (response) => {
+        this.$refs.editRegionSaveButton.showError()
         alert.show('#error-alert-setRegion')
       })
     },
@@ -162,11 +168,14 @@ export default {
       const isPriorityValid = this.$refs.addRegionPriority.isValid(this.regionToAdd.priority)
       if (!(isNameValid && isPriorityValid)) return
       const id = this.regionToAdd.name.replace(/[^A-Za-z0-9]+/g, "")
+      this.$refs.addRegionSaveButton.showPending()
       this.$http.post(`${api.regions}/${id}`, this.regionToAdd)
       .then((response) => {
+        this.$refs.addRegionSaveButton.showSuccess()
         this.getRegions()
         alert.show('#success-alert-addRegion')
       }, (response) => {
+        this.$refs.addRegionSaveButton.showError()
         alert.show('#error-alert-addRegion')
       })
     },
@@ -176,10 +185,13 @@ export default {
       if (!(isSubjectValid && isMessageValid)) return
       const body = `<p>${this.newsletter.body}</p>
       <a href="${process.env.SITE_URL}unsubscribe">Se désinscrire</a>`
+      this.$refs.newsletterSendButton.showPending()
       this.$http.post(`${api.broadcast}`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
       .then((response) => {
+        this.$refs.newsletterSendButton.showSuccess()
         alert.show('#success-alert-newsletter')
       }, (response) => {
+        this.$refs.newsletterSendButton.showError()
         alert.show('#error-alert-newsletter')
       })
     }

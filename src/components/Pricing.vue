@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block" @click="getPrice">Devis</button>
+      <custom-button ref="getPriceButton" @click="getPrice" customClass="btn btn-primary btn-block" componentClass="" text="Prix"></custom-button>
       <div id="error-alert" class="alert alert-danger" role="alert">
         <i class="fa fa-times" aria-hidden="true"></i> {{error}}
       </div>
@@ -140,22 +140,27 @@ export default {
       }
       this.$emit('getPrice')
       let price
+      this.$refs.getPriceButton.showPending()
       this.$http.get(`${api.pricing}/${this.travel1.from.id}@${this.travel1.to.id}`)
       .then((response) => {
         price = response.body.CHF
         if (this.travel2.exist) {
           this.$http.get(`${api.pricing}/${this.travel2.from.id}@${this.travel2.to.id}`)
           .then((response) => {
+            this.$refs.getPriceButton.showSuccess()
             price += response.body.CHF
             this.$emit('setPrice', price, this.travel1, this.travel2)
           }, (response) => {
+            this.$refs.getPriceButton.showError()
             this.error = 'Erreur'
             alert.show('#error-alert')
           })
         } else {
+          this.$refs.getPriceButton.showSuccess()
           this.$emit('setPrice', price, this.travel1, this.travel2)
         }
       }, (response) => {
+        this.$refs.getPriceButton.showError()
         price = 'à partir de 25 CHF'
         this.$emit('setPrice', price, this.travel1, this.travel2)
       })

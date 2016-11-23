@@ -82,7 +82,7 @@
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
             </label>
-            <button type="submit" class="btn btn-default btn-block" @click="book">Faire une demande de reservation</button>
+            <custom-button ref="bookButton" @click="book" text="Réserver"></custom-button>
           </form>
         </div>
         <div id="booking-success-alert" class="alert alert-success" role="alert">
@@ -230,11 +230,14 @@ Détails aller: ${this.priceDetailsTravel1}
 Détails retour: ${this.priceDetailsTravel2}
 Commentaire: ${this.comment}`
       const self = this
+      this.$refs.bookButton.showPending()
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
       .then((response) => {
+        this.$refs.bookButton.showSuccess()
         self.calcRoute()
         alert.show('#booking-success-alert')
       }, (response) => {
+        this.$refs.bookButton.showError()
         this.error = 'erreur'
         alert.show('#booking-error-alert')
       })
