@@ -2,13 +2,7 @@
   <div>
     <div class="card card-block" v-if="isAuthenticated">
       <custom-input ref="review" label="Commentaire" type="text" v-model="newReview" placeholder="Bonjour..." min="1" max="2000" rows="5"></custom-input>
-      <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer"></custom-button>
-    </div>
-    <div id="success-alert" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Envoyé!
-    </div>
-    <div id="error-alert" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> {{error}}
+      <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" error="Le commentaire n'a pas pu être envoyé."></custom-button>
     </div>
     <review v-for="review in reviews" v-bind:review="review"></review>
     <custom-button v-if="showMorePage" ref="getMoreReviewsButton" @click="getMoreReviews" text="Plus de commentaires"></custom-button>
@@ -17,7 +11,6 @@
 
 <script>
 import auth from '../auth'
-import alert from '../alert'
 import api from '../../config/api.js'
 
 const Review = {
@@ -46,7 +39,6 @@ export default {
     return {
       reviews: null,
       newReview: '',
-      error: null,
       showMorePage: false,
       isAuthenticated: auth.isAuthenticated()
     }
@@ -60,9 +52,6 @@ export default {
         this.getMoreReviews()
       }
     }, (response) => {})
-  },
-  mounted: function () {
-    alert.hideAll()
   },
   components: {
     'review': Review
@@ -83,13 +72,8 @@ export default {
       }
     },
     sendReview: function () {
-    const isReviewValid = this.$refs.review.isValid(this.newReview)
-    if (!isReviewValid) return
-      if (this.newReview.length < 100 || this.newReview.length > 1000) {
-        this.error = `Veuillez vous écrire au moins 100 caractères et au plus 1000 caractères`
-        alert.show('#error-alert')
-        return
-      }
+      const isReviewValid = this.$refs.review.isValid(this.newReview)
+      if (!isReviewValid) return
       const profile = auth.getProfile()
       this.$refs.sendReviewButton.showPending()
       this.$http.post(`${api.reviews}`,
@@ -105,11 +89,8 @@ export default {
             'username': profile.given_name,
             'userPic': profile.picture})
           this.newReview = ''
-          alert.show('#success-alert')
         }, (response) => {
           this.$refs.sendReviewButton.showError()
-          this.error = `Le commentaire n'a pas pu être envoyé.`
-          alert.show('#error-alert')
         })
       }
     }

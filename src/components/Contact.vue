@@ -18,19 +18,12 @@
         </div>
       </div>
       <custom-input ref="message" label="Message" type="text" v-model="message" placeholder="Bonjour..." min="100" max="2000" rows="10"></custom-input>
-      <custom-button ref="sendButton" @click="sendMessage" text="Envoyer"></custom-button>
+      <custom-button ref="sendButton" @click="sendMessage" text="Envoyer" error="Erreur, le message n'a pas pu être envoyé."></custom-button>
     </form>
-    <div id="success-alert" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
-    </div>
-    <div id="error-alert" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i>  {{error}}
-    </div>
   </div>
 </template>
 
 <script>
-import alert from '../alert'
 import api from '../../config/api.js'
 import auth from '../auth'
 
@@ -38,12 +31,10 @@ export default {
   data () {
     return {
       user: {firstName: '', lastName: '', tel: '', email: ''},
-      message: '',
-      error: ''
+      message: ''
     }
   },
   mounted () {
-    alert.hideAll()
     if (auth.isAuthenticated()) {
       this.user.firstName = auth.getProfile().given_name
       this.user.lastName = auth.getProfile().family_name
@@ -61,16 +52,6 @@ export default {
       const isEmailValid = this.$refs.email.isValid(this.user.email)
       const isMessageValid = this.$refs.message.isValid(this.message)
       if (!(isFirstNameValid && isLastNameValid && isTelValid && isEmailValid && isMessageValid)) return
-      if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === '') {
-        this.error = `Veuillez remplir le formulaire avant de l'envoyer.`
-        alert.show('#error-alert')
-        return
-      }
-      if (this.message.length < 100 || this.message.length > 2000) {
-        this.error = `Le message doit contenir entre 100 et 2000 caractères.`
-        alert.show('#error-alert')
-        return
-      }
       const text = `Nom: ${this.user.firstName} ${this.user.lastName}
 Tel: ${this.user.tel} Email: ${this.user.email}
 Message: ${this.message}`
@@ -80,11 +61,8 @@ Message: ${this.message}`
       .then((response) => {
         this.$refs.sendButton.showSuccess()
         this.message = ''
-        alert.show('#success-alert')
       }, (response) => {
         this.$refs.sendButton.showError()
-        this.error = `Erreur, le message n'a pas pu être envoyé.`
-        alert.show('#error-alert')
       })
       auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
     }

@@ -25,12 +25,6 @@
       </div>
       <custom-button ref="editPriceSaveButton" @click="setPrice" text="Sauvegarder"></custom-button>
     </div>
-    <div id="success-alert-price" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-price" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
-    </div>
     <div class="card card-block">
       <h6 class="card-title">Modifier une region</h6>
       <div class="row">
@@ -55,12 +49,6 @@
       </div>
       <custom-button ref="editRegionSaveButton" @click="setRegion" text="Sauvegarder"></custom-button>
     </div>
-    <div id="success-alert-setRegion" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-setRegion" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
-    </div>
     <div class="card card-block">
       <h6 class="card-title">Ajouter une region</h6>
       <div class="row">
@@ -77,12 +65,6 @@
       </div>
       <custom-button ref="addRegionSaveButton" @click="addRegion" text="Sauvegarder"></custom-button>
     </div>
-    <div id="success-alert-addRegion" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-addRegion" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
-    </div>
     <div class="card card-block">
       <h6 class="card-title">Newsletter</h6>
       <div class="form-group">
@@ -93,18 +75,11 @@
       </div>
       <custom-button ref="newsletterSendButton" @click="sendNewsletter" text="Sauvegarder"></custom-button>
     </div>
-    <div id="success-alert-newsletter" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Envoyé
-    </div>
-    <div id="error-alert-newsletter" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
-    </div>
   </div>
 </template>
 
 <script>
 import auth from '../auth'
-import alert from '../alert'
 import api from '../../config/api.js'
 
 export default {
@@ -121,7 +96,6 @@ export default {
   },
   mounted: function () {
     this.getRegions()
-    alert.hideAll()
   },
   methods: {
     getRegions: function () {
@@ -143,10 +117,8 @@ export default {
       this.$http.post(`${api.pricing}/${this.from.id}@${this.to.id}`, {'CHF': this.price})
       .then((response) => {
         this.$refs.editPriceSaveButton.showSuccess()
-        alert.show('#success-alert-price')
       }, (response) => {
         this.$refs.editPriceSaveButton.showError()
-        alert.show('#error-alert-price')
       })
     },
     setRegion: function () {
@@ -157,10 +129,8 @@ export default {
       this.$http.post(`${api.regions}/${this.regionToSet.id}`, this.regionToSet)
       .then((response) => {
         this.$refs.editRegionSaveButton.showSuccess()
-        alert.show('#success-alert-setRegion')
       }, (response) => {
         this.$refs.editRegionSaveButton.showError()
-        alert.show('#error-alert-setRegion')
       })
     },
     addRegion: function () {
@@ -173,10 +143,8 @@ export default {
       .then((response) => {
         this.$refs.addRegionSaveButton.showSuccess()
         this.getRegions()
-        alert.show('#success-alert-addRegion')
       }, (response) => {
         this.$refs.addRegionSaveButton.showError()
-        alert.show('#error-alert-addRegion')
       })
     },
     sendNewsletter: function () {
@@ -189,10 +157,8 @@ export default {
       this.$http.post(`${api.broadcast}`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
       .then((response) => {
         this.$refs.newsletterSendButton.showSuccess()
-        alert.show('#success-alert-newsletter')
       }, (response) => {
         this.$refs.newsletterSendButton.showError()
-        alert.show('#error-alert-newsletter')
       })
     }
   },

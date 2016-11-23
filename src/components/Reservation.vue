@@ -85,12 +85,6 @@
             <custom-button ref="bookButton" @click="book" text="Réserver" :error="error"></custom-button>
           </form>
         </div>
-        <div id="booking-success-alert" class="alert alert-success" role="alert">
-          <i class="fa fa-check" aria-hidden="true"></i> Une personne vous contactera pour confirmer la reservation.
-        </div>
-        <div id="booking-error-alert" class="alert alert-danger" role="alert">
-          <i class="fa fa-times" aria-hidden="true"></i> {{error}}
-        </div>
         <div id="map" style="margin-top:10px;"></div>
       </div>
     </div>
@@ -99,7 +93,6 @@
 
 <script>
 import Pricing from './Pricing.vue'
-import alert from '../alert'
 import api from '../../config/api.js'
 import auth from '../auth'
 
@@ -114,8 +107,8 @@ let data = {
   comment: '',
   directionsService: null,
   directionsDisplay: null,
-  error: '',
-  isSubscribing: true
+  isSubscribing: true,
+  error: null
 }
 export default {
   name: 'home',
@@ -125,7 +118,6 @@ export default {
   components: { 'pricing': Pricing },
   mounted () {
     this.initMap()
-    alert.hideAll()
     if (auth.isAuthenticated()) {
       this.user.firstName = auth.getProfile().given_name
       this.user.lastName = auth.getProfile().family_name
@@ -195,11 +187,9 @@ export default {
         const isTo2Valid = this.$refs.to2.isValid(this.travel2.to)
       }
       if (!(isFirstNameValid && isLastNameValid && isTelValid && isEmailValid && isCommentValid && isFrom1Valid && isTo1Valid && isFrom2Valid && isTo2Valid)) return
-      if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === ''
-      || this.travel1.from === '' || this.travel1.to === '' || this.travel1.date === null || this.travel1.time === null) {
-        this.$refs.bookButton.showError()
+      if (this.travel1.date === null || this.travel1.time === null) {
         this.error = 'Veuillez entrer une heure et une date.'
-        alert.show('#booking-error-alert')
+        this.$refs.bookButton.showError()
         return
       }
       if (this.user.email.length > 0) this.subscribe()
@@ -235,11 +225,9 @@ Commentaire: ${this.comment}`
       .then((response) => {
         this.$refs.bookButton.showSuccess()
         self.calcRoute()
-        alert.show('#booking-success-alert')
       }, (response) => {
+        this.error = 'Erreur'
         this.$refs.bookButton.showError()
-        this.error = 'erreur'
-        alert.show('#booking-error-alert')
       })
       auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
     },

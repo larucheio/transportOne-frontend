@@ -92,16 +92,12 @@
           </div>
         </div>
       </div>
-      <custom-button ref="getPriceButton" @click="getPrice" customClass="btn btn-primary btn-block" componentClass="" text="Prix"></custom-button>
-      <div id="error-alert" class="alert alert-danger" role="alert">
-        <i class="fa fa-times" aria-hidden="true"></i> {{error}}
-      </div>
+      <custom-button ref="getPriceButton" @click="getPrice" customClass="btn btn-primary btn-block" componentClass="" text="Prix" :error="error"></custom-button>
     </form>
   </div>
 </template>
 
 <script>
-import alert from '../alert'
 import api from '../../config/api.js'
 
 let data = {
@@ -128,14 +124,11 @@ export default {
       this.travel2.to = this.regions[0]
     }, (response) => {})
   },
-  mounted: function () {
-    alert.hideAll()
-  },
   methods: {
     getPrice: function (event) {
       if ((this.travel1.date === '' || this.travel1.time === '') || (this.travel2.exist === true && (this.travel2.date === '' || this.travel2.time === ''))) {
         this.error = 'Veuillez remplir tous les champs'
-        alert.show('#error-alert')
+        this.$refs.getPriceButton.showError()
         return
       }
       this.$emit('getPrice')
@@ -151,15 +144,15 @@ export default {
             price += response.body.CHF
             this.$emit('setPrice', price, this.travel1, this.travel2)
           }, (response) => {
-            this.$refs.getPriceButton.showError()
             this.error = 'Erreur'
-            alert.show('#error-alert')
+            this.$refs.getPriceButton.showError()
           })
         } else {
           this.$refs.getPriceButton.showSuccess()
           this.$emit('setPrice', price, this.travel1, this.travel2)
         }
       }, (response) => {
+        this.error = 'Erreur'
         this.$refs.getPriceButton.showError()
         price = 'à partir de 25 CHF'
         this.$emit('setPrice', price, this.travel1, this.travel2)
