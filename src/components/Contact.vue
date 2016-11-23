@@ -17,7 +17,7 @@
           <custom-input ref="email" label="Email" type="text" v-model="user.email" placeholder="nom@domain.ch" min="1" regexp="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" errorMessage="L'email n'est pas valide."></custom-input>
         </div>
       </div>
-      <custom-input ref="message" label="Message" type="text" v-model="newsmessage" placeholder="Bonjour..." min="1" max="2000" rows="10"></custom-input>
+      <custom-input ref="message" label="Message" type="text" v-model="message" placeholder="Bonjour..." min="100" max="2000" rows="10"></custom-input>
       <custom-button ref="sendButton" @click="sendMessage" text="Envoyer"></custom-button>
     </form>
     <div id="success-alert" class="alert alert-success" role="alert">

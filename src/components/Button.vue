@@ -1,5 +1,5 @@
 <template>
-  <div class="componentClass">
+  <div :class="componentClass">
     <div v-if="hasError" class="text-danger">{{error}}</div>
     <button @click="clicked" :class="customClass">{{text}} <i :class="icon"></i></button>
   </div>

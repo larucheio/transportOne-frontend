@@ -75,14 +75,14 @@
               </label>
             </div>
             <div class="form-group">
-              <custom-input ref="comment" label="Commentaire" type="text" v-model="comment" placeholder="Bonjour..." min="1" max="2000" rows="5"></custom-input>
+              <custom-input ref="comment" label="Commentaire" type="text" v-model="comment" placeholder="Bonjour..." max="2000" rows="5"></custom-input>
             </div>
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="isSubscribing">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
             </label>
-            <custom-button ref="bookButton" @click="book" text="Réserver"></custom-button>
+            <custom-button ref="bookButton" @click="book" text="Réserver" :error="error"></custom-button>
           </form>
         </div>
         <div id="booking-success-alert" class="alert alert-success" role="alert">
@@ -188,22 +188,22 @@ export default {
       const isCommentValid = this.$refs.comment.isValid(this.comment)
       const isFrom1Valid = this.$refs.from1.isValid(this.travel1.from)
       const isTo1Valid = this.$refs.to1.isValid(this.travel1.to)
-      const isFrom2Valid = this.$refs.from2.isValid(this.travel2.from)
-      const isTo2Valid = this.$refs.to2.isValid(this.travel2.to)
+      const isFrom2Valid = true
+      const isTo2Valid = true
+      if (this.travel2.exist) {
+        const isFrom2Valid = this.$refs.from2.isValid(this.travel2.from)
+        const isTo2Valid = this.$refs.to2.isValid(this.travel2.to)
+      }
       if (!(isFirstNameValid && isLastNameValid && isTelValid && isEmailValid && isCommentValid && isFrom1Valid && isTo1Valid && isFrom2Valid && isTo2Valid)) return
       if (this.user.firstName === '' || this.user.lastName === '' || this.user.tel === '' || this.user.email === ''
       || this.travel1.from === '' || this.travel1.to === '' || this.travel1.date === null || this.travel1.time === null) {
-        this.error = 'Veuillez remplir le formulaire avant de reserver.'
+        this.$refs.bookButton.showError()
+        this.error = 'Veuillez entrer une heure et une date.'
         alert.show('#booking-error-alert')
         return
       }
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email)) {
-        this.subscribe()
-      } else {
-        this.error = `L'address email est invalide.`
-        alert.show('#booking-error-alert')
-        return
-      }
+      if (this.user.email.length > 0) this.subscribe()
+
       let roundTrip = 'aucun'
       if (this.travel2.exist) {
         roundTrip = `de ${this.travel2.from} à ${this.travel2.to}, le ${this.travel2.date} à ${this.travel2.time}`
