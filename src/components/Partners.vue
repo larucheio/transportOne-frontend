@@ -2,10 +2,10 @@
   <div>
     <div class="card card-block" v-if="isAuthenticated">
       <custom-input ref="review" label="Commentaire" type="text" v-model="newReview" placeholder="Bonjour..." min="1" max="2000" rows="5"></custom-input>
-      <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" error="Le commentaire n'a pas pu être envoyé."></custom-button>
+      <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
     </div>
     <review v-for="review in reviews" v-bind:review="review"></review>
-    <custom-button v-if="showMorePage" ref="getMoreReviewsButton" @click="getMoreReviews" text="Plus de commentaires"></custom-button>
+    <custom-button v-if="showMorePage" ref="getMoreReviewsButton" @click="getMoreReviews" text="Plus de commentaires" pendingText="Recherche des commentaires" successText="Commentaires trouvé"></custom-button>
   </div>
 </template>
 
@@ -60,7 +60,6 @@ export default {
     getMoreReviews: function () {
       const page = this.reviews[this.reviews.length-1].page-1
       if (page >= 0) {
-        this.$refs.getMoreReviewsButton.showPending()
         this.$http.get(`${api.reviews}?page=${page}`)
         .then((response) => {
           this.$refs.getMoreReviewsButton.showSuccess()
@@ -73,9 +72,11 @@ export default {
     },
     sendReview: function () {
       const isReviewValid = this.$refs.review.isValid(this.newReview)
-      if (!isReviewValid) return
+      if (!isReviewValid) {
+        this.$refs.sendReviewButton.showError('Veuillez remplir tous les champs.')
+        return
+      }
       const profile = auth.getProfile()
-      this.$refs.sendReviewButton.showPending()
       this.$http.post(`${api.reviews}`,
         {'userId': profile.user_id,
         'review': this.newReview,
@@ -90,7 +91,7 @@ export default {
             'userPic': profile.picture})
           this.newReview = ''
         }, (response) => {
-          this.$refs.sendReviewButton.showError()
+          this.$refs.sendReviewButton.showError(`Le commentaire n'a pas pu être envoyé.`)
         })
       }
     }

@@ -82,7 +82,7 @@
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
             </label>
-            <custom-button ref="bookButton" @click="book" text="Réserver" :error="error"></custom-button>
+            <custom-button ref="bookButton" @click="book" text="Réserver" pendingText="Réserve" successText="Réservé"></custom-button>
           </form>
         </div>
         <div id="map" style="margin-top:10px;"></div>
@@ -107,8 +107,7 @@ let data = {
   comment: '',
   directionsService: null,
   directionsDisplay: null,
-  isSubscribing: true,
-  error: null
+  isSubscribing: true
 }
 export default {
   name: 'home',
@@ -185,10 +184,12 @@ export default {
         const isFrom2Valid = this.$refs.from2.isValid(this.travel2.from)
         const isTo2Valid = this.$refs.to2.isValid(this.travel2.to)
       }
-      if (!(isFirstNameValid && isLastNameValid && isTelValid && isEmailValid && isCommentValid && isFrom1Valid && isTo1Valid && isFrom2Valid && isTo2Valid)) return
+      if (!(isFirstNameValid && isLastNameValid && isTelValid && isEmailValid && isCommentValid && isFrom1Valid && isTo1Valid && isFrom2Valid && isTo2Valid)) {
+        this.$refs.bookButton.showError('Veuillez remplir tous les champs.')
+        return
+      }
       if (this.travel1.date === null || this.travel1.time === null) {
-        this.error = 'Veuillez entrer une heure et une date.'
-        this.$refs.bookButton.showError()
+        this.$refs.bookButton.showError('Veuillez entrer une heure et une date.')
         return
       }
       if (this.user.email.length > 0) this.subscribe()
@@ -219,14 +220,12 @@ Détails aller: ${this.priceDetailsTravel1}
 Détails retour: ${this.priceDetailsTravel2}
 Commentaire: ${this.comment}`
       const self = this
-      this.$refs.bookButton.showPending()
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
       .then((response) => {
         this.$refs.bookButton.showSuccess()
         self.calcRoute()
       }, (response) => {
-        this.error = 'Erreur'
-        this.$refs.bookButton.showError()
+        this.$refs.bookButton.showError('Erreur')
       })
       auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
     },

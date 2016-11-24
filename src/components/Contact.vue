@@ -18,7 +18,7 @@
         </div>
       </div>
       <custom-input ref="message" label="Message" type="text" v-model="message" placeholder="Bonjour..." min="100" max="2000" rows="10"></custom-input>
-      <custom-button ref="sendButton" @click="sendMessage" text="Envoyer" error="Erreur, le message n'a pas pu être envoyé."></custom-button>
+      <custom-button ref="sendButton" @click="sendMessage" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
     </form>
   </div>
 </template>
@@ -51,18 +51,20 @@ export default {
       const isTelValid = this.$refs.tel.isValid(this.user.tel)
       const isEmailValid = this.$refs.email.isValid(this.user.email)
       const isMessageValid = this.$refs.message.isValid(this.message)
-      if (!(isFirstNameValid && isLastNameValid && isTelValid && isEmailValid && isMessageValid)) return
+      if (!(isFirstNameValid && isLastNameValid && isTelValid && isEmailValid && isMessageValid)) {
+        this.$refs.sendButton.showError('Veuillez remplir tous les champs.')
+        return
+      }
       const text = `Nom: ${this.user.firstName} ${this.user.lastName}
 Tel: ${this.user.tel} Email: ${this.user.email}
 Message: ${this.message}`
       const self = this
-      this.$refs.sendButton.showPending()
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Contact', 'source': this.user.email})
       .then((response) => {
         this.$refs.sendButton.showSuccess()
         this.message = ''
       }, (response) => {
-        this.$refs.sendButton.showError()
+        this.$refs.sendButton.showError(`Erreur, le message n'a pas pu être envoyé.`)
       })
       auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
     }

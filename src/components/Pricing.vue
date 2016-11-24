@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-      <custom-button ref="getPriceButton" @click="getPrice" customClass="btn btn-primary btn-block" componentClass="" text="Prix" :error="error"></custom-button>
+      <custom-button ref="getPriceButton" @click="getPrice" customClass="btn btn-primary btn-block" componentClass="" text="Prix" pendingText="Recherche en du prix" successText="Prix trouvé"></custom-button>
     </form>
   </div>
 </template>
@@ -103,8 +103,7 @@ import api from '../../config/api.js'
 let data = {
   regions: null,
   travel1: {from: null, to: null, date: '', time: ''},
-  travel2: {from: null, to: null, date: '', time: '', exist: false},
-  error: null
+  travel2: {from: null, to: null, date: '', time: '', exist: false}
 }
 export default {
   data: function () {
@@ -127,13 +126,11 @@ export default {
   methods: {
     getPrice: function (event) {
       if ((this.travel1.date === '' || this.travel1.time === '') || (this.travel2.exist === true && (this.travel2.date === '' || this.travel2.time === ''))) {
-        this.error = 'Veuillez remplir tous les champs'
-        this.$refs.getPriceButton.showError()
+        this.$refs.getPriceButton.showError( 'Veuillez remplir tous les champs.')
         return
       }
       this.$emit('getPrice')
       let price
-      this.$refs.getPriceButton.showPending()
       this.$http.get(`${api.pricing}/${this.travel1.from.id}@${this.travel1.to.id}`)
       .then((response) => {
         price = response.body.CHF
@@ -144,16 +141,14 @@ export default {
             price += response.body.CHF
             this.$emit('setPrice', price, this.travel1, this.travel2)
           }, (response) => {
-            this.error = 'Erreur'
-            this.$refs.getPriceButton.showError()
+            this.$refs.getPriceButton.showError('Erreur')
           })
         } else {
           this.$refs.getPriceButton.showSuccess()
           this.$emit('setPrice', price, this.travel1, this.travel2)
         }
       }, (response) => {
-        this.error = 'Erreur'
-        this.$refs.getPriceButton.showError()
+        this.$refs.getPriceButton.showError('Erreur')
         price = 'à partir de 25 CHF'
         this.$emit('setPrice', price, this.travel1, this.travel2)
       })
