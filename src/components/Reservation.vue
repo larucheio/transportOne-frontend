@@ -170,7 +170,6 @@ export default {
       this.priceDetailsTravel1 = `De ${travel1.from.name} à ${travel1.to.name}, le ${travel1.date} à ${this.travel1.time}.`
       if (travel2.exist) this.priceDetailsTravel2 = `De ${travel2.from.name} à ${travel2.to.name}, le ${this.travel2.date} à ${this.travel2.time}.`
       else this.priceDetailsTravel2 = 'Aucun'
-      alert.hideAll()
     },
     book () {
       const isFirstNameValid = this.$refs.firstName.isValid(this.user.firstName)
