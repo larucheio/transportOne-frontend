@@ -150,4 +150,11 @@ body {
   -webkit-transform: translate(0px, -100%);
   transform: translate(0px, -100%);
 }
+
+@media (max-width: 992px) {
+  .container {
+    padding:0;
+    width: auto;
+  }
+}
 </style>
