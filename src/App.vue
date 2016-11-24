@@ -150,4 +150,14 @@ body {
   -webkit-transform: translate(0px, -100%);
   transform: translate(0px, -100%);
 }
+
+@media (max-width: 992px) {
+  .container {
+    width: auto;
+  }
+  .card {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
 </style>
