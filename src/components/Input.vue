@@ -1,7 +1,7 @@
 <template>
   <div :class="formGroup">
     <label v-if="label">{{label}}</label>
-    <textarea v-if="rows" class="form-control" :rows="rows" @input="isValid($event.target.value)" :placeholder="placeholder"></textarea>
+    <textarea v-if="rows" class="form-control" :value="value" :rows="rows" @input="isValid($event.target.value)" :placeholder="placeholder"></textarea>
     <input v-else :type="type" class="form-control" :value="value" @input="isValid($event.target.value)" :placeholder="placeholder">
     <div v-if="hasError" class="form-control-feedback">{{error}}</div>
   </div>
@@ -35,9 +35,9 @@ export default {
       regexpObject: null
     }
   },
-    mounted () {
-      this.regexpObject = new RegExp(this.regexp)
-    },
+  mounted () {
+    this.regexpObject = new RegExp(this.regexp)
+  },
   methods: {
     showError () {
       this.formGroup = 'form-group has-danger'
