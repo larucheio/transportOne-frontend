@@ -20,19 +20,10 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="form-group">
-            <label>Prix (CHF)</label>
-            <input type="number" class="form-control"  placeholder="1.5" v-model.lazy="price">
-          </div>
+          <custom-input ref="editPricePrice" label="Prix (CHF)" type="number" v-model="price" placeholder="10.5" min="1"></custom-input>
         </div>
       </div>
-      <button class="btn btn-primary float-xs-right" @click="setPrice">Sauvegarder</button>
-    </div>
-    <div id="success-alert-price" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-price" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
+      <custom-button ref="editPriceSaveButton" @click="setPrice" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
     <div class="card card-block">
       <h6 class="card-title">Modifier une region</h6>
@@ -47,73 +38,48 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label>Nom</label>
-            <input type="text" class="form-control" v-model.lazy="regionToSet.name">
+            <custom-input ref="setRegionName" label="Nom" type="text" v-model="regionToSet.name" placeholder="Genève" min="1"></custom-input>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label>Priorité</label>
-            <input type="number" class="form-control" v-model.lazy="regionToSet.priority">
+            <custom-input ref="setRegionPriority" label="Priorité" type="number" v-model="regionToSet.priority" placeholder="0" min="1"></custom-input>
           </div>
         </div>
       </div>
-      <button class="btn btn-primary float-xs-right" @click="setRegion">Sauvegarder</button>
-    </div>
-    <div id="success-alert-setRegion" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-setRegion" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
+      <custom-button ref="editRegionSaveButton" @click="setRegion" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
     <div class="card card-block">
       <h6 class="card-title">Ajouter une region</h6>
       <div class="row">
         <div class="col-md-8">
           <div class="form-group">
-            <label>Nom</label>
-            <input type="text" class="form-control" v-model.lazy="regionToAdd.name">
+            <custom-input ref="addRegionName" label="Nom" type="text" v-model="regionToAdd.name" placeholder="Genève" min="1"></custom-input>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label>Priorité</label>
-            <input type="number" class="form-control" v-model.lazy="regionToAdd.priority">
+            <custom-input ref="addRegionPriority" label="Priorité" type="number" v-model="regionToAdd.priority" placeholder="0" min="1"></custom-input>
           </div>
         </div>
       </div>
-      <button class="btn btn-primary float-xs-right" @click="addRegion">Sauvegarder</button>
-    </div>
-    <div id="success-alert-addRegion" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Sauvé
-    </div>
-    <div id="error-alert-addRegion" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
+      <custom-button ref="addRegionSaveButton" @click="addRegion" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
     <div class="card card-block">
       <h6 class="card-title">Newsletter</h6>
       <div class="form-group">
-        <label>Sujet</label>
-        <input type="text" class="form-control" v-model.lazy="newsletter.subject">
+        <custom-input ref="newsletterSubject" label="Sujet" type="text" v-model="newsletter.subject" placeholder="Promotion" min="1"></custom-input>
       </div>
       <div class="form-group">
-        <label for="text">Message</label>
-        <textarea class="form-control" rows="10" v-model="newsletter.body"></textarea>
+        <custom-input ref="newsletterMessage" label="Message" type="text" v-model="newsletter.body" placeholder="Bonjour..." min="1" max="2000" rows="10"></custom-input>
       </div>
-      <button class="btn btn-primary float-xs-right" @click="sendNewsletter">Envoyer</button>
-    </div>
-    <div id="success-alert-newsletter" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Envoyé
-    </div>
-    <div id="error-alert-newsletter" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> Erreur
+      <custom-button ref="newsletterSendButton" @click="sendNewsletter" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
   </div>
 </template>
 
 <script>
 import auth from '../auth'
-import alert from '../alert'
 import api from '../../config/api.js'
 
 export default {
@@ -125,12 +91,11 @@ export default {
       price: 0,
       regionToSet: {id: '', name: '', priority: 0},
       regionToAdd: {name: '', priority: 0},
-      newsletter: {subject: null, body: null}
+      newsletter: {subject: '', body: ''}
     }
   },
   mounted: function () {
     this.getRegions()
-    alert.hideAll()
   },
   methods: {
     getRegions: function () {
@@ -146,39 +111,62 @@ export default {
       }, (response) => {})
     },
     setPrice: function () {
+      const isPriceValid = this.$refs.setRegionPriority.isValid(this.price)
+      if (!isPriceValid) {
+        this.$refs.editPriceSaveButton.showError('Veuillez remplir tous les champs.')
+        return
+      }
       this.$http.post(`${api.pricing}/${this.from.id}@${this.to.id}`, {'CHF': this.price})
       .then((response) => {
-        alert.show('#success-alert-price')
+        this.$refs.editPriceSaveButton.showSuccess()
       }, (response) => {
-        alert.show('#error-alert-price')
+        this.$refs.editPriceSaveButton.showError()
       })
     },
     setRegion: function () {
+      const isNameValid = this.$refs.setRegionName.isValid(this.regionToSet.name)
+      const isPriorityValid = this.$refs.setRegionPriority.isValid(this.regionToSet.priority)
+      if (!(isNameValid && isPriorityValid)) {
+        this.$refs.editRegionSaveButton.showError('Veuillez remplir tous les champs.')
+        return
+      }
       this.$http.post(`${api.regions}/${this.regionToSet.id}`, this.regionToSet)
       .then((response) => {
-        alert.show('#success-alert-setRegion')
+        this.$refs.editRegionSaveButton.showSuccess()
       }, (response) => {
-        alert.show('#error-alert-setRegion')
+        this.$refs.editRegionSaveButton.showError()
       })
     },
     addRegion: function () {
+      const isNameValid = this.$refs.addRegionName.isValid(this.regionToAdd.name)
+      const isPriorityValid = this.$refs.addRegionPriority.isValid(this.regionToAdd.priority)
+      if (!(isNameValid && isPriorityValid)) {
+        this.$refs.addRegionSaveButton.showError('Veuillez remplir tous les champs.')
+        return
+      }
       const id = this.regionToAdd.name.replace(/[^A-Za-z0-9]+/g, "")
       this.$http.post(`${api.regions}/${id}`, this.regionToAdd)
       .then((response) => {
+        this.$refs.addRegionSaveButton.showSuccess()
         this.getRegions()
-        alert.show('#success-alert-addRegion')
       }, (response) => {
-        alert.show('#error-alert-addRegion')
+        this.$refs.addRegionSaveButton.showError()
       })
     },
     sendNewsletter: function () {
+      const isSubjectValid = this.$refs.newsletterSubject.isValid(this.newsletter.subject)
+      const isMessageValid = this.$refs.newsletterMessage.isValid(this.newsletter.body)
+      if (!(isSubjectValid && isMessageValid)) {
+        this.$refs.newsletterSendButton.showError('Veuillez remplir tous les champs.')
+        return
+      }
       const body = `<p>${this.newsletter.body}</p>
       <a href="${process.env.SITE_URL}unsubscribe">Se désinscrire</a>`
       this.$http.post(`${api.broadcast}`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
       .then((response) => {
-        alert.show('#success-alert-newsletter')
+        this.$refs.newsletterSendButton.showSuccess()
       }, (response) => {
-        alert.show('#error-alert-newsletter')
+        this.$refs.newsletterSendButton.showError()
       })
     }
   },

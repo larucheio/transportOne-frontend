@@ -1,24 +1,16 @@
 <template>
   <div>
     <div class="card card-block" v-if="isAuthenticated">
-      <h5 class="card-title">Commentaire</h5>
-      <textarea class="form-control" v-model="newReview" style="margin-bottom:10px;"></textarea>
-      <button class="btn btn-primary" @click="sendReview">Envoyer</button>
-    </div>
-    <div id="success-alert" class="alert alert-success" role="alert">
-      <i class="fa fa-check" aria-hidden="true"></i> Envoyé!
-    </div>
-    <div id="error-alert" class="alert alert-danger" role="alert">
-      <i class="fa fa-times" aria-hidden="true"></i> {{error}}
+      <custom-input ref="review" label="Commentaire" type="text" v-model="newReview" placeholder="Bonjour..." min="1" max="2000" rows="5"></custom-input>
+      <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
     </div>
     <review v-for="review in reviews" v-bind:review="review"></review>
-    <button class="btn btn-primary" @click="getMoreReviews" v-show="showMorePage">Plus de commentaires</button>
+    <custom-button v-if="showMorePage" ref="getMoreReviewsButton" @click="getMoreReviews" text="Plus de commentaires" pendingText="Recherche des commentaires" successText="Commentaires trouvé"></custom-button>
   </div>
 </template>
 
 <script>
 import auth from '../auth'
-import alert from '../alert'
 import api from '../../config/api.js'
 
 const Review = {
@@ -47,7 +39,6 @@ export default {
     return {
       reviews: null,
       newReview: '',
-      error: null,
       showMorePage: false,
       isAuthenticated: auth.isAuthenticated()
     }
@@ -62,9 +53,6 @@ export default {
       }
     }, (response) => {})
   },
-  mounted: function () {
-    alert.hideAll()
-  },
   components: {
     'review': Review
   },
@@ -74,15 +62,18 @@ export default {
       if (page >= 0) {
         this.$http.get(`${api.reviews}?page=${page}`)
         .then((response) => {
+          this.$refs.getMoreReviewsButton.showSuccess()
           this.reviews = this.reviews.concat(response.body.data.Items)
           if (this.reviews[this.reviews.length-1].page === 0) this.showMorePage = false
-        }, (response) => {})
+        }, (response) => {
+          this.$refs.getMoreReviewsButton.showError()
+        })
       }
     },
     sendReview: function () {
-      if (this.newReview.length < 100 || this.newReview.length > 1000) {
-        this.error = `Veuillez vous écrire au moins 100 caractères et au plus 1000 caractères`
-        alert.show('#error-alert')
+      const isReviewValid = this.$refs.review.isValid(this.newReview)
+      if (!isReviewValid) {
+        this.$refs.sendReviewButton.showError('Veuillez remplir tous les champs.')
         return
       }
       const profile = auth.getProfile()
@@ -92,16 +83,15 @@ export default {
         'username': profile.given_name,
         'userPic': profile.picture})
         .then((response) => {
+          this.$refs.sendReviewButton.showSuccess()
           this.reviews.unshift(
             {'userId': profile.user_id,
             'review': this.newReview,
             'username': profile.given_name,
             'userPic': profile.picture})
           this.newReview = ''
-          alert.show('#success-alert')
         }, (response) => {
-          this.error = `Le commentaire n'a pas pu être envoyé.`
-          alert.show('#error-alert')
+          this.$refs.sendReviewButton.showError(`Le commentaire n'a pas pu être envoyé.`)
         })
       }
     }
