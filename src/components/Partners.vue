@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="card card-block" v-if="isAuthenticated">
-      <custom-input ref="review" label="Commentaire" type="text" v-model="newReview" placeholder="Bonjour..." min="1" max="2000" rows="5"></custom-input>
+    <div class="card card-block">
+      <custom-input ref="review" label="Donner votre avis sur Transport One." type="text" v-model="newReview" placeholder="Mon avis..." min="1" max="2000" rows="5"></custom-input>
       <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
     </div>
     <review v-for="review in reviews" v-bind:review="review"></review>
@@ -39,8 +39,7 @@ export default {
     return {
       reviews: null,
       newReview: '',
-      showMorePage: false,
-      isAuthenticated: auth.isAuthenticated()
+      showMorePage: false
     }
   },
   beforeCreate () {
@@ -71,6 +70,11 @@ export default {
       }
     },
     sendReview: function () {
+      if (!auth.isAuthenticated()) {
+        this.$refs.sendReviewButton.showError(`Vous devez vous connecter pour donner votre avis.`)
+        auth.login()
+        return
+      }
       const isReviewValid = this.$refs.review.isValid(this.newReview)
       if (!isReviewValid) {
         this.$refs.sendReviewButton.showError('Veuillez remplir tous les champs.')
@@ -88,7 +92,9 @@ export default {
             {'userId': profile.user_id,
             'review': this.newReview,
             'username': profile.given_name,
-            'userPic': profile.picture})
+            'userPic': profile.picture,
+            'createdAt': new Date()
+          })
           this.newReview = ''
         }, (response) => {
           this.$refs.sendReviewButton.showError(`Le commentaire n'a pas pu être envoyé.`)
