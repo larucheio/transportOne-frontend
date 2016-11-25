@@ -22,7 +22,7 @@ export default {
     },
     successText: {
       type: String,
-      default: 'Réussit'
+      default: 'Réussi'
     },
     componentClass: {
       type: String,
