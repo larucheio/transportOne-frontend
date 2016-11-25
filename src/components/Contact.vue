@@ -90,7 +90,7 @@ Message: ${this.message}`
         this.error = `Erreur, le message n'a pas pu être envoyé.`
         alert.show('#error-alert')
       })
-      auth.setProfileAttribute({tel: this.user.tel, email: this.user.email, from: this.travel1.from, to: this.travel1.to})
+      auth.setProfileAttribute({tel: this.user.tel, email: this.user.email})
     }
   }
 }

@@ -59,10 +59,12 @@ export default {
     return JSON.parse(localStorage.getItem('profile'))
   },
   setProfileAttribute (attribute) {
-    //exemple to set an attribute  setProfileAttribute({isAdmin: true})
+    // exemple to set an attribute  setProfileAttribute({isAdmin: true})
     router.app.$http.patch(`https://${process.env.AUTH0_DOMAIN}/api/v2/users/${this.getProfile().user_id}`,
       {user_metadata: attribute},
       {headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}`}}
-    ).then((response) => {}, (response) => {})
+    ).then((response) => {
+      localStorage.setItem('profile', JSON.stringify(response.data))
+    }, (response) => {})
   }
 }
