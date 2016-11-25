@@ -2,7 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <h6>{{ text }}</h6>
-    <pricing v-on:getPrice="showBooking"></pricing>
+    <pricing></pricing>
   </div>
 </template>
 
@@ -16,12 +16,7 @@ export default {
       text: 'Transport One est...'
     }
   },
-  components: { 'pricing': Pricing },
-  methods: {
-    showBooking: function () {
-      this.$router.push('/reservation')
-    }
-  }
+  components: { 'pricing': Pricing }
 }
 </script>
 
