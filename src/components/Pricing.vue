@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card">
     <div class="btn-group btn-block" data-toggle="buttons">
       <label class="btn btn-toggle active col-xs-6" @click="travel2.exist = false">
         <input type="radio">Aller simple
@@ -8,7 +8,7 @@
         <input type="radio">Aller-retour
       </label>
     </div>
-    <form>
+    <form class="card-block">
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
@@ -162,22 +162,14 @@ export default {
   background-color: lightgray;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  border-right-width: 1px;
 }
 .btn-toggle.active {
   background-color: white;
+  margin-right: 1px;
 }
 
 .input-group-addon {
   width: 50px;
   background-color: #fff;
-}
-
-form {
-  background-color: white;
-  border-bottom-left-radius: .25rem;
-  border-bottom-right-radius: .25rem;
-  padding: 10px;
-  margin-right: 1px;
 }
 </style>
