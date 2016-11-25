@@ -92,7 +92,9 @@ export default {
             {'userId': profile.user_id,
             'review': this.newReview,
             'username': profile.given_name,
-            'userPic': profile.picture})
+            'userPic': profile.picture,
+            'createdAt': new Date()
+          })
           this.newReview = ''
         }, (response) => {
           this.$refs.sendReviewButton.showError(`Le commentaire n'a pas pu être envoyé.`)
