@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card card-block">
+    <div class="section">
       <custom-input ref="review" label="Donner votre avis sur Transport One." type="text" v-model="newReview" placeholder="Mon avis..." min="1" max="2000" rows="5"></custom-input>
       <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
     </div>
@@ -14,7 +14,7 @@ import auth from '../auth'
 import api from '../../config/api.js'
 
 const Review = {
-  template: `<div class="card card-block">
+  template: `
     <div class="media">
       <div class="media-left">
         <img :src="review.userPic" onerror="this.style.display='none'" class="rounded" style="margin-right:10px; margin-bottom:10px;">
@@ -24,8 +24,7 @@ const Review = {
         <p>{{review.review}}</p>
         <footer class="blockquote-footer">{{formatedDate}}</cite></footer>
       </div>
-    </div>
-  </div>`,
+    </div>`,
   props: ['review'],
   computed: {
     formatedDate: function () {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <pricing ref="pricing" @changeTravelType="changeTravelType" :isBooking="true"></pricing>
-    <div class="card card-block">
+    <div class="section">
       <form>
         <div class="row">
           <div class="col-sm-6">
