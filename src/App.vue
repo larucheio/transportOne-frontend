@@ -146,6 +146,7 @@ $(document).ready(function () {
 
 .navbar {
   transition: 0.4s;
+  box-shadow: 0px 2px 10px #ccc;
 }
 .to-navbar-hidden {
   -webkit-transform: translate(0px, -100%);
