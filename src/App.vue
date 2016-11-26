@@ -31,8 +31,12 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/admin" v-show="isAdmin">Admin</router-link>
             </li>
-            <button class="btn btn-outline-success float-lg-right" type="submit" @click="login" v-show="!isAuthenticated">Se connecter</button>
-            <button class="btn btn-outline-success float-lg-right" type="submit" @click="logout" v-show="isAuthenticated">Se deconnecter</button>
+            <li class="nav-item float-lg-right">
+              <a class="nav-link" @click="login" v-show="!isAuthenticated">Se connecter</a>
+            </li>
+            <li class="nav-item float-lg-right">
+              <a class="nav-link" @click="logout" v-show="isAuthenticated">Se déconnecter</a>
+            </li>
           </ul>
         </div>
       </div>
