@@ -1,4 +1,6 @@
 <template>
+  <div class="row">
+  <div class="col-lg-8 offset-lg-2">
   <div class="card">
     <div class="btn-group btn-block" data-toggle="buttons">
       <label class="btn btn-toggle active col-xs-6" @click="getPrice(false)">
@@ -96,6 +98,8 @@
       <custom-button v-if="!isBooking" @click="book" customClass="btn btn-primary btn-block" componentClass="" text="Réserver"></custom-button>
     </form>
   </div>
+</div>
+</div>
 </template>
 
 <script>
