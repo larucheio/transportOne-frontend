@@ -4,6 +4,7 @@
       <custom-input ref="review" label="Donner votre avis sur Transport One." type="text" v-model="newReview" placeholder="Mon avis..." min="1" max="2000" rows="5"></custom-input>
       <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
     </div>
+    <h6>Avis</h6>
     <review v-for="review in reviews" v-bind:review="review"></review>
     <custom-button v-if="showMorePage" ref="getMoreReviewsButton" @click="getMoreReviews" text="Plus de commentaires" pendingText="Recherche des commentaires" successText="Commentaires trouvé"></custom-button>
   </div>
@@ -20,16 +21,15 @@ const Review = {
         <img :src="review.userPic" onerror="this.style.display='none'" class="rounded" style="margin-right:10px; margin-bottom:10px;">
       </div>
       <div class="media-body">
-        <h4 class="media-heading">{{review.username}}</h4>
+        <strong>{{review.username}}</strong><small class="float-xs-right">{{formatedDate}}</small>
         <p>{{review.review}}</p>
-        <footer class="blockquote-footer">{{formatedDate}}</cite></footer>
       </div>
     </div>`,
   props: ['review'],
   computed: {
     formatedDate: function () {
       let date = new Date(this.review.createdAt)
-      return date.toLocaleString()
+      return date.toLocaleDateString()
     }
   }
 }
