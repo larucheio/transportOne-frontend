@@ -152,4 +152,8 @@ $(document).ready(function () {
   -webkit-transform: translate(0px, -100%);
   transform: translate(0px, -100%);
 }
+
+.nav-link {
+    cursor: pointer;
+}
 </style>
