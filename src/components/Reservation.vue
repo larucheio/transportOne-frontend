@@ -131,8 +131,8 @@ export default {
     },
     calcRoute () {
       const request = {
-        origin: 'AEROPORT DE GENEVE',
-        destination: 'carouge',
+        origin: this.travel1.from,
+        destination: this.travel1.to,
         travelMode: 'DRIVING'
       }
       const self = this
