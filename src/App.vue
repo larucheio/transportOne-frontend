@@ -29,7 +29,7 @@
               <router-link class="nav-link" to="/contact">Contact</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin" v-show="isAdmin">Admin</router-link>
+              <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
             </li>
             <button class="btn btn-outline-success float-lg-right" type="submit" @click="login" v-show="!isAuthenticated">Se connecter</button>
             <button class="btn btn-outline-success float-lg-right" type="submit" @click="logout" v-show="isAuthenticated">Se deconnecter</button>
