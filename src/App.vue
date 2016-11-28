@@ -31,8 +31,12 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
             </li>
-            <button class="btn btn-outline-success float-lg-right" type="submit" @click="login" v-show="!isAuthenticated">Se connecter</button>
-            <button class="btn btn-outline-success float-lg-right" type="submit" @click="logout" v-show="isAuthenticated">Se deconnecter</button>
+            <li class="nav-item float-lg-right">
+              <a class="nav-link" @click="login" v-show="!isAuthenticated">Se connecter</a>
+            </li>
+            <li class="nav-item float-lg-right">
+              <a class="nav-link" @click="logout" v-show="isAuthenticated">Se déconnecter</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -104,9 +108,6 @@ $(document).ready(function () {
   color: #2c3e50;
   margin-top: 60px;
 }
-body {
-  background-color: #ecf0f1;
-}
 
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .1s ease;
@@ -145,9 +146,14 @@ body {
 
 .navbar {
   transition: 0.4s;
+  box-shadow: 0px 2px 10px #ccc;
 }
 .to-navbar-hidden {
   -webkit-transform: translate(0px, -100%);
   transform: translate(0px, -100%);
+}
+
+.nav-link {
+    cursor: pointer;
 }
 </style>

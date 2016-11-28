@@ -1,7 +1,7 @@
 <template>
   <div>
     <pricing ref="pricing" @changeTravelType="changeTravelType" :isBooking="true"></pricing>
-    <div class="card card-block">
+    <div class="section">
       <form>
         <div class="row">
           <div class="col-sm-6">
@@ -70,7 +70,7 @@
         <custom-button ref="bookButton" @click="book" text="Réserver" pendingText="Réserve" successText="Réservé"></custom-button>
       </form>
     </div>
-    <div id="map" style="margin-top:10px;"></div>
+    <div id="map" class="section"></div>
   </div>
 </template>
 

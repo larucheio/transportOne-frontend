@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="card card-block">
-      <h6 class="card-title">Modifier un prix</h6>
+    <div class="section">
+      <h6>Modifier un prix</h6>
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
@@ -25,8 +25,8 @@
       </div>
       <custom-button ref="editPriceSaveButton" @click="setPrice" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
-    <div class="card card-block">
-      <h6 class="card-title">Modifier une region</h6>
+    <div class="section">
+      <h6>Modifier une region</h6>
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
@@ -49,8 +49,8 @@
       </div>
       <custom-button ref="editRegionSaveButton" @click="setRegion" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
-    <div class="card card-block">
-      <h6 class="card-title">Ajouter une region</h6>
+    <div class="section">
+      <h6>Ajouter une region</h6>
       <div class="row">
         <div class="col-md-8">
           <div class="form-group">
@@ -65,8 +65,8 @@
       </div>
       <custom-button ref="addRegionSaveButton" @click="addRegion" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
-    <div class="card card-block">
-      <h6 class="card-title">Newsletter</h6>
+    <div class="section">
+      <h6>Newsletter</h6>
       <div class="form-group">
         <custom-input ref="newsletterSubject" label="Sujet" type="text" v-model="newsletter.subject" placeholder="Promotion" min="1"></custom-input>
       </div>
