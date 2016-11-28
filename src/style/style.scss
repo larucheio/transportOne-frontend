@@ -11,8 +11,9 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
   padding-bottom: 20px;
   margin-bottom: 20px;
 }
-.last-section {
+.section:last-child {
   @include clearfix;
+  border: none;
   padding-bottom: 20px;
   margin-bottom: 20px;
 }

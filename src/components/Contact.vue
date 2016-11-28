@@ -1,5 +1,5 @@
 <template>
-  <div class="last-section">
+  <div class="section">
     <form>
       <div class="row">
         <div class="col-sm-6">
