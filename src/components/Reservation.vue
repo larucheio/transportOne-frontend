@@ -70,7 +70,7 @@
         <custom-button ref="bookButton" @click="book" text="Réserver" pendingText="Réserve" successText="Réservé"></custom-button>
       </form>
     </div>
-    <div id="map" style="margin-top:10px;"></div>
+    <div id="map" class="last-section"></div>
   </div>
 </template>
 

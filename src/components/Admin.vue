@@ -65,7 +65,7 @@
       </div>
       <custom-button ref="addRegionSaveButton" @click="addRegion" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
-    <div class="section">
+    <div class="last-section">
       <h6>Newsletter</h6>
       <div class="form-group">
         <custom-input ref="newsletterSubject" label="Sujet" type="text" v-model="newsletter.subject" placeholder="Promotion" min="1"></custom-input>
