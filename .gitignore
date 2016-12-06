@@ -8,3 +8,4 @@ selenium-debug.log
 debug.log
 
 config/prod.env.js
+yarn.lock
