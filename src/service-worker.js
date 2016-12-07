@@ -1,6 +1,6 @@
 
-var CACHE_NAME = 'transport-one-v1'
-var urlsToCache = [
+const CACHE_NAME = 'transport-one-v1'
+const urlsToCache = [
   '/',
   'index.html'
 ]
