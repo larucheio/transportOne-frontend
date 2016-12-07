@@ -19,10 +19,10 @@ self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(event.request)
       .then(function (response) {
-        // Cache hit - return response
-        if (response) {
+        // Cache hit - return cached response and don't fetch the network response
+        /*if (response) {
           return response
-        }
+        }*/
 
         // IMPORTANT: Clone the request. A request is a stream and
         // can only be consumed once. Since we are consuming this
