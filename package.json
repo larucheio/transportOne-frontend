@@ -59,6 +59,7 @@
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^4.0.2",
     "selenium-server": "2.53.1",
+    "serviceworker-loader": "^0.1.0",
     "shelljs": "^0.7.4",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",

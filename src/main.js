@@ -19,3 +19,16 @@ const App = Vue.extend(require('./App.vue'))
 new App({
   router
 }).$mount('#app')
+
+if ('serviceWorker' in navigator) {
+  const register = require('serviceworker!./service-worker.js')
+  window.addEventListener('load', function () {
+    register({scope: '/'}).then(function (registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope)
+    }).catch(function (err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err)
+    })
+  })
+}
