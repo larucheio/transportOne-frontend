@@ -38,3 +38,7 @@ The API root url must be configured in the environnement variables. You can obta
 ### Endpoints
 
 The API endpoints are based on the [transport-one backend](https://github.com/larucheio/transportOne-backend). You can find a list of the endpoints on the config/api.js file.
+
+## Service Workers
+
+The service workers are available only trough https or localhost to avoid man in the middle attack.
