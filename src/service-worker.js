@@ -20,6 +20,8 @@ self.addEventListener('fetch', function (event) {
     caches.match(event.request)
       .then(function (response) {
         // Cache hit - return cached response and don't fetch the network response
+        // uncomment it if you want to retrieve only the cashed response (in case you want to avoid data traffic),
+        // then you would need to update the service worker's version to update the cache
         /*if (response) {
           return response
         }*/
