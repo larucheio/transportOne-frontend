@@ -38,3 +38,9 @@ The API root url must be configured in the environnement variables. You can obta
 ### Endpoints
 
 The API endpoints are based on the [transport-one backend](https://github.com/larucheio/transportOne-backend). You can find a list of the endpoints on the config/api.js file.
+
+## Service Workers
+
+The service worker is used to keep a cached version of the website, to access it offline. It will cache all the requests coming from the website's origin. It can also cache third party requests if we don't cache only the requests with the type `basic`.
+
+:warning: The service workers work only through https or localhost.

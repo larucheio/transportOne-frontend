@@ -5,6 +5,8 @@ import './style/style.scss'
 import {router} from './router.js'
 import Input from './components/Input.vue'
 import Button from './components/Button.vue'
+import register from 'serviceworker!./service-worker.js'
+
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.component('custom-input', Input)
@@ -19,3 +21,9 @@ const App = Vue.extend(require('./App.vue'))
 new App({
   router
 }).$mount('#app')
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    register({scope: '/'})
+  })
+}
