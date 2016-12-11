@@ -9,7 +9,8 @@ const options = {
   languageDictionary: {
     emailInputPlaceholder: 'name@email.com',
     title: 'Se connecter'
-  }
+  },
+  language: 'fr'
 }
 
 const lock = new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options)
