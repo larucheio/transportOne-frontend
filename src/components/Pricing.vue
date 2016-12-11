@@ -3,10 +3,10 @@
   <div class="col-lg-8 offset-lg-2">
   <div class="card shadow">
     <div class="btn-group btn-block" data-toggle="buttons">
-      <label class="btn btn-toggle active col-xs-6" @click="getPrice(false)">
+      <label class="btn btn-toggle active col-xs-6" @click="changeTravelType(false)">
         <input type="radio">Aller simple
       </label>
-      <label class="btn btn-toggle col-xs-6" @click="getPrice(true)">
+      <label class="btn btn-toggle col-xs-6" @click="changeTravelType(true)">
         <input type="radio">Aller-retour
       </label>
     </div>
@@ -149,10 +149,13 @@ export default {
     }, (response) => {})
   },
   methods: {
-    getPrice: function (isRoundTrip) {
-      if (this.travel2.exist == isRoundTrip) return
+    changeTravelType: function (isRoundTrip) {
+      if (this.travel2.exist === isRoundTrip) return
       this.travel2.exist = isRoundTrip
       this.$emit('changeTravelType', isRoundTrip)
+      this.getPrice()
+    },
+    getPrice: function () {
       if ((this.travel1.date === '' || this.travel1.time === '') || (this.travel2.exist === true && (this.travel2.date === '' || this.travel2.time === ''))) {
         this.$refs.getPriceButton.showError( 'Veuillez remplir tous les champs.')
         return
