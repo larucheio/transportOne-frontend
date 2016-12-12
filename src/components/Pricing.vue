@@ -105,7 +105,6 @@
 <script>
 import api from '../../config/api.js'
 import pikaday from 'pikaday'
-import  '../../node_modules/pikaday/css/pikaday.css'
 
 let date = new Date()
 let hours = date.getHours()
