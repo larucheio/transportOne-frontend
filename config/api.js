@@ -6,5 +6,6 @@ module.exports = {
   regions: `${root}regions`,
   reviews: `${root}reviews`,
   subscriptions: `${root}subscriptions`,
-  broadcast: `${root}subscriptions/broadcast`
+  broadcast: `${root}subscriptions/broadcast`,
+  reservations: `${root}reservations`
 }
