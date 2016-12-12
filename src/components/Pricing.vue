@@ -39,7 +39,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-              <input type="date" class="form-control" v-model.lazy="travel1.date">
+              <input id="datepicker1" type="text" class="form-control" v-model.lazy="travel1.date">
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-      <div id="round-trip" v-if="travel2.exist">
+      <div id="round-trip" v-show="travel2.exist">
         <h6>Retour</h6>
         <div class="row">
           <div class="col-sm-6">
@@ -83,7 +83,7 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-                <input type="date" class="form-control" v-model.lazy="travel2.date">
+                <input id="datepicker2" type="text" class="form-control" v-model.lazy="travel2.date">
               </div>
             </div>
           </div>
@@ -108,6 +108,8 @@
 
 <script>
 import api from '../../config/api.js'
+import pikaday from 'pikaday'
+import i18n from '../i18n/fr-CH.json'
 
 let date = new Date()
 let currentTime = date.getHours()
@@ -156,6 +158,26 @@ export default {
       this.travel2.from = this.regions[0]
       this.travel2.to = this.regions[0]
     }, (response) => {})
+  },
+  mounted () {
+    this.picker1 = new pikaday({
+      field: document.getElementById('datepicker1'),
+      firstDay: 1,
+      format: 'D MMM YYYY',
+      minDate: new Date(),
+      maxDate: new Date(2030, 12, 31),
+      yearRange: [2016,2030],
+      i18n: i18n
+    })
+    this.picker2 = new pikaday({
+      field: document.getElementById('datepicker2'),
+      firstDay: 1,
+      format: 'D MMM YYYY',
+      minDate: new Date(),
+      maxDate: new Date(2030, 12, 31),
+      yearRange: [2016,2030],
+      i18n: i18n
+    })
   },
   methods: {
     changeTravelType: function (isRoundTrip) {
