@@ -105,6 +105,7 @@
 <script>
 import api from '../../config/api.js'
 import pikaday from 'pikaday'
+import i18n from '../i18n/fr-CH.json'
 
 let date = new Date()
 let hours = date.getHours()
@@ -152,13 +153,6 @@ export default {
     }, (response) => {})
   },
   mounted () {
-    const i18n ={
-      previousMonth : 'Mois précédent',
-      nextMonth     : 'Mois prochain',
-      months        : ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-      weekdays      : ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-      weekdaysShort : ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam']
-    }
     this.picker1 = new pikaday({
       field: document.getElementById('datepicker1'),
       firstDay: 1,
