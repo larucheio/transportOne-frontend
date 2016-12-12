@@ -47,7 +47,9 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-              <input type="time" class="form-control" v-model.lazy="travel1.time">
+              <select class="form-control btn-block" v-model.lazy="travel1.time">
+                <option v-for="time in times" v-bind:value="time">{{time}}</option>
+              </select>
             </div>
           </div>
         </div>
@@ -89,7 +91,9 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                <input type="time" class="form-control" v-model.lazy="travel2.time">
+                <select class="form-control btn-block" v-model.lazy="travel2.time">
+                  <option v-for="time in times" v-bind:value="time">{{time}}</option>
+                </select>
               </div>
             </div>
           </div>
@@ -108,25 +112,28 @@ import pikaday from 'pikaday'
 import i18n from '../i18n/fr-CH.json'
 
 let date = new Date()
-let hours = date.getHours()
-if (hours < 10) hours = `0${hours}`
-let minutes = date.getMinutes()
-if (minutes < 10) minutes = `0${minutes}`
-const time = `${hours}:${minutes}`
+let currentTime = date.getHours()
 let day = date.getDate()
 if (day < 10) day = `0${day}`
 let month = date.getMonth()
 if (month < 10) month = `0${month}`
 date = `${date.getFullYear()}-${month}-${day}`
 
+let times = []
+for (let i = currentTime + 1; i < currentTime + 25; i++) {
+  times.push(`${i%24}:00`)
+  for (let j = 15; j < 60; j+=15) {
+    times.push(`${i%24}:${j}`)
+  }
+}
+
 let data = {
   regions: null,
-  travel1: {from: null, to: null, date: date, time: time},
-  travel2: {from: null, to: null, date: date, time: time, exist: false},
+  travel1: {from: null, to: null, date: date, time: times[0]},
+  travel2: {from: null, to: null, date: date, time: times[0], exist: false},
   price: 'à partir de 25 CHF',
   isLoading: false,
-  datepicker1: null,
-  datepicker2: null
+  times: times
 }
 export default {
   props: {
