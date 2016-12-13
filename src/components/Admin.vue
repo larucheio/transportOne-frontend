@@ -75,12 +75,74 @@
       </div>
       <custom-button ref="newsletterSendButton" @click="sendNewsletter" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
     </div>
+    <div class="section">
+      <h6>Reservations</h6>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Période</label>
+            <select class="custom-select btn-block" v-model.lazy="reservations.period">
+              <option v-for="period in reservations.periods" v-bind:value="period">{{period}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <custom-input ref="reservations" label="Filtre" type="text" v-model="reservations.filter" placeholder="Jean"></custom-input>
+          </div>
+        </div>
+      </div>
+      <custom-button ref="listReservations" @click="listReservations" text="Rechercher" pendingText="Recherche" successText="Trouvé"></custom-button>
+      <div class="reservations">
+        <reservation v-for="reservation in reservations.reservations" v-bind:reservation="reservation"></reservation>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import auth from '../auth'
 import api from '../../config/api.js'
+
+const Reservation = {
+  template: `
+    <div class="card card-block shadow">
+      <p>{{formatedDate}}</p>
+      <div class="row">
+        <div class="col-md-3">
+          <p>{{reservation.firstName}} {{reservation.lastName}}</p>
+        </div>
+        <div class="col-md-3">
+          <p>Tél: {{reservation.tel}}</p>
+        </div>
+        <div class="col-md-3">
+          <p>Email: {{reservation.email}}</p>
+        </div>
+        <div class="col-md-3">
+        <p>Prix: {{reservation.price}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Aller: de {{reservation.from1}} à {{reservation.to1}}</p>
+        </div>
+        <div class="col-md-6">
+          <p>Retour: {{reservation.from2 ? roundTrip: 'aucun'}}</p>
+        </div>
+      </div>
+      <p>Options: {{reservation.waiting ? 'attente' : ''}} {{reservation.comission ? 'comission' : ''}} {{reservation.group ? 'groupe' : ''}}</p>
+    </div>`,
+  props: ['reservation'],
+  computed: {
+    formatedDate: function () {
+      let date = new Date(this.reservation.createdAt)
+      return date.toLocaleDateString()
+    },
+    roundTrip: function () {
+      return `de ${reservation.from1} à ${reservation.to1}`
+    }
+  }
+}
 
 export default {
   data () {
@@ -91,11 +153,14 @@ export default {
       price: 0,
       regionToSet: {id: '', name: '', priority: 0},
       regionToAdd: {name: '', priority: 0},
-      newsletter: {subject: '', body: ''}
+      newsletter: {subject: '', body: ''},
+      reservations: {periods: [], period: null, filter: null, reservations: []}
     }
   },
   mounted: function () {
     this.getRegions()
+    for (let i = new Date().getFullYear(); i > 2015; i--) this.reservations.periods.push(i)
+    this.reservations.period = this.reservations.periods[0]
   },
   methods: {
     getRegions: function () {
@@ -168,11 +233,30 @@ export default {
       }, (response) => {
         this.$refs.newsletterSendButton.showError()
       })
+    },
+    listReservations: function () {
+      const filter = this.reservations.filter ? `?filter=${this.reservations.filter}` : ''
+      this.$http.get(`${api.reservations}/${this.reservations.period}${filter}`)
+      .then((response) => {
+        this.$refs.listReservations.showSuccess()
+        this.reservations.reservations = response.body.data.Items
+      }, (response) => {
+        this.$refs.listReservations.showError()
+      })
     }
   },
   beforeRouteEnter (to, from, next) {
     if (auth.isAdmin()) next()
     else next('/')
   },
+  components: {
+    'reservation': Reservation
+  },
 }
 </script>
+
+<style scoped>
+.reservations {
+  margin-top: 50px;
+}
+</style>
