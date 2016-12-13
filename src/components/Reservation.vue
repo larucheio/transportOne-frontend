@@ -208,6 +208,7 @@ Commentaire: ${this.comment}`
       const self = this
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Reservation', 'source': this.user.email})
       .then((response) => {
+        this.saveReservation()
         this.$refs.bookButton.showSuccess()
         self.calcRoute()
       }, (response) => {
@@ -220,6 +221,31 @@ Commentaire: ${this.comment}`
         this.$http.post(`${api.subscriptions}/${this.user.email}`)
         .then((response) => {}, (response) => {})
       }
+    },
+    saveReservation () {
+      let reservation = {
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        tel: this.user.tel,
+        price: this.price,
+        from1: this.travel1.from,
+        to1: this.travel1.to,
+        date1: this.travel1.to,
+        time1: this.travel1.to,
+        waiting: this.options.waiting,
+        comission: this.options.comission,
+        groupe: this.options.groupe
+      }
+      if (auth.getProfile()) reservation.userId = auth.getProfile().user_id
+      if (this.user.email) reservation.email = this.user.email
+      if (this.travel2.exist) {
+        reservation.from2 = this.travel2.from
+        reservation.to2 = this.travel2.to,
+        reservation.date2 = this.travel2.date,
+        reservation.time2 = this.travel2.time
+      }
+      if (this.comment) reservation.comment = this.comment
+      this.$http.post(`${api.reservations}`, reservation)
     }
   }
 }
