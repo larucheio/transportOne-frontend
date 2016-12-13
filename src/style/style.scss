@@ -22,3 +22,14 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
 .shadow {
   box-shadow: 0px 2px 5px #ccc;
 }
+
+// 1200px correspond to bootstrap's grid width for the xl breakpoint,
+// the price tag's max-width is 300px
+@media (min-width: 1500px) {
+  .pricetag {
+    position: fixed;
+    right: 10px;
+    top: 70px;
+    max-width: 300px;
+  }
+}

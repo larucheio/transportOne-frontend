@@ -67,7 +67,7 @@
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
         </label>
-        <div>
+        <div class="pricetag card card-block shadow">
           <h4>Détails</h4>
           <p>Trajet(s): {{price !== 0 ? price : 'à partir de 25'}} CHF</p>
           <p>{{options.groupe ? 'Plus de 4 personnes: 10 CHF' : ''}}</p>
