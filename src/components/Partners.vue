@@ -6,7 +6,7 @@
     </div>
     <h6>Avis</h6>
     <review v-for="review in reviews" v-bind:review="review"></review>
-    <custom-button v-if="showMorePage" ref="getMoreReviewsButton" @click="getMoreReviews" text="Plus de commentaires" pendingText="Recherche des commentaires" successText="Commentaires trouvé"></custom-button>
+    <custom-button v-if="showMorePage" ref="getMoreReviewsButton" @click="getReviews" text="Plus de commentaires" pendingText="Recherche des commentaires" successText="Commentaires trouvé"></custom-button>
   </div>
 </template>
 
@@ -23,50 +23,86 @@ const Review = {
       <div class="media-body">
         <strong>{{review.username}}</strong><small class="float-xs-right">{{formatedDate}}</small>
         <p>{{review.review}}</p>
+        <custom-button v-if="showDeleteButton" ref="deleteReviewsButton" @click="deleteReview" text="Supprimer" pendingText="Supprime" successText="Supprimé" customClass="btn btn-danger float-xs-right morph"></custom-button>
+        <custom-button v-if="showUndoButton" ref="undoButton" @click="setReview" text="Récupérer" pendingText="Récupère" successText="Récupéré"></custom-button>
       </div>
     </div>`,
   props: ['review'],
+  data () {
+    return {
+      showDeleteButton: auth.isAdmin(),
+      showUndoButton: false
+    }
+  },
   computed: {
     formatedDate: function () {
-      let date = new Date(this.review.createdAt)
+      let date = new Date(parseInt(this.review.createdAt, 10))
       return date.toLocaleDateString()
+    }
+  },
+  methods: {
+    deleteReview: function () {
+      this.$http.delete(`${api.reviews}/${this.review.period}@${this.review.createdAt}`)
+      .then((response) => {
+        this.$refs.deleteReviewsButton.showSuccess()
+        this.showDeleteButton = false
+        this.showUndoButton = true
+      }, (response) => {
+        this.$refs.deleteReviewsButton.showError()
+      })
+    },
+    setReview: function () {
+      this.$http.post(`${api.reviews}`,  {
+        'userId': this.review.userId,
+        'review': this.review.review,
+        'username': this.review.username,
+        'userPic': this.review.userPic,
+        'createdAt': this.review.createdAt,
+        'period': this.review.period
+      }).then((response) => {
+        this.$refs.undoButton.showSuccess()
+        this.showUndoButton = false
+        this.showDeleteButton = true
+      }, (response) => {
+        this.$refs.undoButton.showError()
+      })
     }
   }
 }
 export default {
   data () {
     return {
-      reviews: null,
+      reviews: [],
       newReview: '',
-      showMorePage: false
+      showMorePage: true,
+      reviewsPeriod: new Date().getFullYear()
     }
   },
-  beforeCreate () {
-    this.$http.get(`${api.reviews}`)
+  mounted () {
+    this.$http.get(`${api.reviews}/${this.reviewsPeriod}`)
     .then((response) => {
-      this.reviews = response.body.data.Items
-      if (this.reviews.length > 0 && this.reviews[this.reviews.length-1].page > 0) {
-        this.showMorePage = true
-        this.getMoreReviews()
-      }
-    }, (response) => {})
+      this.reviews = this.reviews.concat(response.body.data.Items)
+      this.reviewsPeriod--
+      this.getReviews()
+    }, (response) => {
+      this.showMorePage = false
+    })
   },
   components: {
     'review': Review
   },
   methods: {
-    getMoreReviews: function () {
-      const page = this.reviews[this.reviews.length-1].page-1
-      if (page >= 0) {
-        this.$http.get(`${api.reviews}?page=${page}`)
-        .then((response) => {
-          this.$refs.getMoreReviewsButton.showSuccess()
-          this.reviews = this.reviews.concat(response.body.data.Items)
-          if (this.reviews[this.reviews.length-1].page === 0) this.showMorePage = false
-        }, (response) => {
-          this.$refs.getMoreReviewsButton.showError()
-        })
-      }
+    getReviews: function () {
+      this.$http.get(`${api.reviews}/${this.reviewsPeriod}`)
+      .then((response) => {
+        this.reviews = this.reviews.concat(response.body.data.Items)
+        this.reviewsPeriod--
+        this.$refs.getMoreReviewsButton.showSuccess()
+        if (this.reviewsPeriod < 2016) this.showMorePage = false
+      }, (response) => {
+        this.$refs.getMoreReviewsButton.showError()
+        this.showMorePage = false
+      })
     },
     sendReview: function () {
       if (!auth.isAuthenticated()) {
@@ -84,7 +120,9 @@ export default {
         {'userId': profile.user_id,
         'review': this.newReview,
         'username': profile.given_name,
-        'userPic': profile.picture})
+        'userPic': profile.picture,
+        'createdAt': Date.now().toString(),
+        'period': new Date().getFullYear().toString()})
         .then((response) => {
           this.$refs.sendReviewButton.showSuccess()
           this.reviews.unshift(
@@ -92,7 +130,8 @@ export default {
             'review': this.newReview,
             'username': profile.given_name,
             'userPic': profile.picture,
-            'createdAt': new Date()
+            'createdAt': Date.now().toString(),
+            'period': new Date().getFullYear().toString()
           })
           this.newReview = ''
         }, (response) => {
