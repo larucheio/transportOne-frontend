@@ -6,7 +6,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Départ</label>
-            <select class="custom-select btn-block" v-model.lazy="priceToSet.from">
+            <select class="custom-select btn-block" v-model.lazy="priceToSet.from" @change="getPrice">
               <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
             </select>
           </div>
@@ -14,7 +14,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Arrivée</label>
-            <select class="custom-select btn-block" v-model.lazy="priceToSet.to">
+            <select class="custom-select btn-block" v-model.lazy="priceToSet.to" @change="getPrice">
               <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
             </select>
           </div>
@@ -171,7 +171,16 @@ export default {
         this.priceToSet.from = this.regions[0]
         this.priceToSet.to = this.regions[0]
         this.regionToSet = this.regions[0]
+        this.getPrice()
       }, (response) => {})
+    },
+    getPrice: function () {
+      this.$http.get(`${api.pricing}/${this.priceToSet.from.id}@${this.priceToSet.to.id}`)
+      .then((response) => {
+        this.priceToSet.price = response.body.CHF
+      }, (response) => {
+        this.priceToSet.price = 0
+      })
     },
     setPrice: function () {
       const isPriceValid = this.$refs.setRegionPriority.isValid(this.priceToSet.price)
