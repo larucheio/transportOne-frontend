@@ -11,7 +11,7 @@
       </label>
     </div>
     <form class="card-block">
-      <h3>Prix: {{price}}<i v-if="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i></h3>
+      <h3>Prix: {{displayedPrice}} CHF<i v-if="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i></h3>
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
@@ -131,7 +131,7 @@ let data = {
   regions: null,
   travel1: {from: null, to: null, date: date, time: times[0]},
   travel2: {from: null, to: null, date: date, time: times[0], exist: false},
-  price: 'à partir de 25 CHF',
+  price: 0,
   isLoading: false,
   times: times
 }
@@ -191,7 +191,7 @@ export default {
         this.$refs.getPriceButton.showError( 'Veuillez remplir tous les champs.')
         return
       }
-      this.price = ''
+      this.price = 0
       let price
       this.isLoading = true
       this.$http.get(`${api.pricing}/${this.travel1.from.id}@${this.travel1.to.id}`)
@@ -201,22 +201,29 @@ export default {
           this.$http.get(`${api.pricing}/${this.travel2.from.id}@${this.travel2.to.id}`)
           .then((response) => {
             this.isLoading = false
-            this.price = `${price + response.body.CHF} CHF`
+            this.price = price + response.body.CHF
+            this.$emit('updatePrice')
           }, (response) => {
             this.isLoading = false
-            this.price = 'à partir de 50 CHF'
+            this.$emit('updatePrice')
           })
         } else {
           this.isLoading = false
-          this.price = `${price} CHF`
+          this.price = price
+          this.$emit('updatePrice')
         }
       }, (response) => {
         this.isLoading = false
-        this.price = 'à partir de 25 CHF'
+        this.$emit('updatePrice')
       })
     },
     book: function () {
       this.$router.push('/reservation')
+    }
+  },
+  computed: {
+    displayedPrice: function () {
+      return this.price !== 0 ? this.price : 'à partir de 25'
     }
   }
 }

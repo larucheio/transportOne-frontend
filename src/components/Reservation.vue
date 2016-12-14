@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pricing ref="pricing" @changeTravelType="changeTravelType" :isBooking="true"></pricing>
+    <pricing ref="pricing" @changeTravelType="changeTravelType" @updatePrice="getDevisData" :isBooking="true"></pricing>
     <div class="section">
       <form>
         <div class="row">
@@ -67,6 +67,13 @@
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
         </label>
+        <div class="pricetag card card-block shadow">
+          <h4>Détails</h4>
+          <p>Trajet(s): {{displayedPrice}} CHF</p>
+          <p>{{displayedGroupePrice}}</p>
+          <strong>Prix total: {{totalPrice}} CHF</strong>
+          <small class="form-text text-muted">Le prix ne contient pas le prix pour l'attente ou la comission. Il sera ajouté en fonction de la durée d'une de ces options.</small>
+        </div>
         <custom-button ref="bookButton" @click="book" text="Réserver" pendingText="Réserve" successText="Réservé"></custom-button>
       </form>
     </div>
@@ -81,7 +88,7 @@ import auth from '../auth'
 
 let data = {
   user: {firstName: '', lastName: '', tel: '', email: ''},
-  price: 'à partir de 25 CHF',
+  price: 0,
   priceDetailsTravel1: 'Faite une demande de devis pour connaitre le prix exact',
   priceDetailsTravel2: 'Aucun',
   travel1: {from: '', to: '', date: null, time: null},
@@ -110,6 +117,7 @@ export default {
         this.travel1.to = auth.getProfile().user_metadata.to
       }
     }
+    this.getDevisData()
   },
   methods: {
     initMap () {
@@ -201,7 +209,7 @@ Tel: ${this.user.tel} Email: ${this.user.email}
 Aller: de ${this.travel1.from} à ${this.travel1.to}, le ${this.travel1.date} à ${this.travel1.time}
 Retour: ${roundTrip}
 Options: ${waiting}${comission}${groupe}
-Prix du/des trajets: ${this.price}
+Prix du/des trajets: ${this.price} CHF
 Détails aller: ${this.priceDetailsTravel1}
 Détails retour: ${this.priceDetailsTravel2}
 Commentaire: ${this.comment}`
@@ -246,6 +254,20 @@ Commentaire: ${this.comment}`
       }
       if (this.comment) reservation.comment = this.comment
       this.$http.post(`${api.reservations}`, reservation)
+    }
+  },
+  computed: {
+    totalPrice: function () {
+      let total = this.price
+      if (this.options.groupe) total += 10
+      if (this.price === 0) return `à partir de ${total + 25}`
+      return total
+    },
+    displayedGroupePrice: function () {
+      return this.options.groupe ? 'Plus de 4 personnes: 10 CHF' : ''
+    },
+    displayedPrice: function () {
+      return this.price !== 0 ? this.price : 'à partir de 25'
     }
   }
 }
