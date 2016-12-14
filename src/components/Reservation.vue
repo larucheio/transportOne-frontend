@@ -69,8 +69,8 @@
         </label>
         <div class="pricetag card card-block shadow">
           <h4>Détails</h4>
-          <p>Trajet(s): {{price !== 0 ? price : 'à partir de 25'}} CHF</p>
-          <p>{{options.groupe ? 'Plus de 4 personnes: 10 CHF' : ''}}</p>
+          <p>Trajet(s): {{displayedPrice}} CHF</p>
+          <p>{{displayedGroupePrice}}</p>
           <strong>Prix total: {{totalPrice}} CHF</strong>
           <small class="form-text text-muted">Le prix ne contient pas le prix pour l'attente ou la comission. Il sera ajouté en fonction de la durée d'une de ces options.</small>
         </div>
@@ -262,6 +262,12 @@ Commentaire: ${this.comment}`
       if (this.options.groupe) total += 10
       if (this.price === 0) return `à partir de ${total + 25}`
       return total
+    },
+    displayedGroupePrice: function () {
+      return this.options.groupe ? 'Plus de 4 personnes: 10 CHF' : ''
+    },
+    displayedPrice: function () {
+      return this.price !== 0 ? this.price : 'à partir de 25'
     }
   }
 }

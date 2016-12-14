@@ -11,7 +11,7 @@
       </label>
     </div>
     <form class="card-block">
-      <h3>Prix: {{price !== 0 ? price : 'à partir de 25'}} CHF<i v-if="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i></h3>
+      <h3>Prix: {{displayedPrice}} CHF<i v-if="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i></h3>
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
@@ -219,6 +219,11 @@ export default {
     },
     book: function () {
       this.$router.push('/reservation')
+    }
+  },
+  computed: {
+    displayedPrice: function () {
+      return this.price !== 0 ? this.price : 'à partir de 25'
     }
   }
 }
