@@ -6,7 +6,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Départ</label>
-            <select class="custom-select btn-block" v-model.lazy="from">
+            <select class="custom-select btn-block" v-model.lazy="priceToSet.from" @change="getPrice">
               <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
             </select>
           </div>
@@ -14,13 +14,13 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Arrivée</label>
-            <select class="custom-select btn-block" v-model.lazy="to">
+            <select class="custom-select btn-block" v-model.lazy="priceToSet.to" @change="getPrice">
               <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
             </select>
           </div>
         </div>
         <div class="col-md-4">
-          <custom-input ref="editPricePrice" label="Prix (CHF)" type="number" v-model="price" placeholder="10.5" min="1"></custom-input>
+          <custom-input ref="editPricePrice" label="Prix (CHF)" type="number" v-model="priceToSet.price" placeholder="10.5" min="1"></custom-input>
         </div>
       </div>
       <custom-button ref="editPriceSaveButton" @click="setPrice" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
@@ -148,9 +148,7 @@ export default {
   data () {
     return {
       regions: [],
-      from: null,
-      to: null,
-      price: 0,
+      priceToSet: {from: null, to: null, price: 0},
       regionToSet: {id: '', name: '', priority: 0},
       regionToAdd: {name: '', priority: 0},
       newsletter: {subject: '', body: ''},
@@ -170,18 +168,27 @@ export default {
           if (a.priority + a.name < b.priority + b.name) return -1
           return 1
         })
-        this.from = this.regions[0]
-        this.to = this.regions[0]
+        this.priceToSet.from = this.regions[0]
+        this.priceToSet.to = this.regions[0]
         this.regionToSet = this.regions[0]
+        this.getPrice()
       }, (response) => {})
     },
+    getPrice: function () {
+      this.$http.get(`${api.pricing}/${this.priceToSet.from.id}@${this.priceToSet.to.id}`)
+      .then((response) => {
+        this.priceToSet.price = response.body.CHF
+      }, (response) => {
+        this.priceToSet.price = 0
+      })
+    },
     setPrice: function () {
-      const isPriceValid = this.$refs.setRegionPriority.isValid(this.price)
+      const isPriceValid = this.$refs.setRegionPriority.isValid(this.priceToSet.price)
       if (!isPriceValid) {
         this.$refs.editPriceSaveButton.showError('Veuillez remplir tous les champs.')
         return
       }
-      this.$http.post(`${api.pricing}/${this.from.id}@${this.to.id}`, {'CHF': this.price})
+      this.$http.post(`${api.pricing}/${this.priceToSet.from.id}@${this.priceToSet.to.id}`, {'CHF': this.priceToSet.price})
       .then((response) => {
         this.$refs.editPriceSaveButton.showSuccess()
       }, (response) => {
