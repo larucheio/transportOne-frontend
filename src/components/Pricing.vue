@@ -224,7 +224,7 @@ export default {
 
 <style scoped>
 .btn-toggle {
-  background-color: lightgray;
+  background-color: #eaeaea;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
 }
