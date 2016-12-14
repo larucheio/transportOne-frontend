@@ -3,10 +3,10 @@
   <div class="col-lg-8 offset-lg-2">
   <div class="card shadow">
     <div class="btn-group btn-block" data-toggle="buttons">
-      <label class="btn btn-toggle active col-xs-6" @click="changeTravelType(false)">
+      <label id="oneWayToggle" class="btn btn-toggle col-xs-6" @click="changeTravelType(false)">
         <input type="radio">Aller simple
       </label>
-      <label class="btn btn-toggle col-xs-6" @click="changeTravelType(true)">
+      <label id="roundTripToggle" class="btn btn-toggle col-xs-6" @click="changeTravelType(true)">
         <input type="radio">Aller-retour
       </label>
     </div>
@@ -160,6 +160,8 @@ export default {
     }, (response) => {})
   },
   mounted () {
+    if (this.travel2.exist) $('#roundTripToggle').addClass("active")
+    else $('#oneWayToggle').addClass("active")
     this.picker1 = new pikaday({
       field: document.getElementById('datepicker1'),
       firstDay: 1,
