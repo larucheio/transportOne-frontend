@@ -23,13 +23,49 @@ const Review = {
       <div class="media-body">
         <strong>{{review.username}}</strong><small class="float-xs-right">{{formatedDate}}</small>
         <p>{{review.review}}</p>
+        <custom-button v-if="showDeleteButton" ref="deleteReviewsButton" @click="deleteReview" text="Supprimer" pendingText="Supprime" successText="Supprimé" customClass="btn btn-danger float-xs-right morph"></custom-button>
+        <custom-button v-if="showUndoButton" ref="undoButton" @click="setReview" text="Récupérer" pendingText="Récupère" successText="Récupéré"></custom-button>
       </div>
     </div>`,
   props: ['review'],
+  data () {
+    return {
+      showDeleteButton: auth.isAdmin(),
+      showUndoButton: false
+    }
+  },
   computed: {
     formatedDate: function () {
       let date = new Date(parseInt(this.review.createdAt, 10))
       return date.toLocaleDateString()
+    }
+  },
+  methods: {
+    deleteReview: function () {
+      this.$http.delete(`${api.reviews}/${this.review.period}@${this.review.createdAt}`)
+      .then((response) => {
+        this.$refs.deleteReviewsButton.showSuccess()
+        this.showDeleteButton = false
+        this.showUndoButton = true
+      }, (response) => {
+        this.$refs.deleteReviewsButton.showError()
+      })
+    },
+    setReview: function () {
+      this.$http.post(`${api.reviews}`,  {
+        'userId': this.review.userId,
+        'review': this.review.review,
+        'username': this.review.username,
+        'userPic': this.review.userPic,
+        'createdAt': this.review.createdAt,
+        'period': this.review.period
+      }).then((response) => {
+        this.$refs.undoButton.showSuccess()
+        this.showUndoButton = false
+        this.showDeleteButton = true
+      }, (response) => {
+        this.$refs.undoButton.showError()
+      })
     }
   }
 }
