@@ -39,7 +39,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-              <input id="datepicker1" type="text" class="form-control" v-model.lazy="travel1.date">
+              <input id="datepicker1" type="text" class="form-control bg-white" v-model.lazy="travel1.date" readonly>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-                <input id="datepicker2" type="text" class="form-control" v-model.lazy="travel2.date">
+                <input id="datepicker2" type="text" class="form-control bg-white" v-model.lazy="travel2.date" readonly>
               </div>
             </div>
           </div>
