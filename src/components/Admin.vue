@@ -73,7 +73,7 @@
       <div class="form-group">
         <custom-input ref="newsletterMessage" label="Message" type="text" v-model="newsletter.body" placeholder="Bonjour..." min="1" max="2000" rows="10"></custom-input>
       </div>
-      <custom-button ref="newsletterSendButton" @click="sendNewsletter" text="Sauvegarder" pendingText="Sauvegarde" successText="Sauvegardé"></custom-button>
+      <custom-button ref="newsletterSendButton" @click="sendNewsletter" text="Envoyer" pendingText="Envoie" successText="Envoyé"></custom-button>
     </div>
     <div class="section">
       <h6>Reservations</h6>
