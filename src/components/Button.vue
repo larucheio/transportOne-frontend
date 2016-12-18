@@ -1,7 +1,7 @@
 <template>
   <div :class="componentClass">
     <div v-if="hasError" class="text-danger">{{errorText}}</div>
-    <button @click="clicked" :class="buttonClass">{{buttonText}} <i :class="icon"></i></button>
+    <button @click.stop.prevent="clicked" :class="buttonClass">{{buttonText}} <i :class="icon"></i></button>
   </div>
 </template>
 
