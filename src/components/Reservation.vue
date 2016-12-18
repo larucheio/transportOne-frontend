@@ -117,7 +117,6 @@ export default {
         this.travel1.to = auth.getProfile().user_metadata.to
       }
     }
-    this.getDevisData()
   },
   methods: {
     initMap () {

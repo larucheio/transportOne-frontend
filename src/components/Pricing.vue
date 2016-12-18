@@ -157,6 +157,7 @@ export default {
       this.travel1.to = this.regions[0]
       this.travel2.from = this.regions[0]
       this.travel2.to = this.regions[0]
+      this.$emit('updatePrice')
     }, (response) => {})
   },
   mounted () {
