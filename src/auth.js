@@ -10,7 +10,13 @@ const options = {
     emailInputPlaceholder: 'name@email.com',
     title: 'Se connecter'
   },
-  language: 'fr'
+  language: 'fr',
+  auth: {
+    params: {
+      scope: 'openid offline_access'
+    },
+    sso: true
+  }
 }
 
 const lock = new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options)
