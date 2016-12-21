@@ -145,22 +145,22 @@ export default {
   data: function () {
     return data
   },
-  beforeCreate () {
-    this.$http.get(`${api.regions}`)
-    .then((response) => {
-      this.regions = response.body.data.Items.sort(function compare (a, b) {
-        if (a.priority + a.name < b.priority + b.name)
-        return -1;
-        return 1;
-      })
-      this.travel1.from = this.regions[0]
-      this.travel1.to = this.regions[0]
-      this.travel2.from = this.regions[0]
-      this.travel2.to = this.regions[0]
-      this.$emit('updatePrice')
-    }, (response) => {})
-  },
   mounted () {
+    if (!this.regions) {
+      this.$http.get(`${api.regions}`)
+      .then((response) => {
+        this.regions = response.body.data.Items.sort(function compare (a, b) {
+          if (a.priority + a.name < b.priority + b.name)
+          return -1;
+          return 1;
+        })
+        this.travel1.from = this.regions[0]
+        this.travel1.to = this.regions[0]
+        this.travel2.from = this.regions[0]
+        this.travel2.to = this.regions[0]
+        this.$emit('updatePrice')
+      }, (response) => {})
+    } else this.$emit('updatePrice')
     if (this.travel2.exist) $('#roundTripToggle').addClass("active")
     else $('#oneWayToggle').addClass("active")
     this.picker1 = new pikaday({
