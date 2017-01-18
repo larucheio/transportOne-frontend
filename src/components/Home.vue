@@ -6,22 +6,22 @@
     <pricing class="mt-3"></pricing>
     <div class="row u-center-text mt-3">
       <div class="col-md-3">
-        <img src="../assets/best_price.png" alt="Meilleur prix" height="150" width="150">
+        <i class="fa fa-usd fa-5x" aria-hidden="true"></i>
         <h5 class="font-weight-bold mt-1">Garantie meilleurs prix</h5>
         <p>Faites des économies avec nos prix les plus bas de Genève. Nos tarifs sont fixes et garanties lors de la réservation.</p>
       </div>
       <div class="col-md-3">
-        <img src="../assets/free_cancellation.png" alt="Annulation gratuite" height="150" width="150">
+        <i class="fa fa-hand-paper-o fa-5x" aria-hidden="true"></i>
         <h5 class="font-weight-bold mt-1">Annulation gratuite</h5>
         <p>Un changement de programme? aucun souci. Vous disposez d&#39;une annulation gratuite avec un préavis de 24 heure. (par téléphone ou par email).</p>
       </div>
       <div class="col-md-3">
-        <img src="../assets/service_in_time.png" alt="Service dans les temps" height="150" width="150">
+        <i class="fa fa-clock-o fa-5x" aria-hidden="true"></i>
         <h5 class="font-weight-bold mt-1">Service dans les temps</h5>
         <p>Grace à notre connaissance minutieuse de Genève et ses environs, nous garantissons un service ponctuelle et dans les temps.</p>
       </div>
       <div class="col-md-3">
-        <img src="../assets/pro_driver.png" alt="Chauffeurs professionels" height="150" width="150">
+        <i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i>
         <h5 class="font-weight-bold mt-1">Chauffeurs professionels</h5>
         <p>Laissez-vous transporter sereinement! L&#39;ensemble des chauffeurs Transport One est assuré et agréé. Nous garantissons un service soigné et de qualité.</p>
       </div>
