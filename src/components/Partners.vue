@@ -27,6 +27,10 @@ const Review = {
       </div>
       <div class="media-body">
         <strong>{{review.username}}</strong><small class="float-xs-right">{{formatedDate}}</small>
+        <span v-for="id in 5">
+          <i v-if="id > review.rate" class="fa fa-star-o fa-lg u-color-star" aria-hidden="true"></i>
+          <i v-else class="fa fa-star fa-lg u-color-star" aria-hidden="true"></i>
+        </span>
         <p>{{review.review}}</p>
         <custom-button v-if="showDeleteButton" ref="deleteReviewsButton" @click="deleteReview" text="Supprimer" pendingText="Supprime" successText="Supprimé" customClass="btn btn-danger float-xs-right morph"></custom-button>
         <custom-button v-if="showUndoButton" ref="undoButton" @click="setReview" text="Récupérer" pendingText="Récupère" successText="Récupéré"></custom-button>
@@ -63,7 +67,8 @@ const Review = {
         'username': this.review.username,
         'userPic': this.review.userPic,
         'createdAt': this.review.createdAt,
-        'period': this.review.period
+        'period': this.review.period,
+        'rate': this.review.rate
       }).then((response) => {
         this.$refs.undoButton.showSuccess()
         this.showUndoButton = false
