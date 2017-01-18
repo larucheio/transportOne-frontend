@@ -1,6 +1,28 @@
 <template>
   <div>
     <pricing></pricing>
+    <div class="row">
+      <div class="col-sm-3">
+        <img src="../assets/best_price.png" alt="Meilleur prix" height="150" width="150">
+        <h5>Garantie meilleurs prix</h5>
+        <p>Faites des économies avec nos prix les plus bas de Genève. Nos tarifs sont fixes et garantis lors de la réservation.</p>
+      </div>
+      <div class="col-sm-3">
+        <img src="../assets/free_cancellation.png" alt="Annulation gratuite" height="150" width="150">
+        <h5>Annulation gratuite</h5>
+        <p>Un changement de programme? aucun soucis. Vous disposez d&#39;une annulation gratuite avec un préavis de 24 heure. (par téléphone ou par mail).</p>
+      </div>
+      <div class="col-sm-3">
+        <img src="../assets/service_in_time.png" alt="Service dans les temps" height="150" width="150">
+        <h5>Service dans les temps</h5>
+        <p>Grace a notre connaissance minutieuse de Genève et ses environs, nous garantissons un service ponctuelle et dans les temps.</p>
+      </div>
+      <div class="col-sm-3">
+        <img src="../assets/pro_driver.png" alt="Chauffeurs professionels" height="150" width="150">
+        <h5>Chauffeurs professionels</h5>
+        <p>Laissez vous transportez sereinement! L&#39;ensemble des chauffeurs Transport One est assuré et agréé. Nous garantissons un service soigné et de qualité.</p>
+      </div>
+    </div>
     <h1>Nos services</h1>
     <p>Transport One permet à tout le monde d’être transportées et accompagnées durant leurs déplacements, tout en faisant des économies!
       Laissez vous donc transporter sereinement dans notre rayonnante ville de Genève et ses environs.</p>
