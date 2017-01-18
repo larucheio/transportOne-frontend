@@ -43,6 +43,8 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
   text-align: center !important;
 }
 
-.u-color-star {
-  color: #ffaa44;
+$star-color: #FFBB00;
+
+.star {
+  color: $star-color;
 }

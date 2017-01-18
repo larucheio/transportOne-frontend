@@ -3,8 +3,8 @@
     <div class="section">
       <p>Donner votre avis sur Transport One.</p>
       <span v-for="id in 5" @click="rating(id)">
-        <i v-if="id > rate" class="fa fa-star-o fa-lg u-color-star" aria-hidden="true"></i>
-        <i v-else class="fa fa-star fa-lg u-color-star" aria-hidden="true"></i>
+        <i v-if="id > rate" class="fa fa-star-o fa-lg star" aria-hidden="true"></i>
+        <i v-else class="fa fa-star fa-lg star" aria-hidden="true"></i>
       </span>
       <custom-input ref="review" label="" type="text" v-model="newReview" placeholder="Mon avis..." min="1" max="2000" rows="5"></custom-input>
       <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
@@ -28,8 +28,8 @@ const Review = {
       <div class="media-body">
         <strong>{{review.username}}</strong><small class="float-xs-right">{{formatedDate}}</small>
         <span v-for="id in 5">
-          <i v-if="id > review.rate" class="fa fa-star-o fa-lg u-color-star" aria-hidden="true"></i>
-          <i v-else class="fa fa-star fa-lg u-color-star" aria-hidden="true"></i>
+          <i v-if="id > review.rate" class="fa fa-star-o fa-lg star" aria-hidden="true"></i>
+          <i v-else class="fa fa-star fa-lg star" aria-hidden="true"></i>
         </span>
         <p>{{review.review}}</p>
         <custom-button v-if="showDeleteButton" ref="deleteReviewsButton" @click="deleteReview" text="Supprimer" pendingText="Supprime" successText="Supprimé" customClass="btn btn-danger float-xs-right morph"></custom-button>
