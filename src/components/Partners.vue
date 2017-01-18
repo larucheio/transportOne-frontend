@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="section">
-      <custom-input ref="review" label="Donner votre avis sur Transport One." type="text" v-model="newReview" placeholder="Mon avis..." min="1" max="2000" rows="5"></custom-input>
+      <p>Donner votre avis sur Transport One.</p>
+      <span v-for="id in 5" @click="rating(id)">
+        <i v-if="id > rate" class="fa fa-star-o fa-lg star" aria-hidden="true"></i>
+        <i v-else class="fa fa-star fa-lg star" aria-hidden="true"></i>
+      </span>
+      <custom-input ref="review" label="" type="text" v-model="newReview" placeholder="Mon avis..." min="1" max="2000" rows="5"></custom-input>
       <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
     </div>
     <h6>Avis</h6>
@@ -22,6 +27,10 @@ const Review = {
       </div>
       <div class="media-body">
         <strong>{{review.username}}</strong><small class="float-xs-right">{{formatedDate}}</small>
+        <span v-for="id in 5">
+          <i v-if="id > review.rate" class="fa fa-star-o fa-lg star" aria-hidden="true"></i>
+          <i v-else class="fa fa-star fa-lg star" aria-hidden="true"></i>
+        </span>
         <p>{{review.review}}</p>
         <custom-button v-if="showDeleteButton" ref="deleteReviewsButton" @click="deleteReview" text="Supprimer" pendingText="Supprime" successText="Supprimé" customClass="btn btn-danger float-xs-right morph"></custom-button>
         <custom-button v-if="showUndoButton" ref="undoButton" @click="setReview" text="Récupérer" pendingText="Récupère" successText="Récupéré"></custom-button>
@@ -58,7 +67,8 @@ const Review = {
         'username': this.review.username,
         'userPic': this.review.userPic,
         'createdAt': this.review.createdAt,
-        'period': this.review.period
+        'period': this.review.period,
+        'rate': this.review.rate
       }).then((response) => {
         this.$refs.undoButton.showSuccess()
         this.showUndoButton = false
@@ -75,7 +85,8 @@ export default {
       reviews: [],
       newReview: '',
       showMorePage: true,
-      reviewsPeriod: new Date().getFullYear()
+      reviewsPeriod: new Date().getFullYear(),
+      rate: 0
     }
   },
   mounted () {
@@ -115,6 +126,10 @@ export default {
         this.$refs.sendReviewButton.showError('Veuillez remplir tous les champs.')
         return
       }
+      if (this.rate === 0) {
+        this.$refs.sendReviewButton.showError('Veuillez donner une note.')
+        return
+      }
       const profile = auth.getProfile()
       this.$http.post(`${api.reviews}`,
         {'userId': profile.user_id,
@@ -122,7 +137,8 @@ export default {
         'username': profile.given_name,
         'userPic': profile.picture,
         'createdAt': Date.now().toString(),
-        'period': new Date().getFullYear().toString()})
+        'period': new Date().getFullYear().toString(),
+        'rate': this.rate})
         .then((response) => {
           this.$refs.sendReviewButton.showSuccess()
           this.reviews.unshift(
@@ -131,12 +147,16 @@ export default {
             'username': profile.given_name,
             'userPic': profile.picture,
             'createdAt': Date.now().toString(),
-            'period': new Date().getFullYear().toString()
+            'period': new Date().getFullYear().toString(),
+            'rate': this.rate
           })
           this.newReview = ''
         }, (response) => {
           this.$refs.sendReviewButton.showError(`Le commentaire n'a pas pu être envoyé.`)
         })
+      },
+      rating: function (rate) {
+        this.rate = rate
       }
     }
   }
