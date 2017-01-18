@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h4>Transport accompagné de qualité avec chauffeur privé</h4>
+    <h4>Ponctuelle, serviable, disponible et sécurisé</h4>
+    <h4>Prix le plus bas Garanti sur Genève <strong>dès 25CHF</strong></h4>
     <pricing></pricing>
     <div class="row u-center-text">
       <div class="col-sm-3">
