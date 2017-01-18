@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="section">
-      <custom-input ref="review" label="Donner votre avis sur Transport One." type="text" v-model="newReview" placeholder="Mon avis..." min="1" max="2000" rows="5"></custom-input>
+      <p>Donner votre avis sur Transport One.</p>
+      <span v-for="id in 5" @click="rating(id)">
+        <i v-if="id > rate" class="fa fa-star-o fa-lg" aria-hidden="true"></i>
+        <i v-else class="fa fa-star fa-lg" aria-hidden="true"></i>
+      </span>
+      <custom-input ref="review" label="" type="text" v-model="newReview" placeholder="Mon avis..." min="1" max="2000" rows="5"></custom-input>
       <custom-button ref="sendReviewButton" @click="sendReview" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
     </div>
     <h6>Avis</h6>
@@ -75,7 +80,8 @@ export default {
       reviews: [],
       newReview: '',
       showMorePage: true,
-      reviewsPeriod: new Date().getFullYear()
+      reviewsPeriod: new Date().getFullYear(),
+      rate: 0
     }
   },
   mounted () {
@@ -137,6 +143,9 @@ export default {
         }, (response) => {
           this.$refs.sendReviewButton.showError(`Le commentaire n'a pas pu être envoyé.`)
         })
+      },
+      rating: function (rate) {
+        this.rate = rate
       }
     }
   }
