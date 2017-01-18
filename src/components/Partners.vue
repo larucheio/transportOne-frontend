@@ -121,6 +121,10 @@ export default {
         this.$refs.sendReviewButton.showError('Veuillez remplir tous les champs.')
         return
       }
+      if (this.rate === 0) {
+        this.$refs.sendReviewButton.showError('Veuillez donner une note.')
+        return
+      }
       const profile = auth.getProfile()
       this.$http.post(`${api.reviews}`,
         {'userId': profile.user_id,
@@ -128,7 +132,8 @@ export default {
         'username': profile.given_name,
         'userPic': profile.picture,
         'createdAt': Date.now().toString(),
-        'period': new Date().getFullYear().toString()})
+        'period': new Date().getFullYear().toString(),
+        'rate': this.rate})
         .then((response) => {
           this.$refs.sendReviewButton.showSuccess()
           this.reviews.unshift(
@@ -137,7 +142,8 @@ export default {
             'username': profile.given_name,
             'userPic': profile.picture,
             'createdAt': Date.now().toString(),
-            'period': new Date().getFullYear().toString()
+            'period': new Date().getFullYear().toString(),
+            'rate': this.rate
           })
           this.newReview = ''
         }, (response) => {
