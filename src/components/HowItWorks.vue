@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row mt-3">
       <img class="col-sm-6" src="http://placehold.it/300x200">
       <div class="col-sm-6">
         <h5>RÉSERVER SUR NOTRE SITE, APPLICATION OU PAR TÉLÉPHONE</h5>
@@ -12,7 +12,7 @@
         </ul>
       </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
       <div class="col-sm-6">
         <h5>VOTRE COURSE</h5>
         <p>Transport One met à disposition les services suivant, sélectionner les au besoin.</p>
@@ -28,7 +28,7 @@
       </div>
       <img class="col-sm-6" src="http://placehold.it/300x200">
     </div>
-    <div class="row">
+    <div class="row mt-3">
       <img class="col-sm-6" src="http://placehold.it/300x200">
       <div class="col-sm-6">
         <h5>ÉVALUER VOTRE COURSE</h5>
