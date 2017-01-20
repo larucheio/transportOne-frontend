@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row mt-3">
+    <div class="row">
       <img class="col-sm-6 pb-2 u-center" src="http://placehold.it/300x200">
       <div class="col-sm-6">
         <h5>RÉSERVER SUR NOTRE SITE, APPLICATION OU PAR TÉLÉPHONE</h5>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="padding-top:80px;">
     <nav id="navbar" class="navbar navbar-fixed-top navbar-light bg-faded">
       <div class="container hidden-lg-up">
         <router-link class="navbar-brand" to="/home">Transport One</router-link>
