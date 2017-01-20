@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row mt-3">
-      <img class="col-sm-6" src="http://placehold.it/300x200">
+      <img class="col-sm-6 pb-2 u-center" src="http://placehold.it/300x200">
       <div class="col-sm-6">
         <h5>RÉSERVER SUR NOTRE SITE, APPLICATION OU PAR TÉLÉPHONE</h5>
         <ul>
@@ -13,6 +13,7 @@
       </div>
     </div>
     <div class="row mt-3">
+      <img class="col-sm-6 pb-2 u-center float-sm-right" src="http://placehold.it/300x200">
       <div class="col-sm-6">
         <h5>VOTRE COURSE</h5>
         <p>Transport One met à disposition les services suivant, sélectionner les au besoin.</p>
@@ -26,10 +27,9 @@
           Exemple: code d’entrée, appeler une fois que nous sommes en bas.</p>
         <p>Le détail et le prix de la course s’affiche automatiquement et il ne vous reste plus qu&#39;à cliquer sur “Réserver”</p>
       </div>
-      <img class="col-sm-6" src="http://placehold.it/300x200">
     </div>
     <div class="row mt-3">
-      <img class="col-sm-6" src="http://placehold.it/300x200">
+      <img class="col-sm-6 pb-2 u-center" src="http://placehold.it/300x200">
       <div class="col-sm-6">
         <h5>ÉVALUER VOTRE COURSE</h5>
         <p>Une fois votre course terminée, n’hésitez pas à nous donner votre avis.
