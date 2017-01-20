@@ -26,11 +26,11 @@ export default {
     },
     componentClass: {
       type: String,
-      default: 'float-xs-right'
+      default: 'd-flex justify-content-end'
     },
     customClass: {
       type: String,
-      default: 'btn btn-primary float-xs-right morph'
+      default: 'btn btn-primary d-flex justify-content-end morph'
     }
   },
   data () {
