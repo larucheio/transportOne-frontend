@@ -1,7 +1,7 @@
 <template>
   <div>
     <pricing ref="pricing" @changeTravelType="changeTravelType" @updatePrice="getDevisData" :isBooking="true"></pricing>
-    <div class="section">
+    <div class="section pt-3">
       <form>
         <div class="row">
           <div class="col-sm-6">
@@ -67,7 +67,7 @@
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
         </label>
-        <div class="pricetag card card-block shadow">
+        <div class="pricetag card card-block shadow mb-3">
           <h4>Détails</h4>
           <p>Trajet(s): {{displayedPrice}} CHF</p>
           <p>{{displayedGroupePrice}}</p>
