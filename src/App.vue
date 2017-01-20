@@ -90,6 +90,7 @@ $(document).ready(function () {
     if ($(event.target).is('a')) {
       $('.collapse').collapse('hide')
       $('.to-navbar-toggler').removeClass("to-change")
+      window.scrollTo(0, 0)
     }
     return false;
   })
