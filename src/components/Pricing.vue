@@ -3,11 +3,11 @@
   <div class="col-lg-8 offset-lg-2">
   <div class="card shadow">
     <div class="btn-group btn-block" data-toggle="buttons">
-      <label id="oneWayToggle" class="btn btn-toggle col-xs-6" @click="changeTravelType(false)">
-        <input type="radio">Aller simple
+      <label id="oneWayToggle" class="btn btn-toggle w-50" @click="changeTravelType(false)">
+        <input type="radio">Aller Simple
       </label>
-      <label id="roundTripToggle" class="btn btn-toggle col-xs-6" @click="changeTravelType(true)">
-        <input type="radio">Aller-retour
+      <label id="roundTripToggle" class="btn btn-toggle w-50" @click="changeTravelType(true)">
+        <input type="radio">Aller-Retour
       </label>
     </div>
     <form class="card-block">

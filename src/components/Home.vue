@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h4 class="u-center-text mt-2">Transport accompagné de qualité avec chauffeur privé</h4>
-    <h4 class="u-center-text mt-2">Prix le plus bas garantie sur Genève <strong>dès 25CHF</strong></h4>
-    <h4 class="u-center-text mt-2">Ponctuelle, serviable, disponible et sécurisé</h4>
+    <h4 class="text-center mt-2">Transport accompagné de qualité avec chauffeur privé</h4>
+    <h4 class="text-center mt-2">Prix le plus bas garantie sur Genève <strong>dès 25CHF</strong></h4>
+    <h4 class="text-center mt-2">Ponctuelle, serviable, disponible et sécurisé</h4>
     <pricing class="mt-3"></pricing>
-    <div class="row u-center-text mt-3">
+    <div class="row text-center mt-3">
       <div class="col-md-3">
         <i class="fa fa-usd fa-5x" aria-hidden="true"></i>
         <h5 class="font-weight-bold mt-1">Garantie meilleurs prix</h5>

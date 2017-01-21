@@ -1,47 +1,43 @@
 <template>
-  <div class="container" style="padding-top:80px;">
-    <nav id="navbar" class="navbar navbar-fixed-top navbar-light bg-faded">
-      <div class="container hidden-lg-up">
-        <router-link class="navbar-brand" to="/home">Transport One</router-link>
-        <div class="to-navbar-toggler float-xs-right" @click="animeHamburgerButton" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation">
-          <div class="to-bar1"></div>
-          <div class="to-bar2"></div>
-          <div class="to-bar3"></div>
-        </div>
+  <div>
+    <nav id="navbar" class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded px-3">
+      <router-link class="navbar-brand" to="/home">Transport One</router-link>
+      <div class="to-navbar-toggler navbar-toggler-right hidden-lg-up px-3" @click="animeHamburgerButton" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="to-bar1"></div>
+        <div class="to-bar2"></div>
+        <div class="to-bar3"></div>
       </div>
-      <div class="container">
-        <div class="collapse navbar-toggleable-md" id="navbar-header">
-          <router-link class="navbar-brand hidden-md-down" to="/home">Transport One</router-link>
-          <ul class="nav navbar-nav">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/reservation">Reservation</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/partenaires">Partenaires</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/contact">Contact</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
-            </li>
-            <li class="nav-item float-lg-right">
-              <a class="nav-link" @click="login" v-show="!isAuthenticated">Se connecter</a>
-            </li>
-            <li class="nav-item float-lg-right">
-              <a class="nav-link" @click="logout" v-show="isAuthenticated">Se déconnecter</a>
-            </li>
-          </ul>
-        </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/reservation">Reservation</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/partenaires">Partenaires</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/contact">Contact</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
+          </li>
+          <li class="nav-item float-lg-right">
+            <a class="nav-link" @click="login" v-show="!isAuthenticated">Se connecter</a>
+          </li>
+          <li class="nav-item float-lg-right">
+            <a class="nav-link" @click="logout" v-show="isAuthenticated">Se déconnecter</a>
+          </li>
+        </ul>
       </div>
     </nav>
-    <div>
+    <div class="container app-container">
       <transition name="component-fade" mode="out-in">
         <router-view></router-view>
       </transition>
@@ -94,7 +90,9 @@ $(document).ready(function () {
     if ($(event.target).is('a')) {
       $('.collapse').collapse('hide')
       $('.to-navbar-toggler').removeClass("to-change")
+      window.scrollTo(0, 0)
     }
+    return false;
   })
 })
 </script>
