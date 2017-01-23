@@ -54,7 +54,8 @@ const Review = {
   },
   methods: {
     deleteReview: function () {
-      this.$http.delete(`${api.reviews}/${this.review.period}@${this.review.createdAt}`)
+      this.$http.delete(`${api.reviews}/${this.review.period}@${this.review.createdAt}`,
+        {headers: {Authorization: `Bearer ${auth.getToken()}`}})
       .then((response) => {
         this.$refs.deleteReviewsButton.showSuccess()
         this.showDeleteButton = false
@@ -72,7 +73,8 @@ const Review = {
         'createdAt': this.review.createdAt,
         'period': this.review.period,
         'rate': this.review.rate
-      }).then((response) => {
+        },
+        {headers: {Authorization: `Bearer ${auth.getToken()}`}}).then((response) => {
         this.$refs.undoButton.showSuccess()
         this.showUndoButton = false
         this.showDeleteButton = true
@@ -141,7 +143,8 @@ export default {
         'userPic': profile.picture,
         'createdAt': Date.now().toString(),
         'period': new Date().getFullYear().toString(),
-        'rate': this.rate})
+        'rate': this.rate},
+        {headers: {Authorization: `Bearer ${auth.getToken()}`}})
         .then((response) => {
           this.$refs.sendReviewButton.showSuccess()
           this.reviews.unshift(
