@@ -13,7 +13,7 @@ const options = {
   language: 'fr',
   auth: {
     params: {
-      scope: 'openid offline_access'
+      scope: 'openid offline_access app_metadata'
     },
     sso: true
   }
@@ -64,6 +64,9 @@ export default {
   },
   getProfile () {
     return JSON.parse(localStorage.getItem('profile'))
+  },
+  getToken () {
+    return localStorage.getItem('id_token')
   },
   setProfileAttribute (attribute) {
     if (this.isAuthenticated()) {

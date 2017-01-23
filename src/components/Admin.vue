@@ -188,7 +188,9 @@ export default {
         this.$refs.editPriceSaveButton.showError('Veuillez remplir tous les champs.')
         return
       }
-      this.$http.post(`${api.pricing}/${this.priceToSet.from.id}@${this.priceToSet.to.id}`, {'CHF': this.priceToSet.price})
+      this.$http.post(`${api.pricing}/${this.priceToSet.from.id}@${this.priceToSet.to.id}`,
+        {'CHF': this.priceToSet.price},
+        {headers: {Authorization: `Bearer ${auth.getToken()}`}})
       .then((response) => {
         this.$refs.editPriceSaveButton.showSuccess()
       }, (response) => {
@@ -202,7 +204,9 @@ export default {
         this.$refs.editRegionSaveButton.showError('Veuillez remplir tous les champs.')
         return
       }
-      this.$http.post(`${api.regions}/${this.regionToSet.id}`, this.regionToSet)
+      this.$http.post(`${api.regions}/${this.regionToSet.id}`,
+        this.regionToSet,
+        {headers: {Authorization: `Bearer ${auth.getToken()}`}})
       .then((response) => {
         this.$refs.editRegionSaveButton.showSuccess()
       }, (response) => {
@@ -217,7 +221,9 @@ export default {
         return
       }
       const id = this.regionToAdd.name.replace(/[^A-Za-z0-9]+/g, "")
-      this.$http.post(`${api.regions}/${id}`, this.regionToAdd)
+      this.$http.post(`${api.regions}/${id}`,
+        this.regionToAdd,
+        {headers: {Authorization: `Bearer ${auth.getToken()}`}})
       .then((response) => {
         this.$refs.addRegionSaveButton.showSuccess()
         this.getRegions()
@@ -234,7 +240,9 @@ export default {
       }
       const body = `<p>${this.newsletter.body}</p>
       <a href="${process.env.SITE_URL}unsubscribe">Se désinscrire</a>`
-      this.$http.post(`${api.broadcast}`, {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL})
+      this.$http.post(`${api.broadcast}`,
+        {'data': body, 'subject': this.newsletter.subject, 'source': process.env.PUBLIC_EMAIL},
+        {headers: {Authorization: `Bearer ${auth.getToken()}`}})
       .then((response) => {
         this.$refs.newsletterSendButton.showSuccess()
       }, (response) => {
