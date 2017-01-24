@@ -28,11 +28,11 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
           </li>
-          <li class="nav-item float-lg-right">
-            <a class="nav-link" @click="login" v-show="!isAuthenticated">Se connecter</a>
-          </li>
-          <li class="nav-item float-lg-right">
-            <a class="nav-link" @click="logout" v-show="isAuthenticated">Se déconnecter</a>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" @click="login" v-if="!isAuthenticated">Se connecter</a>
+            <a class="nav-link" @click="logout" v-else="isAuthenticated">Se déconnecter</a>
           </li>
         </ul>
       </div>
