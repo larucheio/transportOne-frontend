@@ -56,6 +56,7 @@ export default {
   },
   mounted () {
     auth.init()
+    auth.refreshToken()
   },
   methods: {
     login () {

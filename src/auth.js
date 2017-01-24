@@ -25,6 +25,8 @@ export default {
     router.app.refreshAuthStatus()
     lock.on('authenticated', function (authResult) {
       localStorage.setItem('id_token', authResult.idToken)
+      localStorage.setItem('id_token_expiration', Date.now() + 35000000)
+      localStorage.setItem('refresh_token', authResult.refreshToken)
       lock.getProfile(authResult.idToken, function (error, profile) {
         if (error) {
           alert("Erreur: votre profile n'a pas été trouvé.")
@@ -59,6 +61,8 @@ export default {
   logout () {
     localStorage.removeItem('id_token')
     localStorage.removeItem('profile')
+    localStorage.removeItem('id_token_expiration')
+    localStorage.removeItem('refreshToken')
     router.app.refreshAuthStatus()
     router.push('/home')
   },
@@ -76,6 +80,22 @@ export default {
         {headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}`}}
       ).then((response) => {
         localStorage.setItem('profile', JSON.stringify(response.data))
+      }, (response) => {})
+    }
+  },
+  refreshToken () {
+    if (localStorage.getItem('id_token_expiration') && localStorage.getItem('id_token_expiration') < Date.now()) {
+      router.app.$http.post(`https://${process.env.AUTH0_DOMAIN}/delegation`,
+        {
+          'client_id': process.env.AUTH0_CLIENT_ID,
+          'grant_type': 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+          'refresh_token': localStorage.getItem('refresh_token'),
+          'api_type': 'app'
+        },
+        {headers: {'Content-Type': 'application/json'}}
+      ).then((response) => {
+        localStorage.setItem('id_token', response.body.id_token)
+        localStorage.setItem('id_token_life', Date.now() + (response.body.expire_in - 1000) * 1000)
       }, (response) => {})
     }
   }
