@@ -94,7 +94,6 @@ export default {
         },
         {headers: {'Content-Type': 'application/json'}}
       ).then((response) => {
-        console.log(response)
         localStorage.setItem('id_token', response.body.id_token)
         localStorage.setItem('id_token_life', Date.now() + (response.body.expire_in - 1000) * 1000)
       }, (response) => {})
