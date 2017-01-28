@@ -37,11 +37,9 @@
         </ul>
       </div>
     </nav>
-    <div class="container app-container">
-      <transition name="component-fade" mode="out-in">
-        <router-view></router-view>
-      </transition>
-    </div>
+    <transition name="component-fade" mode="out-in">
+      <router-view class="pt-5"></router-view>
+    </transition>
   </div>
 </template>
 
