@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mt-5">
     <div class="section">
       <p>Donner votre avis sur Transport One.</p>
       <span v-for="id in 5" @click="rating(id)">

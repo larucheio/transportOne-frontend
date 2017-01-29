@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mt-5">
     <pricing ref="pricing" @changeTravelType="changeTravelType" @updatePrice="getDevisData" :isBooking="true"></pricing>
     <div class="section pt-3">
       <form>
