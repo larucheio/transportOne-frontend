@@ -44,3 +44,9 @@ $star-color: #FFBB00;
 .star {
   color: $star-color;
 }
+
+// Backgrounds
+.bg-intro {
+  background-image: url("../assets/intro.jpg");
+  background-position: center;
+}
