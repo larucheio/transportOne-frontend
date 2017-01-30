@@ -1,7 +1,7 @@
 <template>
   <div class="row">
   <div class="col-lg-8 offset-lg-2">
-  <div class="card shadow">
+  <div class="card bg-transparent text-center">
     <div class="btn-group btn-block" data-toggle="buttons">
       <label id="oneWayToggle" class="btn btn-toggle w-50" @click="changeTravelType(false)">
         <input type="radio">Aller Simple
@@ -10,7 +10,7 @@
         <input type="radio">Aller-Retour
       </label>
     </div>
-    <form class="card-block">
+    <form class="card-block bg-white-08 rounded-bottom">
       <h3>Prix: {{displayedPrice}} CHF<i v-if="isLoading" class="fa fa-spinner fa-pulse fa-fw"></i></h3>
       <div class="row">
         <div class="col-sm-6">
@@ -234,12 +234,13 @@ export default {
 
 <style scoped>
 .btn-toggle {
-  background-color: #eaeaea;
+  background-color: rgba(222, 222, 222, 0.5);
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+  margin-bottom: 0;
 }
 .btn-toggle.active {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
   margin-right: 1px;
 }
 
