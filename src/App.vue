@@ -43,7 +43,7 @@
       </transition>
     </div>
     <footer class="w-100 p-4 text-center border-top-1">
-      <a href="https://www.laruche.io" title="laruche.io" class="h5 nav-link"><strong>Hand made by laruche</strong></a>
+      <a href="https://laruche.io" title="laruche - Agence web Suisse" class="h5 nav-link"><strong>Réalisé à Genève par laruche.</strong></a>
     </footer>
   </div>
 </template>
