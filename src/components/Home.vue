@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="jumbotron jumbotron-fluid bg-intro ">
+    <div class="jumbotron jumbotron-fluid bg-intro bg-cover-xl">
       <div class="container text-center">
         <pricing class="py-5"></pricing>
         <h3 class="text-white pt-5 text-uppercase"><strong>Transport accompagné de qualité avec chauffeur privé</strong></h3>
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="jumbotron jumbotron-fluid bg-geneva text-center text-white">
+    <div class="jumbotron jumbotron-fluid bg-geneva bg-cover-xl text-center text-white">
       <div class="container">
         <h3 class="py-5">Fondé en 1998, Transport One est une entreprise familial spécialisée dans le transport accompagné avec chauffeur privé.</h3>
       </div>
@@ -71,7 +71,7 @@
         <p>Nous avons mis en place un service “Commision” qui comprend un aller-retour à domicile tout en accompagnant la personne pour les commissions, la Poste ou autre demande requérant une aide.</p>
       </div>
     </div>
-    <div class="jumbotron jumbotron-fluid bg-airport text-center">
+    <div class="jumbotron jumbotron-fluid bg-airport bg-cover-xl text-center">
       <div class="container">
         <h3 class="py-5">Les destinations “Aéroport” et “Gare” avec accompagnement sont à votre disposition.</h3>
       </div>
