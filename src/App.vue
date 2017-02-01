@@ -1,12 +1,12 @@
 <template>
   <div>
     <nav id="navbar" class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded px-3 text-uppercase bg-lightgrey">
-      <router-link class="navbar-brand" to="/home"><img src="./assets/logo.svg" height="30" alt="logo"></router-link>
       <div class="to-navbar-toggler navbar-toggler-right hidden-lg-up px-3" @click="animeHamburgerButton" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <div class="to-bar1"></div>
         <div class="to-bar2"></div>
         <div class="to-bar3"></div>
       </div>
+      <router-link class="navbar-brand" to="/home"><img src="./assets/logo.svg" height="30" alt="logo"></router-link>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
