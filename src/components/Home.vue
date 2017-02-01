@@ -1,16 +1,15 @@
 <template>
   <div>
-    <div class="jumbotron jumbotron-fluid bg-intro">
-      <div class="container">
-        <h4 class="text-center py-2">Transport accompagné de qualité avec chauffeur privé</h4>
-        <h4 class="text-center py-2">Prix le plus bas garantie sur Genève <strong>dès 25CHF</strong></h4>
-        <h4 class="text-center py-2">Ponctuelle, serviable, disponible et sécurisé</h4>
-        <pricing class="py-4"></pricing>
+    <div class="jumbotron jumbotron-fluid bg-intro bg-w100-lg">
+      <div class="container text-center">
+        <pricing class="py-5"></pricing>
+        <h3 class="text-white pt-5 text-uppercase"><strong>Transport accompagné de qualité avec chauffeur privé</strong></h3>
+        <h3 class="text-white pt-3 text-uppercase"><strong>Prix le plus bas garantie sur Genève dès 25CHF</strong></h3>
+        <h3 class="text-white pt-3 text-uppercase"><strong>Ponctuelle, serviable, disponible et sécurisé</strong></h3>
       </div>
     </div>
     <div class="container">
-      <h3 class="section pb-5">Fondé en 1998, Transport One est une entreprise familial spécialisée dans le transport accompagné avec chauffeur privé.</h3>
-      <div class="section py-5">
+      <div class="py-5">
         <div class="row text-center">
           <div class="col-md-3">
             <i class="fa fa-usd fa-5x" aria-hidden="true"></i>
@@ -34,46 +33,58 @@
           </div>
         </div>
       </div>
-      <div class="section py-5">
-        <h1 class="pb-3">Nos services</h1>
-        <p>Transport One permet à tout le monde d’être transporté et accompagné durant leurs déplacements, tout en faisant des économies!
-          Laissez-vous donc transporter sereinement dans notre rayonnante ville de Genève et ses environs.</p>
-          <p>Notre engagement professionnel garantit un service ponctuel et de qualité ainsi qu’un accompagnement soigné et sécurisé.</p>
-          <div class="row">
-            <div class="col-md-6">
-              <p>Que ce soit pour:</p>
-              <ul class="fa-ul">
-                <li><i class="fa-li fa fa-check"></i>Rendez-vous médicaux</li>
-                <li><i class="fa-li fa fa-check"></i>Centre de bien-être</li>
-                <li><i class="fa-li fa fa-check"></i>École</li>
-                <li><i class="fa-li fa fa-check"></i>Rendez-vous privé</li>
-                <li><i class="fa-li fa fa-check"></i>Toute autre destination</li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <p>Et que vous soyez:</p>
-              <ul class="fa-ul">
-                <li><i class="fa-li fa fa-check"></i>Personnes âgées</li>
-                <li><i class="fa-li fa fa-check"></i>Adultes</li>
-                <li><i class="fa-li fa fa-check"></i>Enfants</li>
-                <li><i class="fa-li fa fa-check"></i>Groupe d’amis, familles, employé d’entreprise...</li>
-                <li><i class="fa-li fa fa-check"></i>Avec ou sans mobilité réduite (personne en fauteuil roulant non inclus excepté si elle est dans la capacité d’être installé sur l’un de nos siege)</li>
-              </ul>
-            </div>
-          </div>
-          <p>Nous avons mis en place un service “Commision” qui comprend un aller-retour à domicile tout en accompagnant la personne pour les commissions, la Poste ou autre demande requérant une aide.</p>
-          <p>Les destinations “Aéroport” et “Gare” avec accompagnement sont à votre disposition.</p>
-        </div>
+    </div>
+    <div class="jumbotron jumbotron-fluid bg-geneva bg-w100-lg text-center text-white">
+      <div class="container">
+        <h3 class="py-5">Fondé en 1998, Transport One est une entreprise familial spécialisée dans le transport accompagné avec chauffeur privé.</h3>
       </div>
     </div>
-  </template>
+    <div class="container">
+      <div class="py-5">
+        <h1 class="pb-3">Nos services</h1>
+        <p>Transport One permet à tout le monde d’être transporté et accompagné durant leurs déplacements, tout en faisant des économies!
+          Laissez-vous donc transporter sereinement dans notre rayonnante ville de Genève et ses environs.
+        </p>
+        <p>Notre engagement professionnel garantit un service ponctuel et de qualité ainsi qu’un accompagnement soigné et sécurisé.</p>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Que ce soit pour:</p>
+            <ul class="fa-ul">
+              <li><i class="fa-li fa fa-check"></i>Rendez-vous médicaux</li>
+              <li><i class="fa-li fa fa-check"></i>Centre de bien-être</li>
+              <li><i class="fa-li fa fa-check"></i>École</li>
+              <li><i class="fa-li fa fa-check"></i>Rendez-vous privé</li>
+              <li><i class="fa-li fa fa-check"></i>Toute autre destination</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <p>Et que vous soyez:</p>
+            <ul class="fa-ul">
+              <li><i class="fa-li fa fa-check"></i>Personnes âgées</li>
+              <li><i class="fa-li fa fa-check"></i>Adultes</li>
+              <li><i class="fa-li fa fa-check"></i>Enfants</li>
+              <li><i class="fa-li fa fa-check"></i>Groupe d’amis, familles, employé d’entreprise...</li>
+              <li><i class="fa-li fa fa-check"></i>Avec ou sans mobilité réduite (personne en fauteuil roulant non inclus excepté si elle est dans la capacité d’être installé sur l’un de nos siege)</li>
+            </ul>
+          </div>
+        </div>
+        <p>Nous avons mis en place un service “Commision” qui comprend un aller-retour à domicile tout en accompagnant la personne pour les commissions, la Poste ou autre demande requérant une aide.</p>
+      </div>
+    </div>
+    <div class="jumbotron jumbotron-fluid bg-airport bg-w100-lg text-center">
+      <div class="container">
+        <h3 class="py-5">Les destinations “Aéroport” et “Gare” avec accompagnement sont à votre disposition.</h3>
+      </div>
+    </div>
+  </div>
+</template>
 
-  <script>
-  import Pricing from './Pricing.vue'
-  export default {
-    components: { 'pricing': Pricing }
-  }
-  </script>
+<script>
+import Pricing from './Pricing.vue'
+export default {
+  components: { 'pricing': Pricing }
+}
+</script>
 
-  <style>
-  </style>
+<style>
+</style>

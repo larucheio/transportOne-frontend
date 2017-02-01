@@ -48,7 +48,21 @@ $star-color: #FFBB00;
 // Backgrounds
 .bg-intro {
   background-image: url("../assets/intro.jpg");
+  background-position: center bottom;
+}
+
+.bg-airport {
+  background-image: url("../assets/airport.jpg");
+  background-position: right;
+}
+
+.bg-geneva {
+  background-image: url("../assets/geneva.jpg");
   background-position: center;
+}
+
+.bg-lightgrey {
+  background-color: #ecf0f1;
 }
 
 .bg-white-08 {
@@ -57,4 +71,11 @@ $star-color: #FFBB00;
 
 .bg-transparent {
   background-color: rgba(255, 255, 255, 0);
+}
+
+@media (min-width: 992px) {
+  .bg-w100-lg {
+    background-color: rgba(255, 255, 255, 0);
+    background-size: 100%;
+  }
 }
