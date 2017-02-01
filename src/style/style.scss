@@ -45,6 +45,39 @@ $star-color: #FFBB00;
   color: $star-color;
 }
 
-.app-container {
-  padding-top: 80px;
+// Backgrounds
+.bg-intro {
+  background-image: url("../assets/intro.jpg");
+  background-position: center bottom;
+}
+
+.bg-airport {
+  background-image: url("../assets/airport.jpg");
+  background-position: right;
+}
+
+.bg-geneva {
+  background-image: url("../assets/geneva.jpg");
+  background-position: center;
+}
+
+.bg-lightgrey {
+  background-color: #ecf0f1;
+}
+
+.bg-white-08 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.bg-transparent {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+@media (min-width: 1200px) {
+  .bg-cover-xl {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }

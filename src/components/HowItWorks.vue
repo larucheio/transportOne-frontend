@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mt-5">
     <div class="row">
       <div class="col-md-6 py-2">
         <img class="mx-auto d-block" src="http://placehold.it/300x200">
