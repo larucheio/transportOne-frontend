@@ -38,6 +38,9 @@
     <transition name="component-fade" mode="out-in">
       <router-view class="pt-5"></router-view>
     </transition>
+    <footer class="w-100 p-4 text-center border-top-1">
+      <a href="https://laruche.io" title="laruche - Agence web Suisse" class="h5 nav-link"><strong>Réalisé à Genève par laruche.</strong></a>
+    </footer>
   </div>
 </template>
 
