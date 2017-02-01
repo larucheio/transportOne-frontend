@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav id="navbar" class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded px-3">
+    <nav id="navbar" class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded px-3 text-uppercase bg-lightgrey">
       <router-link class="navbar-brand" to="/home"><img src="./assets/logo.svg" height="30" alt="logo"></router-link>
       <div class="to-navbar-toggler navbar-toggler-right hidden-lg-up px-3" @click="animeHamburgerButton" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <div class="to-bar1"></div>
@@ -29,12 +29,10 @@
             <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
           </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" @click="login" v-if="!isAuthenticated">Se connecter</a>
-            <a class="nav-link" @click="logout" v-else="isAuthenticated">Se déconnecter</a>
-          </li>
-        </ul>
+        <div class="navbar-nav ml-auto">
+          <button class="btn btn-primary"  @click="login" v-if="!isAuthenticated">Se connecter</button>
+          <button class="btn btn-primary"  @click="logout" v-else="isAuthenticated">Se déconnecter</button>
+        </div>
       </div>
     </nav>
     <transition name="component-fade" mode="out-in">
