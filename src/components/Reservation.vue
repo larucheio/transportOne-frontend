@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mt-5">
     <pricing ref="pricing" @changeTravelType="changeTravelType" @updatePrice="getDevisData" :isBooking="true"></pricing>
     <div class="section pt-3">
       <form>
@@ -40,7 +40,7 @@
             <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false">
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Attente</span>
-            <small id="attenteHelp" class="form-text text-muted">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
+            <small id="attenteHelp" class="form-text text-muted mx-2">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
           </label>
         </div>
         <div>
@@ -48,7 +48,7 @@
             <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false">
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Comission</span>
-            <small id="comissionHelp" class="form-text text-muted">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
+            <small id="comissionHelp" class="form-text text-muted mx-2">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
           </label>
         </div>
         <div>
@@ -56,7 +56,7 @@
             <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Plus de 4 personnes</span>
-            <small id="peopleHelp" class="form-text text-muted">Prix: 10fr</small>
+            <small id="peopleHelp" class="form-text text-muted mx-2">Prix: 10fr</small>
           </label>
         </div>
         <div class="form-group">

@@ -3,8 +3,8 @@ import {router} from './router.js'
 
 const options = {
   theme: {
-    primaryColor: 'black',
-    logo: ''
+    primaryColor: '#f39c12',
+    logo: 'http://www.transport-one.ch/static/logo.svg'
   },
   languageDictionary: {
     emailInputPlaceholder: 'name@email.com',

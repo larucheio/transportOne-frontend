@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mt-5">
     <div class="section">
       <h6>Modifier un prix</h6>
       <div class="row">
