@@ -44,23 +44,23 @@
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false">
               <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">Attente</span>
-              <small id="attenteHelp" class="form-text text-muted mx-2">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
+              <span class="custom-control-description"><i class="fa fa-pause-circle-o mx-1" aria-hidden="true"></i> Attente</span>
+              <small id="attenteHelp" class="form-text text-muted mx-2">Prix: 10fr/30min</small>
             </label>
           </div>
           <div>
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false">
               <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">Comission</span>
-              <small id="comissionHelp" class="form-text text-muted mx-2">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
+              <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Comission</span>
+              <small id="comissionHelp" class="form-text text-muted mx-2">Prix: 15fr/30min</small>
             </label>
           </div>
           <div>
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
               <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">Plus de 4 personnes</span>
+              <span class="custom-control-description"><i class="fa fa-users mx-1" aria-hidden="true"></i>Plus de 4 personnes</span>
               <small id="peopleHelp" class="form-text text-muted mx-2">Prix: 10fr</small>
             </label>
           </div>
