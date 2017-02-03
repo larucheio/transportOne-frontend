@@ -50,21 +50,21 @@
           <div class="col-md-6">
             <p>Que ce soit pour:</p>
             <ul class="fa-ul">
-              <li><i class="fa-li fa fa-check"></i>Rendez-vous médicaux</li>
-              <li><i class="fa-li fa fa-check"></i>Centre de bien-être</li>
-              <li><i class="fa-li fa fa-check"></i>École</li>
-              <li><i class="fa-li fa fa-check"></i>Rendez-vous privé</li>
-              <li><i class="fa-li fa fa-check"></i>Toute autre destination</li>
+              <li><i class="fa-li fa fa-map-marker"></i>Rendez-vous médicaux</li>
+              <li><i class="fa-li fa fa-map-marker"></i>Centre de bien-être</li>
+              <li><i class="fa-li fa fa-map-marker"></i>École</li>
+              <li><i class="fa-li fa fa-map-marker"></i>Rendez-vous privé</li>
+              <li><i class="fa-li fa fa-map-marker"></i>Toute autre destination</li>
             </ul>
           </div>
           <div class="col-md-6">
             <p>Et que vous soyez:</p>
             <ul class="fa-ul">
-              <li><i class="fa-li fa fa-check"></i>Personnes âgées</li>
-              <li><i class="fa-li fa fa-check"></i>Adultes</li>
-              <li><i class="fa-li fa fa-check"></i>Enfants</li>
-              <li><i class="fa-li fa fa-check"></i>Groupe d’amis, familles, employé d’entreprise...</li>
-              <li><i class="fa-li fa fa-check"></i>Avec ou sans mobilité réduite (personne en fauteuil roulant non inclus excepté si elle est dans la capacité d’être installé sur l’un de nos siege)</li>
+              <li><i class="fa-li fa fa-users"></i>Personnes âgées</li>
+              <li><i class="fa-li fa fa-users"></i>Adultes</li>
+              <li><i class="fa-li fa fa-users"></i>Enfants</li>
+              <li><i class="fa-li fa fa-users"></i>Groupe d’amis, familles, employé d’entreprise...</li>
+              <li><i class="fa-li fa fa-users"></i>Avec ou sans mobilité réduite (personne en fauteuil roulant non inclus excepté si elle est dans la capacité d’être installé sur l’un de nos siege)</li>
             </ul>
           </div>
         </div>
