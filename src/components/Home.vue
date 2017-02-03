@@ -71,11 +71,6 @@
         <p>Nous avons mis en place un service “Commision” qui comprend un aller-retour à domicile tout en accompagnant la personne pour les commissions, la Poste ou autre demande requérant une aide.</p>
       </div>
     </div>
-    <div class="jumbotron jumbotron-fluid bg-airport bg-cover-xl text-center">
-      <div class="container">
-        <h3 class="py-5">Les destinations “Aéroport” et “Gare” avec accompagnement sont à votre disposition.</h3>
-      </div>
-    </div>
   </div>
 </template>
 
