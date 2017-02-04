@@ -46,7 +46,7 @@
         <p>Laissez-vous donc transporter sereinement tout en faisant des économies!</p>
         <div class="row">
           <div class="col-md-6  mt-5">
-            <p>Et que vous soyez:</p>
+            <p>Personne(s):</p>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-users"></i>Âgées</li>
               <li><i class="fa-li fa fa-users"></i>Adultes</li>
@@ -56,7 +56,7 @@
             </ul>
           </div>
           <div class="col-md-6 mt-5">
-            <p>Que ce soit pour:</p>
+            <p>A destination de:</p>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-map-marker"></i>Rendez-vous médicaux</li>
               <li><i class="fa-li fa fa-map-marker"></i>Centre de bien-être</li>
