@@ -45,7 +45,7 @@
         <p>Notre engagement professionnel garantit un service ponctuel de qualité ainsi qu’un accompagnement soigné et sécurisé avec chauffeur privé.</p>
         <p>Laissez-vous donc transporter sereinement tout en faisant des économies!</p>
         <div class="row">
-          <div class="col-md-6  mt-5">
+          <div class="col-md-6 mt-5">
             <p>Personne(s):</p>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-users"></i>Âgées</li>
