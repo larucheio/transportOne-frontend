@@ -38,8 +38,26 @@
     <transition name="component-fade" mode="out-in">
       <router-view class="pt-5"></router-view>
     </transition>
-    <footer class="w-100 p-4 text-center border-top-1">
-      <a href="https://laruche.io" title="laruche - Agence web Suisse" class="h5 nav-link"><strong>Réalisé à Genève par laruche.</strong></a>
+    <footer class="bg-lightgrey mt-5">
+      <div class="container">
+        <div class="row text-center align-items-center">
+          <div class="col-lg-3 py-2">
+            <p class="m-0">
+              <i class="fa fa-phone mr-1"></i>079-200-28-28
+              <br><i class="fa fa-envelope mr-1"></i><a href='mailto:email@domain.com' class="text-muted">email@domain.com</a>
+            </p>
+          </div>
+          <div class="col-lg-3 py-2">
+            <a href='https://www.facebook.com'><img alt='Suivé nous sur Facebook' src='./assets/FB-f-Logo__blue_50.png'/></a>
+          </div>
+          <div class="col-lg-3 py-2">
+            <a href='https://play.google.com/store/apps/details?id=maxirozay.com.keymax&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Disponible sur Google Play' src='./assets/google-play-badge.png'/></a>
+          </div>
+          <div class="col-lg-3 py-2">
+            <a href="https://laruche.io" title="laruche - Agence web Suisse" class="text-muted">Réalisé à Genève par laruche.</a>
+          </div>
+        </div>
+      </div>
     </footer>
   </div>
 </template>

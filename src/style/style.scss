@@ -51,14 +51,14 @@ $star-color: #FFBB00;
   background-position: center bottom;
 }
 
-.bg-airport {
-  background-image: url("../assets/airport.jpg");
-  background-position: right;
-}
-
 .bg-geneva {
   background-image: url("../assets/geneva.jpg");
   background-position: center;
+}
+
+.bg-reservation {
+  background-image: url("../assets/reservation.jpg");
+  background-position: right;
 }
 
 .bg-lightgrey {
@@ -73,11 +73,12 @@ $star-color: #FFBB00;
   background-color: rgba(255, 255, 255, 0);
 }
 
+.bg-cover {
+  background-size: cover;
+}
+
 @media (min-width: 1200px) {
   .bg-cover-xl {
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
   }
 }

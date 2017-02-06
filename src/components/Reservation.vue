@@ -1,83 +1,89 @@
 <template>
-  <div class="container mt-5">
-    <pricing ref="pricing" @changeTravelType="changeTravelType" @updatePrice="getDevisData" :isBooking="true"></pricing>
-    <div class="section pt-3">
-      <form>
-        <div class="row">
-          <div class="col-sm-6">
-            <custom-input ref="firstName" label="Prénom" type="text" v-model="user.firstName" placeholder="John" min="1"></custom-input>
-          </div>
-          <div class="col-sm-6">
-            <custom-input ref="lastName" label="Nom" type="text" v-model="user.lastName" placeholder="Doe" min="1"></custom-input>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <custom-input ref="tel" label="Téléphone" type="tel" v-model="user.tel" placeholder="022 123 45 67" regexp="^[+]?[0-9]{9,12}$" min="1" errorMessage="Le numéro n'est pas valide."></custom-input>
-          </div>
-          <div class="col-sm-6">
-            <custom-input ref="email" label="Email" type="text" v-model="user.email" placeholder="nom@domain.ch" regexp="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" errorMessage="L'email n'est pas valide."></custom-input>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <custom-input ref="from1" label="Adresse de départ" type="text" v-model="travel1.from" placeholder="1 chemin de départ 1204 Genève" min="1"></custom-input>
-          </div>
-          <div class="col-sm-6">
-            <custom-input ref="to1" label="Adresse d'arrivé" type="text" v-model="travel1.to" placeholder="1 chemin d'arrivé 1204 Genève" min="1"></custom-input>
-          </div>
-        </div>
-        <div class="row" v-if="travel2.exist">
-          <div class="col-sm-6">
-            <custom-input ref="from2" label="Adresse de départ retour" type="text" v-model="travel2.from" placeholder="1 chemin de départ 1204 Genève" min="1"></custom-input>
-          </div>
-          <div class="col-sm-6">
-            <custom-input ref="to2" label="Adresse d'arrivé retour" type="text" v-model="travel2.to" placeholder="1 chemin d'arrivé 1204 Genève" min="1"></custom-input>
-          </div>
-        </div>
-        <div>
-          <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Attente</span>
-            <small id="attenteHelp" class="form-text text-muted mx-2">Le chauffeur vous attend dans la voiture. Prix: 10fr/30min</small>
-          </label>
-        </div>
-        <div>
-          <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Comission</span>
-            <small id="comissionHelp" class="form-text text-muted mx-2">Le chauffeur vous accompagne pour faire vos courses. Prix: 15fr/30min</small>
-          </label>
-        </div>
-        <div>
-          <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Plus de 4 personnes</span>
-            <small id="peopleHelp" class="form-text text-muted mx-2">Prix: 10fr</small>
-          </label>
-        </div>
-        <div class="form-group">
-          <custom-input ref="comment" label="Commentaire" type="text" v-model="comment" placeholder="Bonjour..." max="2000" rows="5"></custom-input>
-        </div>
-        <label class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="isSubscribing">
-          <span class="custom-control-indicator"></span>
-          <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
-        </label>
-        <div class="pricetag card card-block shadow mb-3">
-          <h4>Détails</h4>
-          <p>Trajet(s): {{displayedPrice}} CHF</p>
-          <p>{{displayedGroupePrice}}</p>
-          <strong>Prix total: {{totalPrice}} CHF</strong>
-          <small class="form-text text-muted">Le prix ne contient pas le prix pour l'attente ou la comission. Il sera ajouté en fonction de la durée d'une de ces options.</small>
-        </div>
-        <custom-button ref="bookButton" @click="book" text="Réserver" pendingText="Réserve" successText="Réservé"></custom-button>
-      </form>
+  <div>
+    <div class="jumbotron jumbotron-fluid bg-reservation bg-cover">
+      <div class="container">
+        <pricing ref="pricing" @changeTravelType="changeTravelType" @updatePrice="getDevisData" :isBooking="true"></pricing>
+      </div>
     </div>
-    <div id="map" class="section"></div>
+    <div class="container">
+      <div class="section pt-3">
+        <form>
+          <div class="row">
+            <div class="col-sm-6">
+              <custom-input ref="firstName" label="Prénom" type="text" v-model="user.firstName" placeholder="John" min="1"></custom-input>
+            </div>
+            <div class="col-sm-6">
+              <custom-input ref="lastName" label="Nom" type="text" v-model="user.lastName" placeholder="Doe" min="1"></custom-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <custom-input ref="tel" label="Téléphone" type="tel" v-model="user.tel" placeholder="022 123 45 67" regexp="^[+]?[0-9]{9,12}$" min="1" errorMessage="Le numéro n'est pas valide."></custom-input>
+            </div>
+            <div class="col-sm-6">
+              <custom-input ref="email" label="Email" type="text" v-model="user.email" placeholder="nom@domain.ch" regexp="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" errorMessage="L'email n'est pas valide."></custom-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <custom-input ref="from1" label="Adresse de départ" type="text" v-model="travel1.from" placeholder="1 chemin de départ 1204 Genève" min="1"></custom-input>
+            </div>
+            <div class="col-sm-6">
+              <custom-input ref="to1" label="Adresse d'arrivé" type="text" v-model="travel1.to" placeholder="1 chemin d'arrivé 1204 Genève" min="1"></custom-input>
+            </div>
+          </div>
+          <div class="row" v-if="travel2.exist">
+            <div class="col-sm-6">
+              <custom-input ref="from2" label="Adresse de départ retour" type="text" v-model="travel2.from" placeholder="1 chemin de départ 1204 Genève" min="1"></custom-input>
+            </div>
+            <div class="col-sm-6">
+              <custom-input ref="to2" label="Adresse d'arrivé retour" type="text" v-model="travel2.to" placeholder="1 chemin d'arrivé 1204 Genève" min="1"></custom-input>
+            </div>
+          </div>
+          <div>
+            <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"><i class="fa fa-pause-circle-o mx-1" aria-hidden="true"></i> Attente</span>
+              <small id="attenteHelp" class="form-text text-muted mx-2">Prix: 10fr/30min</small>
+            </label>
+          </div>
+          <div>
+            <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Comission</span>
+              <small id="comissionHelp" class="form-text text-muted mx-2">Prix: 15fr/30min</small>
+            </label>
+          </div>
+          <div>
+            <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"><i class="fa fa-users mx-1" aria-hidden="true"></i>Plus de 4 personnes</span>
+              <small id="peopleHelp" class="form-text text-muted mx-2">Prix: 10fr</small>
+            </label>
+          </div>
+          <div class="form-group">
+            <custom-input ref="comment" label="Commentaire" type="text" v-model="comment" placeholder="Bonjour..." max="2000" rows="5"></custom-input>
+          </div>
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="isSubscribing">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"><small class="form-text text-muted">Recevoir des offres par email.</small></span>
+          </label>
+          <div class="pricetag card card-block shadow mb-3">
+            <h4>Détails</h4>
+            <p>Trajet(s): {{displayedPrice}} CHF</p>
+            <p>{{displayedGroupePrice}}</p>
+            <strong>Prix total: {{totalPrice}} CHF</strong>
+            <small class="form-text text-muted">Le prix ne contient pas le prix pour l'attente ou la comission. Il sera ajouté en fonction de la durée d'une de ces options.</small>
+          </div>
+          <custom-button ref="bookButton" @click="book" text="Réserver" pendingText="Réserve" successText="Réservé"></custom-button>
+        </form>
+      </div>
+      <div id="map" class="section"></div>
+    </div>
   </div>
 </template>
 
