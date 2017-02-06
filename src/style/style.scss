@@ -74,17 +74,11 @@ $star-color: #FFBB00;
 }
 
 .bg-cover {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
 }
 
 @media (min-width: 1200px) {
   .bg-cover-xl {
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
   }
 }
