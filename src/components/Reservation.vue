@@ -42,7 +42,7 @@
           </div>
           <div>
             <label class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false">
+              <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false; options.waiting = true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><i class="fa fa-pause-circle-o mx-1" aria-hidden="true"></i> Attente</span>
               <small id="attenteHelp" class="form-text text-muted mx-2">Prix: 10fr/30min</small>
@@ -50,7 +50,7 @@
           </div>
           <div>
             <label class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false">
+              <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false; options.comission = true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Comission</span>
               <small id="comissionHelp" class="form-text text-muted mx-2">Prix: 15fr/30min</small>
