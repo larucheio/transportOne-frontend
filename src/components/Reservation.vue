@@ -41,16 +41,18 @@
             </div>
           </div>
           <div>
-            <label class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false">
+            <label class="custom-control custom-checkbox" title="Avec notre service attente vous n’avez plus de soucis à vous faire. Nos chauffeurs vous attendent dans le véhicule, salle d’attente, ou autre lieu et vous ramène à destination une fois votre rendez-vous terminé.">
+              <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false; options.waiting = true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><i class="fa fa-pause-circle-o mx-1" aria-hidden="true"></i> Attente</span>
               <small id="attenteHelp" class="form-text text-muted mx-2">Prix: 10fr/30min</small>
             </label>
           </div>
           <div>
-            <label class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false">
+            <label class="custom-control custom-checkbox" title="Un de nos chauffeurs viens vous cherchez au domicile et vous accompagnes pour vos achats (magasin alimentaire, marché local, magasin de meuble, ...).
+
+Nous ne restons pas uniquement dans le véhicule a attendre, nous venons avec vous afin de vous aider à porter vos achats et les places dans nos véhicules qui sont aisément adaptés pour placer toutes dimensions d’achat effectuer. Pour finir nous vous raccompagnons à domicile et vous aidons a déposer les commissions effectuées chez vous.">
+              <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false; options.comission = true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Comission</span>
               <small id="comissionHelp" class="form-text text-muted mx-2">Prix: 15fr/30min</small>
@@ -60,7 +62,7 @@
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
               <span class="custom-control-indicator"></span>
-              <span class="custom-control-description"><i class="fa fa-users mx-1" aria-hidden="true"></i>Plus de 4 personnes</span>
+              <span class="custom-control-description"><i class="fa fa-users mx-1" aria-hidden="true"></i>Plus de 3 personnes</span>
               <small id="peopleHelp" class="form-text text-muted mx-2">Prix: 10fr</small>
             </label>
           </div>
@@ -208,7 +210,7 @@ export default {
       }
       let groupe = ''
       if (this.options.groupe) {
-        groupe = `plus de 4 personnes`
+        groupe = `plus de 3 personnes`
       }
       const text = `Nom: ${this.user.firstName} ${this.user.lastName}
 Tel: ${this.user.tel} Email: ${this.user.email}
@@ -270,7 +272,7 @@ Commentaire: ${this.comment}`
       return total
     },
     displayedGroupePrice: function () {
-      return this.options.groupe ? 'Plus de 4 personnes: 10 CHF' : ''
+      return this.options.groupe ? 'Plus de 3 personnes: 10 CHF' : ''
     },
     displayedPrice: function () {
       return this.price !== 0 ? this.price : 'à partir de 25'
