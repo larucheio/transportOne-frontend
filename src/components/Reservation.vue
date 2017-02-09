@@ -62,7 +62,7 @@ Nous ne restons pas uniquement dans le véhicule a attendre, nous venons avec vo
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
               <span class="custom-control-indicator"></span>
-              <span class="custom-control-description"><i class="fa fa-users mx-1" aria-hidden="true"></i>Plus de 4 personnes</span>
+              <span class="custom-control-description"><i class="fa fa-users mx-1" aria-hidden="true"></i>Plus de 3 personnes</span>
               <small id="peopleHelp" class="form-text text-muted mx-2">Prix: 10fr</small>
             </label>
           </div>
@@ -210,7 +210,7 @@ export default {
       }
       let groupe = ''
       if (this.options.groupe) {
-        groupe = `plus de 4 personnes`
+        groupe = `plus de 3 personnes`
       }
       const text = `Nom: ${this.user.firstName} ${this.user.lastName}
 Tel: ${this.user.tel} Email: ${this.user.email}
@@ -272,7 +272,7 @@ Commentaire: ${this.comment}`
       return total
     },
     displayedGroupePrice: function () {
-      return this.options.groupe ? 'Plus de 4 personnes: 10 CHF' : ''
+      return this.options.groupe ? 'Plus de 3 personnes: 10 CHF' : ''
     },
     displayedPrice: function () {
       return this.price !== 0 ? this.price : 'à partir de 25'
