@@ -1,7 +1,14 @@
 <template>
   <div class="container mt-5">
+    <img src="../assets/logo.svg" alt="Logo" height="100" width="200">
+    <h5>15 chemin de vers
+      <br>1228 plan-les-Ouates
+      <br><i class="fa fa-female mr-1" aria-hidden="true"></i>Bernadette LANGEL
+      <br><i class="fa fa-male  mr-1" aria-hidden="true"></i>Timothy Taylor LANGEL
+      <br><i class="fa fa-phone mr-1"></i>079 200 28 28
+    </h5>
     <form>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-sm-6">
           <custom-input ref="firstName" label="Prénom" type="text" v-model="user.firstName" placeholder="John" min="1"></custom-input>
         </div>
