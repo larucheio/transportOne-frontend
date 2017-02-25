@@ -4,6 +4,17 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
 @import "../../node_modules/font-awesome/scss/font-awesome";
 @import "../../node_modules/pikaday/css/pikaday.css";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .section {
   @include clearfix;
   border-bottom-style: solid;

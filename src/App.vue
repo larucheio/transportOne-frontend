@@ -36,14 +36,14 @@
       </div>
     </nav>
     <transition name="component-fade" mode="out-in">
-      <router-view class="pt-5"></router-view>
+      <router-view class="py-5 mb-6 mb-lg-5"></router-view>
     </transition>
-    <footer class="bg-lightgrey mt-5">
+    <footer class="footer bg-lightgrey">
       <div class="container">
         <div class="row text-center align-items-center">
           <div class="col-lg-3 py-2">
             <p class="m-0">
-              <i class="fa fa-phone mr-1"></i>079-200-28-28
+              <i class="fa fa-phone mr-1"></i>079 200 28 28
               <br><i class="fa fa-envelope mr-1"></i><a href='mailto:email@domain.com' class="text-muted">email@domain.com</a>
             </p>
           </div>
