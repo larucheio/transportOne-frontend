@@ -14,12 +14,12 @@
         <div class="col-md-3">
           <i class="fa fa-usd fa-5x" aria-hidden="true"></i>
           <h5 class="font-weight-bold m-3 text-uppercase">GARANTIE DU PRIX LE PLUS BAS</h5>
-          <p>Faites donc des économies avec nos prix les plus bas sur Genève ! Nos tarifs sont fixes et garanties lors de la réservation.</p>
+          <p>Faites donc des économies avec nos prix les plus bas sur Genève ! Nos tarifs sont fixes et garantis lors de la réservation.</p>
         </div>
         <div class="col-md-3">
           <i class="fa fa-hand-paper-o fa-5x" aria-hidden="true"></i>
           <h5 class="font-weight-bold m-3 text-uppercase">Annulation gratuite</h5>
-          <p>Un changement de programme? aucun souci. Vous disposez d&#39;une annulation gratuite avec un préavis de 24 heure. (par téléphone ou par email).</p>
+          <p>Un changement de programme? aucun souci. Vous disposez d&#39;une annulation gratuite avec un préavis de 24 heures. (par téléphone ou par email).</p>
         </div>
         <div class="col-md-3">
           <i class="fa fa-clock-o fa-5x" aria-hidden="true"></i>
@@ -35,18 +35,18 @@
     </div>
     <div class="jumbotron jumbotron-fluid bg-geneva bg-cover-xl text-center text-white">
       <div class="container">
-        <h4 class="py-5">Fondé depuis plus de 20 ans, Transport One est une entreprise familiale agrée dans le transport professionnel de personnes âgées – adulte – enfants.</h4>
+        <h4 class="py-5">Fondé il y a plus de 20 ans, Transport One est une entreprise familiale agrée dans le transport professionnel de personnes âgées – adultes – enfants.</h4>
       </div>
     </div>
     <div class="container">
-      <div class="py-3">
-        <h1 class="pb-3">Nos services</h1>
+      <div class="py-5">
+        <h3 class="text-uppercase mb-4">Nos services</h3>
         <p>Transport One permet à tout le monde d’être transporté et accompagné durant leurs déplacements dans notre rayonnante ville de Genève et de ses environs.</p>
         <p>Notre engagement professionnel garantit un service ponctuel de qualité ainsi qu’un accompagnement soigné et sécurisé avec chauffeur privé.</p>
-        <p>Laissez-vous donc transporter sereinement tout en faisant des économies!</p>
+        <p>Laissez-vous donc transporter sereinement tout en faisant des économies !</p>
         <div class="row">
           <div class="col-md-6 mt-5">
-            <p>Personne(s):</p>
+            <p>Personne(s) :</p>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-users"></i>Âgées</li>
               <li><i class="fa-li fa fa-users"></i>Adultes</li>
@@ -56,7 +56,7 @@
             </ul>
           </div>
           <div class="col-md-6 mt-5">
-            <p>A destination de:</p>
+            <p>A destination de :</p>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-map-marker"></i>Rendez-vous médicaux</li>
               <li><i class="fa-li fa fa-map-marker"></i>Centre de bien-être</li>
@@ -80,9 +80,8 @@
           </div>
           <div class="col-md-11">
             <p>De plus, cette année nous avons mis en place un service nommé “<strong>Commission</strong>” :</p>
-            <p>Un de nos chauffeurs viens vous cherchez au domicile et vous accompagnes pour vos achats (magasin alimentaire, marché local, magasin de meuble, ...).</p>
-            <p>Nous ne restons pas uniquement dans le véhicule a attendre, nous venons avec vous afin de vous aider à porter vos achats et les places dans nos véhicules qui sont aisément adaptés pour placer toutes dimensions d’achat effectuer. Pour finir nous vous raccompagnons à domicile et vous aidons a déposer les commissions effectuées chez vous.</p>
-
+            <p>Un de nos chauffeurs vient vous chercher à votre domicile et vous accompagne pour vos achats (magasin alimentaire, marché local, magasin de meuble, ...).</p>
+            <p>De plus, nous ne restons pas uniquement dans le véhicule à attendre, nous venons avec vous afin de vous aider à porter vos achats et les placer dans nos véhicules qui sont aisément adaptés pour transporter toutes dimensions d’achat effectué. Pour finir, nous vous raccompagnons à domicile et vous aidons à déposer les commissions réalisées chez vous.</p>
           </div>
         </div>
       </div>

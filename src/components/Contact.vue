@@ -1,25 +1,38 @@
 <template>
-  <div class="container mt-5">
-    <form>
-      <div class="row">
-        <div class="col-sm-6">
-          <custom-input ref="firstName" label="Prénom" type="text" v-model="user.firstName" placeholder="John" min="1"></custom-input>
-        </div>
-        <div class="col-sm-6">
-          <custom-input ref="lastName" label="Nom" type="text" v-model="user.lastName" placeholder="Doe" min="1"></custom-input>
-        </div>
+  <div>
+    <div class="jumbotron jumbotron-fluid bg-contact bg-cover-xl">
+      <div class="container">
+        <img src="../assets/logo.svg" alt="Logo" height="100" width="200">
+        <h5>15 chemin de vers
+          <br>1228 plan-les-Ouates
+          <br><i class="fa fa-female mr-1" aria-hidden="true"></i>Bernadette LANGEL
+          <br><i class="fa fa-male  mr-1" aria-hidden="true"></i>Timothy Taylor LANGEL
+          <br><i class="fa fa-phone mr-1"></i>079 200 28 28
+        </h5>
       </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <custom-input ref="tel" label="Téléphone" type="tel" v-model="user.tel" placeholder="022 123 45 67" regexp="^[+]?[0-9]{9,12}$" min="1" errorMessage="Le numéro n'est pas valide."></custom-input>
+    </div>
+    <div class="container mt-5">
+      <form>
+        <div class="row mt-5">
+          <div class="col-sm-6">
+            <custom-input ref="firstName" label="Prénom" type="text" v-model="user.firstName" placeholder="John" min="1"></custom-input>
+          </div>
+          <div class="col-sm-6">
+            <custom-input ref="lastName" label="Nom" type="text" v-model="user.lastName" placeholder="Doe" min="1"></custom-input>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <custom-input ref="email" label="Email" type="text" v-model="user.email" placeholder="nom@domain.ch" min="1" regexp="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" errorMessage="L'email n'est pas valide."></custom-input>
+        <div class="row">
+          <div class="col-sm-6">
+            <custom-input ref="tel" label="Téléphone" type="tel" v-model="user.tel" placeholder="022 123 45 67" regexp="^[+]?[0-9]{9,12}$" min="1" errorMessage="Le numéro n'est pas valide."></custom-input>
+          </div>
+          <div class="col-sm-6">
+            <custom-input ref="email" label="Email" type="text" v-model="user.email" placeholder="nom@domain.ch" min="1" regexp="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" errorMessage="L'email n'est pas valide."></custom-input>
+          </div>
         </div>
-      </div>
-      <custom-input ref="message" label="Message" type="text" v-model="message" placeholder="Bonjour..." min="100" max="2000" rows="10"></custom-input>
-      <custom-button ref="sendButton" @click="sendMessage" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
-    </form>
+        <custom-input ref="message" label="Message" type="text" v-model="message" placeholder="Bonjour..." min="100" max="2000" rows="10"></custom-input>
+        <custom-button ref="sendButton" @click="sendMessage" text="Envoyer" pendingText="Envoi" successText="Envoyé"></custom-button>
+      </form>
+    </div>
   </div>
 </template>
 

@@ -4,6 +4,17 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
 @import "../../node_modules/font-awesome/scss/font-awesome";
 @import "../../node_modules/pikaday/css/pikaday.css";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .section {
   @include clearfix;
   border-bottom-style: solid;
@@ -21,6 +32,10 @@ $fa-font-path:"../../node_modules/font-awesome/fonts";
 
 .shadow {
   box-shadow: 0px 2px 5px #ccc;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 // 1200px correspond to bootstrap's grid width for the xl breakpoint,
@@ -59,6 +74,11 @@ $star-color: #FFBB00;
 .bg-reservation {
   background-image: url("../assets/reservation.jpg");
   background-position: right;
+}
+
+.bg-contact {
+  background-image: url("../assets/contact.jpg");
+  background-position: top left;
 }
 
 .bg-lightgrey {

@@ -41,22 +41,52 @@
             </div>
           </div>
           <div>
-            <label class="custom-control custom-checkbox" title="Avec notre service attente vous n’avez plus de soucis à vous faire. Nos chauffeurs vous attendent dans le véhicule, salle d’attente, ou autre lieu et vous ramène à destination une fois votre rendez-vous terminé.">
+            <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false; options.waiting = true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><i class="fa fa-pause-circle-o mx-1" aria-hidden="true"></i> Attente</span>
-              <small id="attenteHelp" class="form-text text-muted mx-2">Prix: 10fr/30min</small>
+              <small id="attenteHelp" class="form-text text-muted ml-2">Prix: 10fr/30min</small>
             </label>
+            <i class="fa fa-info-circle text-primary pointer mr-5" aria-hidden="true" data-toggle="modal" data-target="#attenteInfo"></i>
+            <div class="modal fade" id="attenteInfo" tabindex="-1" role="dialog" aria-labelledby="attenteInfoTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="attenteInfoTitle">Attente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Avec notre service attente vous n’avez plus de soucis à vous faire. Nos chauffeurs vous attendent dans le véhicule, salle d’attente, ou autre lieu et vous ramène à destination une fois votre rendez-vous terminé.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div>
-            <label class="custom-control custom-checkbox" title="Un de nos chauffeurs viens vous cherchez au domicile et vous accompagnes pour vos achats (magasin alimentaire, marché local, magasin de meuble, ...).
-
-Nous ne restons pas uniquement dans le véhicule a attendre, nous venons avec vous afin de vous aider à porter vos achats et les places dans nos véhicules qui sont aisément adaptés pour placer toutes dimensions d’achat effectuer. Pour finir nous vous raccompagnons à domicile et vous aidons a déposer les commissions effectuées chez vous.">
+            <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false; options.comission = true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Comission</span>
               <small id="comissionHelp" class="form-text text-muted mx-2">Prix: 15fr/30min</small>
             </label>
+            <i class="fa fa-info-circle text-primary pointer" aria-hidden="true" data-toggle="modal" data-target="#comissionInfo"></i>
+            <div class="modal fade" id="comissionInfo" tabindex="-1" role="dialog" aria-labelledby="comissionInfoTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="comissionInfoTitle">Comission</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Un de nos chauffeurs viens vous cherchez au domicile et vous accompagnes pour vos achats (magasin alimentaire, marché local, magasin de meuble, ...).</p>
+                    <p>Nous ne restons pas uniquement dans le véhicule a attendre, nous venons avec vous afin de vous aider à porter vos achats et les places dans nos véhicules qui sont aisément adaptés pour placer toutes dimensions d’achat effectuer. Pour finir nous vous raccompagnons à domicile et vous aidons a déposer les commissions effectuées chez vous.</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div>
             <label class="custom-control custom-checkbox">
@@ -67,7 +97,7 @@ Nous ne restons pas uniquement dans le véhicule a attendre, nous venons avec vo
             </label>
           </div>
           <div class="form-group">
-            <custom-input ref="comment" label="Commentaire" type="text" v-model="comment" placeholder="Bonjour..." max="2000" rows="5"></custom-input>
+            <custom-input ref="comment" label="Commentaire" type="text" v-model="comment" :placeholder="commentText" max="2000" rows="8"></custom-input>
           </div>
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="isSubscribing">
@@ -105,7 +135,12 @@ let data = {
   comment: '',
   directionsService: null,
   directionsDisplay: null,
-  isSubscribing: true
+  isSubscribing: true,
+  commentText: `Bonjour,
+
+Merci de nous faire part des éventuelles informations supplémentaires, entre autre si la personne est en fauteuil roulant ou par exemple si nous devons monter chercher la personne à son domicile.
+
+D’autres détails telle que « Code d’entrée » ou « appeler le client une fois que nous sommes là » peuvent être aussi annoté.`
 }
 export default {
   name: 'home',
