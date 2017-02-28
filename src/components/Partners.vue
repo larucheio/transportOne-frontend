@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <h3 class="text-uppercase">Partenaires</h3>
+    <h3 class="text-uppercase mb-4">Partenaires</h3>
     <p>Transport One est en collaboration avec de nombreux instituts, mairies, foyers, associations, fondations et autres clients privés.</p>
     <p>Voici une sélection de nos fidèles partenaires avec qui nous travaillons depuis plus de dix ans.</p>
     <div class="row">
@@ -41,7 +41,7 @@
       <br><i class="fa fa-envelope mr-1"></i><a href='mailto:email@domain.com' class="text-muted">oasis@ge.pro-senectute.ch</a>
     </p>
     <div class="section my-5">
-      <h4 class="text-uppercase">Votre avis nous intéresse</h4>
+      <h4 class="text-uppercase mb-4">Votre avis nous intéresse</h4>
       <p>Soucieux d’améliorer nos services en continu, votre opinion permet à Transport One de s’impliquer totalement dans la dynamique client et de rester toujours au fait de vos préoccupations et de vos souhaits.</p>
       <p>C’est pourquoi nous vous encourageons vivement à noter la qualité de votre transport et de nous laisser votre avis !</p>
       <span v-for="id in 5" @click="rating(id)">

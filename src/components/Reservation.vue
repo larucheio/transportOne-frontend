@@ -47,7 +47,7 @@
               <span class="custom-control-description"><i class="fa fa-pause-circle-o mx-1" aria-hidden="true"></i> Attente</span>
               <small id="attenteHelp" class="form-text text-muted ml-2">Prix: 10fr/30min</small>
             </label>
-            <i class="fa fa-info-circle text-primary" aria-hidden="true" data-toggle="modal" data-target="#attenteInfo"></i>
+            <i class="fa fa-info-circle text-primary pointer mr-5" aria-hidden="true" data-toggle="modal" data-target="#attenteInfo"></i>
             <div class="modal fade" id="attenteInfo" tabindex="-1" role="dialog" aria-labelledby="attenteInfoTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -71,7 +71,7 @@
               <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Comission</span>
               <small id="comissionHelp" class="form-text text-muted mx-2">Prix: 15fr/30min</small>
             </label>
-            <i class="fa fa-info-circle text-primary" aria-hidden="true" data-toggle="modal" data-target="#comissionInfo"></i>
+            <i class="fa fa-info-circle text-primary pointer" aria-hidden="true" data-toggle="modal" data-target="#comissionInfo"></i>
             <div class="modal fade" id="comissionInfo" tabindex="-1" role="dialog" aria-labelledby="comissionInfoTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">

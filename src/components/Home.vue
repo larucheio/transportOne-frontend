@@ -39,8 +39,8 @@
       </div>
     </div>
     <div class="container">
-      <div class="py-3">
-        <h3 class="text-uppercase">Nos services</h3>
+      <div class="py-5">
+        <h3 class="text-uppercase mb-4">Nos services</h3>
         <p>Transport One permet à tout le monde d’être transporté et accompagné durant leurs déplacements dans notre rayonnante ville de Genève et de ses environs.</p>
         <p>Notre engagement professionnel garantit un service ponctuel de qualité ainsi qu’un accompagnement soigné et sécurisé avec chauffeur privé.</p>
         <p>Laissez-vous donc transporter sereinement tout en faisant des économies !</p>
@@ -56,7 +56,7 @@
             </ul>
           </div>
           <div class="col-md-6 mt-5">
-            <p>A destination de:</p>
+            <p>A destination de :</p>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-map-marker"></i>Rendez-vous médicaux</li>
               <li><i class="fa-li fa fa-map-marker"></i>Centre de bien-être</li>
