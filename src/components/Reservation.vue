@@ -45,7 +45,7 @@
               <input type="checkbox" class="custom-control-input" aria-describedby="attenteHelp" v-model.lazy="options.waiting" @click="options.comission = false; options.waiting = true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><i class="fa fa-pause-circle-o mx-1" aria-hidden="true"></i> Attente</span>
-              <small id="attenteHelp" class="form-text text-muted ml-2">Prix: 10fr/30min</small>
+              <small id="attenteHelp" class="form-text text-muted ml-2">CHF 10.-/30min</small>
             </label>
             <i class="fa fa-info-circle text-primary pointer mr-5" aria-hidden="true" data-toggle="modal" data-target="#attenteInfo"></i>
             <div class="modal fade" id="attenteInfo" tabindex="-1" role="dialog" aria-labelledby="attenteInfoTitle" aria-hidden="true">
@@ -69,7 +69,7 @@
               <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false; options.comission = true">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Comission</span>
-              <small id="comissionHelp" class="form-text text-muted mx-2">Prix: 15fr/30min</small>
+              <small id="comissionHelp" class="form-text text-muted mx-2">CHF 15.-/30min</small>
             </label>
             <i class="fa fa-info-circle text-primary pointer" aria-hidden="true" data-toggle="modal" data-target="#comissionInfo"></i>
             <div class="modal fade" id="comissionInfo" tabindex="-1" role="dialog" aria-labelledby="comissionInfoTitle" aria-hidden="true">
@@ -92,8 +92,8 @@
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="peopleHelp" v-model.lazy="options.groupe">
               <span class="custom-control-indicator"></span>
-              <span class="custom-control-description"><i class="fa fa-users mx-1" aria-hidden="true"></i>Plus de 3 personnes</span>
-              <small id="peopleHelp" class="form-text text-muted mx-2">Prix: 10fr</small>
+              <span class="custom-control-description"><i class="fa fa-users mx-1" aria-hidden="true"></i>Plus de 8 personnes</span>
+              <small id="peopleHelp" class="form-text text-muted mx-2">Véhicule supplémentaire</small>
             </label>
           </div>
           <div class="form-group">
@@ -108,8 +108,8 @@
             <h4>Détails</h4>
             <p>Trajet(s): {{displayedPrice}} CHF</p>
             <p>{{displayedGroupePrice}}</p>
-            <strong>Prix total: {{totalPrice}} CHF</strong>
-            <small class="form-text text-muted">Le prix ne contient pas le prix pour l'attente ou la comission. Il sera ajouté en fonction de la durée d'une de ces options.</small>
+            <strong>Prix total: {{totalPrice}} CHF (TTC)</strong>
+            <small class="form-text text-muted" v-show="options.waiting || options.comission">Le prix n'inclut pas le prix de l'attente ou commission. Il sera ajouté en fonction de la durée réalisée de l'option choisit.</small>
           </div>
           <custom-button ref="bookButton" @click="book" text="Réserver" pendingText="Réserve" successText="Réservé"></custom-button>
         </form>
@@ -302,12 +302,12 @@ Commentaire: ${this.comment}`
   computed: {
     totalPrice: function () {
       let total = this.price
-      if (this.options.groupe) total += 10
+      if (this.options.groupe) total *= 2
       if (this.price === 0) return `à partir de ${total + 25}`
       return total
     },
     displayedGroupePrice: function () {
-      return this.options.groupe ? 'Plus de 3 personnes: 10 CHF' : ''
+      return this.options.groupe ? 'Plus de 8 personnes: Prix doublé' : ''
     },
     displayedPrice: function () {
       return this.price !== 0 ? this.price : 'à partir de 25'
