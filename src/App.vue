@@ -44,7 +44,7 @@
           <div class="col-lg-3 py-2">
             <p class="m-0">
               <i class="fa fa-phone mr-1"></i>079 200 28 28
-              <br><i class="fa fa-envelope mr-1"></i><a href='mailto:email@domain.com' class="text-muted">email@domain.com</a>
+              <br><i class="fa fa-envelope mr-1"></i><a href='mailto:info@transportone.ch' class="text-muted">info@transportone.ch</a>
             </p>
           </div>
           <div class="col-lg-3 py-2">

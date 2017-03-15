@@ -8,6 +8,7 @@
           <br><i class="fa fa-female mr-1" aria-hidden="true"></i>Bernadette LANGEL
           <br><i class="fa fa-male  mr-1" aria-hidden="true"></i>Timothy Taylor LANGEL
           <br><i class="fa fa-phone mr-1"></i>079 200 28 28
+          <br><i class="fa fa-envelope mr-1"></i><a href='mailto:info@transportone.ch' class="text-muted">info@transportone.ch</a>
         </h5>
       </div>
     </div>
