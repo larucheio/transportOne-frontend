@@ -47,10 +47,10 @@
               <br><i class="fa fa-envelope mr-1"></i><a href='mailto:info@transportone.ch' class="text-muted">info@transportone.ch</a>
             </p>
           </div>
-          <div class="col-lg-3 py-2">
+          <div class="col-lg-3 py-2 invisible">
             <a href='https://www.facebook.com'><img alt='Suivé nous sur Facebook' src='./assets/FB-f-Logo__blue_50.png'/></a>
           </div>
-          <div class="col-lg-3 py-2">
+          <div class="col-lg-3 py-2 invisible">
             <a href='https://play.google.com/store/apps/details?id=maxirozay.com.keymax&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Disponible sur Google Play' src='./assets/google-play-badge.png'/></a>
           </div>
           <div class="col-lg-3 py-2">
