@@ -202,9 +202,11 @@ export default {
       this.travel2.date = this.$refs.pricing.travel2.date
       this.travel2.time = this.$refs.pricing.travel2.time
       this.travel2.exist = this.$refs.pricing.travel2.exist
-      this.priceDetailsTravel1 = `De ${this.$refs.pricing.travel1.from.name} à ${this.$refs.pricing.travel1.to.name}, le ${this.travel1.date} à ${this.travel1.time}.`
-      if (this.travel2.exist) this.priceDetailsTravel2 = `De ${this.$refs.pricing.travel2.from.name} à ${this.$refs.pricing.travel2.to.name}, le ${this.travel2.date} à ${this.travel2.time}.`
-      else this.priceDetailsTravel2 = 'Aucun'
+      if (this.$refs.pricing.regions.length > 0) {
+        this.priceDetailsTravel1 = `De ${this.$refs.pricing.travel1.from.name} à ${this.$refs.pricing.travel1.to.name}, le ${this.travel1.date} à ${this.travel1.time}.`
+        if (this.travel2.exist) this.priceDetailsTravel2 = `De ${this.$refs.pricing.travel2.from.name} à ${this.$refs.pricing.travel2.to.name}, le ${this.travel2.date} à ${this.travel2.time}.`
+        else this.priceDetailsTravel2 = 'Aucun'
+      }
     },
     book () {
       this.getDevisData()

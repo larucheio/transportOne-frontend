@@ -190,6 +190,7 @@ export default {
       this.getPrice()
     },
     getPrice: function () {
+      if (this.regions.length == 0) return
       if ((this.travel1.date === '' || this.travel1.time === '') || (this.travel2.exist === true && (this.travel2.date === '' || this.travel2.time === ''))) {
         this.$refs.getPriceButton.showError( 'Veuillez remplir tous les champs.')
         return
