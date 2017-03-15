@@ -13,7 +13,7 @@ const options = {
   language: 'fr',
   auth: {
     params: {
-      scope: 'openid offline_access app_metadata'
+      scope: 'openid app_metadata'
     },
     sso: true
   }
