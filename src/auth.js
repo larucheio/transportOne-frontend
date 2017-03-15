@@ -37,7 +37,7 @@ export default {
         lock.hide()
       })
     })
-    lock.on('authorizaton_error', (error) => {
+    lock.on('authorization_error', (error) => {
       alert("Erreur: echec de l'authorisation.")
     })
   },
