@@ -4,5 +4,5 @@ module.exports = {
   AUTH0_DOMAIN: '"transportone.eu.auth0.com"',
   PUBLIC_EMAIL: '"info@transportone.ch"',
   SITE_URL: '"https://transportone.ch/#/"',
-  AWS_API: '"https://827bgp5jxk.execute-api.us-east-1.amazonaws.com/dev/"'
+  AWS_API: '"https://x1ckxqbe9g.execute-api.us-east-1.amazonaws.com/dev/"'
 }
