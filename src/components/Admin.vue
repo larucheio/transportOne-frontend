@@ -168,10 +168,12 @@ export default {
           if (a.priority + a.name < b.priority + b.name) return -1
           return 1
         })
-        this.priceToSet.from = this.regions[0]
-        this.priceToSet.to = this.regions[0]
-        this.regionToSet = this.regions[0]
-        this.getPrice()
+        if (this.regions.length > 0) {
+          this.priceToSet.from = this.regions[0]
+          this.priceToSet.to = this.regions[0]
+          this.regionToSet = this.regions[0]
+          this.getPrice()
+        }
       }, (response) => {})
     },
     getPrice: function () {
