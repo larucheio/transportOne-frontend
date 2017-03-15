@@ -4,7 +4,7 @@ import {router} from './router.js'
 const options = {
   theme: {
     primaryColor: '#f39c12',
-    logo: 'http://www.transport-one.ch/static/logo.svg'
+    logo: 'https://transportone.ch/static/logo.svg'
   },
   languageDictionary: {
     emailInputPlaceholder: 'name@email.com',
@@ -37,7 +37,7 @@ export default {
         lock.hide()
       })
     })
-    lock.on('authorizaton_error', (error) => {
+    lock.on('authorization_error', (error) => {
       alert("Erreur: echec de l'authorisation.")
     })
   },

@@ -29,7 +29,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## Environnement variable
 
-Copy `example.prod.env.js` to `prod.env.js` and fill up correctly the variables.
+Don't forget to fill up correctly the variables in `prod.env.js`.
 
 ## API
 
