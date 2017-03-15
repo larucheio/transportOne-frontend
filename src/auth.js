@@ -47,7 +47,7 @@ export default {
   },
   isAdmin () {
     const profile = localStorage.getItem('profile')
-    if (profile && JSON.parse(profile).app_metadata.isAdmin) return true
+    if (profile && JSON.parse(profile).app_metadata && JSON.parse(profile).app_metadata.isAdmin) return true
     return false
   },
   getAuthHeader () {
