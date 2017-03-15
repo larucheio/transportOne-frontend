@@ -4,7 +4,7 @@ import {router} from './router.js'
 const options = {
   theme: {
     primaryColor: '#f39c12',
-    logo: 'http://www.transport-one.ch/static/logo.svg'
+    logo: 'https://transportone.ch/static/logo.svg'
   },
   languageDictionary: {
     emailInputPlaceholder: 'name@email.com',
