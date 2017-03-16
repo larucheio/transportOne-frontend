@@ -253,7 +253,8 @@ export default {
     },
     listReservations: function () {
       const filter = this.reservations.filter ? `?filter=${this.reservations.filter}` : ''
-      this.$http.get(`${api.reservations}/${this.reservations.period}${filter}`)
+      this.$http.get(`${api.reservations}/${this.reservations.period}${filter}`,
+      {headers: {Authorization: `Bearer ${auth.getToken()}`}})
       .then((response) => {
         this.$refs.listReservations.showSuccess()
         this.reservations.reservations = response.body.data.Items
