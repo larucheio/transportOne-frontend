@@ -13,7 +13,7 @@ const options = {
   language: 'fr',
   auth: {
     params: {
-      scope: 'openid offline_access app_metadata'
+      scope: 'openid app_metadata'
     },
     sso: true
   }
@@ -96,7 +96,9 @@ export default {
       ).then((response) => {
         localStorage.setItem('id_token', response.body.id_token)
         localStorage.setItem('id_token_life', Date.now() + (response.body.expire_in - 1000) * 1000)
-      }, (response) => {})
+      }, (response) => {
+        this.logout()
+      })
     }
   }
 }
