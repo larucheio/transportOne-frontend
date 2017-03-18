@@ -6,7 +6,7 @@
         <h2 class="text-white pt-5 text-uppercase"><strong>TRANSPORT AGRéE DE PERSONNES ÂgéES – ADULTES – ENFANTS</strong></h2>
         <h2 class="text-white pt-3 text-uppercase"><strong>AVEC OU SANS MOBILITé REDUITE</strong></h2>
         <h2 class="text-white pt-3 text-uppercase"><strong>LA GARANTIE DU MEILLEUR PRIX SUR GENÈVE</strong></h2>
-        <h2 class="text-white pt-3 text-uppercase"><strong>TEL : 079.200.28.28</strong></h2>
+        <h2 class="text-white pt-3 text-uppercase"><strong>TEL : 079.900.28.28</strong></h2>
       </div>
     </div>
     <div class="container py-5 mb-4">
