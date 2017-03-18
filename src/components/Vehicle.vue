@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <h4 class="text-uppercase mb-4">Véhicule et équipement</h4>
+    <h2 class="text-uppercase mb-4">Véhicule et équipement</h2>
     <div class="row py-3">
       <div class="col-md-2 text-center">
         <i class="fa fa-hand-paper-o fa-5x" aria-hidden="true"></i>

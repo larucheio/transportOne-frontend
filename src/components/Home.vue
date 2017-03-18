@@ -3,32 +3,32 @@
     <div class="jumbotron jumbotron-fluid bg-intro bg-cover-xl">
       <div class="container text-center">
         <pricing class="py-5"></pricing>
-        <h3 class="text-white pt-5 text-uppercase"><strong>TRANSPORT AGRéE DE PERSONNES ÂgéES – ADULTES – ENFANTS</strong></h3>
-        <h3 class="text-white pt-3 text-uppercase"><strong>AVEC OU SANS MOBILITé REDUITE</strong></h3>
-        <h3 class="text-white pt-3 text-uppercase"><strong>LA GARANTIE DU MEILLEUR PRIX SUR GENÈVE</strong></h3>
-        <h3 class="text-white pt-3 text-uppercase"><strong>TEL : 079.200.28.28</strong></h3>
+        <h2 class="text-white pt-5 text-uppercase"><strong>TRANSPORT AGRéE DE PERSONNES ÂgéES – ADULTES – ENFANTS</strong></h2>
+        <h2 class="text-white pt-3 text-uppercase"><strong>AVEC OU SANS MOBILITé REDUITE</strong></h2>
+        <h2 class="text-white pt-3 text-uppercase"><strong>LA GARANTIE DU MEILLEUR PRIX SUR GENÈVE</strong></h2>
+        <h2 class="text-white pt-3 text-uppercase"><strong>TEL : 079.200.28.28</strong></h2>
       </div>
     </div>
     <div class="container py-5 mb-4">
       <div class="row text-center p-3">
         <div class="col-md-3">
           <i class="fa fa-usd fa-5x" aria-hidden="true"></i>
-          <h5 class="font-weight-bold m-3 text-uppercase">GARANTIE DU PRIX LE PLUS BAS</h5>
+          <h2 class="font-weight-bold m-3 text-uppercase h4">GARANTIE DU PRIX LE PLUS BAS</h2>
           <p>Faites donc des économies avec nos prix les plus bas sur Genève ! Nos tarifs sont fixes et garantis lors de la réservation.</p>
         </div>
         <div class="col-md-3">
           <i class="fa fa-hand-paper-o fa-5x" aria-hidden="true"></i>
-          <h5 class="font-weight-bold m-3 text-uppercase">Annulation gratuite</h5>
+          <h2 class="font-weight-bold m-3 text-uppercase h4">Annulation gratuite</h2>
           <p>Un changement de programme? aucun souci. Vous disposez d&#39;une annulation gratuite avec un préavis de 24 heures. (par téléphone ou par email).</p>
         </div>
         <div class="col-md-3">
           <i class="fa fa-clock-o fa-5x" aria-hidden="true"></i>
-          <h5 class="font-weight-bold m-3 text-uppercase">Service dans les temps</h5>
+          <h2 class="font-weight-bold m-3 text-uppercase h4">Service dans les temps</h2>
           <p>Grace à notre connaissance minutieuse de Genève et de ses environs, nous garantissons un service ponctuel et une arrivée à destination dans les temps.</p>
         </div>
         <div class="col-md-3">
           <i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i>
-          <h5 class="font-weight-bold m-3 text-uppercase">Chauffeurs professionels</h5>
+          <h2 class="font-weight-bold m-3 text-uppercase h4">Chauffeurs professionels</h2>
           <p>L&#39;ensemble de nos chauffeurs Transport One sont assurés et agréés. C’est pourquoi nous garantissons un service soigné, sécurisé et de qualité.</p>
         </div>
       </div>
@@ -40,7 +40,7 @@
     </div>
     <div class="container">
       <div class="py-5">
-        <h3 class="text-uppercase mb-4">Nos services</h3>
+        <h2 class="text-uppercase mb-4">Nos services</h2>
         <p>Transport One permet à tout le monde d’être transporté et accompagné durant leurs déplacements dans notre rayonnante ville de Genève et de ses environs.</p>
         <p>Notre engagement professionnel garantit un service ponctuel de qualité ainsi qu’un accompagnement soigné et sécurisé avec chauffeur privé.</p>
         <p>Laissez-vous donc transporter sereinement tout en faisant des économies !</p>

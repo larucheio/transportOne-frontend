@@ -42,7 +42,7 @@
       <br><i class="fa fa-envelope mr-1"></i><a href='mailto:email@domain.com' class="text-muted">oasis@ge.pro-senectute.ch</a>
     </p>
     <div class="section my-5">
-      <h4 class="text-uppercase mb-4">Votre avis nous intéresse</h4>
+      <h2 class="text-uppercase mb-4">Votre avis nous intéresse</h2>
       <p>Soucieux d’améliorer nos services en continu, votre opinion permet à Transport One de s’impliquer totalement dans la dynamique client et de rester toujours au fait de vos préoccupations et de vos souhaits.</p>
       <p>C’est pourquoi nous vous encourageons vivement à noter la qualité de votre transport et de nous laisser votre avis !</p>
       <span v-for="id in 5" @click="rating(id)">
