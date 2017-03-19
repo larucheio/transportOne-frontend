@@ -6,29 +6,31 @@
         <div class="to-bar2"></div>
         <div class="to-bar3"></div>
       </div>
-      <router-link class="navbar-brand" to="/home"><img src="./assets/logo.svg" height="30" alt="logo"></router-link>
+      <router-link class="navbar-brand mr-2" to="/home"><img src="./assets/logo.svg" height="30" alt="logo"></router-link>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/reservation">Reservation</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/partenaires">Partenaires & avis</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/contact">Contact</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
-          </li>
-        </ul>
+        <h1 class="h6 my-auto">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/reservation">Reservation</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/partenaires">Partenaires & avis</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/contact">Contact</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
+            </li>
+          </ul>
+        </h1>
         <div class="navbar-nav ml-auto">
           <button class="btn btn-primary"  @click="login" v-if="!isAuthenticated">Se connecter</button>
           <button class="btn btn-primary"  @click="logout" v-else="isAuthenticated">Se déconnecter</button>
