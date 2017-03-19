@@ -42,7 +42,7 @@
       <br><i class="fa fa-envelope mr-1"></i><a href='mailto:email@domain.com' class="text-muted">oasis@ge.pro-senectute.ch</a>
     </p>
     <div class="section my-5">
-      <h4 class="text-uppercase mb-4">Votre avis nous intéresse</h4>
+      <h2 class="text-uppercase mb-4">Votre avis nous intéresse</h2>
       <p>Soucieux d’améliorer nos services en continu, votre opinion permet à Transport One de s’impliquer totalement dans la dynamique client et de rester toujours au fait de vos préoccupations et de vos souhaits.</p>
       <p>C’est pourquoi nous vous encourageons vivement à noter la qualité de votre transport et de nous laisser votre avis !</p>
       <span v-for="id in 5" @click="rating(id)">
@@ -65,9 +65,7 @@ import api from '../../config/api.js'
 const Review = {
   template: `
     <div class="media">
-      <div class="media-left">
-        <img :src="review.userPic" onerror="this.style.display='none'" class="rounded" style="margin-right:10px; margin-bottom:10px;">
-      </div>
+      <img :src="review.userPic" onerror="this.style.display='none'" class="d-flex rounded mr-2 mb-2" height="50" width="50" alt="profile picture">
       <div class="media-body">
         <div class="d-flex justify-content-start">
           <strong  class="mr-2">{{review.username}}</strong>
@@ -179,10 +177,11 @@ export default {
         return
       }
       const profile = auth.getProfile()
+      const username = profile.username ? profile.username : profile.given_name
       this.$http.post(`${api.reviews}`,
         {'userId': profile.user_id,
         'review': this.newReview,
-        'username': profile.given_name,
+        'username': username,
         'userPic': profile.picture,
         'createdAt': Date.now().toString(),
         'period': new Date().getFullYear().toString(),
@@ -193,7 +192,7 @@ export default {
           this.reviews.unshift(
             {'userId': profile.user_id,
             'review': this.newReview,
-            'username': profile.given_name,
+            'username': username,
             'userPic': profile.picture,
             'createdAt': Date.now().toString(),
             'period': new Date().getFullYear().toString(),
