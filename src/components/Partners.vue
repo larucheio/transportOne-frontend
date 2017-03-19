@@ -65,9 +65,7 @@ import api from '../../config/api.js'
 const Review = {
   template: `
     <div class="media">
-      <div class="media-left">
-        <img :src="review.userPic" onerror="this.style.display='none'" class="rounded" style="margin-right:10px; margin-bottom:10px;">
-      </div>
+      <img :src="review.userPic" onerror="this.style.display='none'" class="d-flex rounded mr-2 mb-2" height="50" width="50" alt="profile picture">
       <div class="media-body">
         <div class="d-flex justify-content-start">
           <strong  class="mr-2">{{review.username}}</strong>
