@@ -177,10 +177,11 @@ export default {
         return
       }
       const profile = auth.getProfile()
+      const username = profile.username ? profile.username : profile.given_name
       this.$http.post(`${api.reviews}`,
         {'userId': profile.user_id,
         'review': this.newReview,
-        'username': profile.given_name,
+        'username': username,
         'userPic': profile.picture,
         'createdAt': Date.now().toString(),
         'period': new Date().getFullYear().toString(),
@@ -191,7 +192,7 @@ export default {
           this.reviews.unshift(
             {'userId': profile.user_id,
             'review': this.newReview,
-            'username': profile.given_name,
+            'username': username,
             'userPic': profile.picture,
             'createdAt': Date.now().toString(),
             'period': new Date().getFullYear().toString(),
