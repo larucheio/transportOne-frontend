@@ -9,6 +9,10 @@ html {
   min-height: 100%;
 }
 
+textarea {
+  white-space: pre-wrap;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
