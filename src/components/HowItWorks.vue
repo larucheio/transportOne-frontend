@@ -2,7 +2,7 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-6 py-2">
-        <img class="mx-auto d-block img-fluid" src="../assets/screenshot1.png">
+        <img class="mx-auto d-block img-fluid" src="../assets/screenshot-reservation.jpg">
       </div>
       <div class="col-md-6 py-2">
         <h2>RÉSERVER SUR NOTRE SITE, APPLICATION OU PAR TÉLÉPHONE</h2>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="row mt-3">
-      <img class="mx-auto d-block hidden-md-up img-fluid" src="../assets/screenshot2.png">
+      <img class="mx-auto d-block hidden-md-up img-fluid" src="../assets/screenshot-options.jpg">
       <div class="col-md-6 py-2">
         <h2>VOTRE COURSE</h2>
         <p>Transport One met à disposition les services suivant, sélectionner les au besoin.</p>
@@ -28,12 +28,12 @@
         <p>D’autres détails telle que "Code d’entrée" ou "appeler le client une fois que nous sommes là" peuvent être aussi annoté.</p>
       </div>
       <div class="col-md-6 py-2 hidden-sm-down">
-        <img class="mx-auto d-block img-fluid" src="../assets/screenshot2.png">
+        <img class="mx-auto d-block img-fluid" src="../assets/screenshot-options.jpg">
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-md-6 py-2">
-        <img class="mx-auto d-block img-fluid" src="../assets/screenshot3.png">
+        <img class="mx-auto d-block img-fluid" src="../assets/screenshot-map.jpg">
       </div>
       <div class="col-md-6 py-2">
         <h2>RESERVATION</h2>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="row mt-3">
-      <img class="mx-auto d-block hidden-md-up img-fluid" src="../assets/screenshot4.png">
+      <img class="mx-auto d-block hidden-md-up img-fluid" src="../assets/screenshot-login.jpg">
       <div class="col-md-6 py-2">
         <h2>ÉVALUEZ VOTRE COURSE</h2>
         <p>Une fois votre course terminée, n’hésitez pas à nous donner votre avis. Pour ce faire, connectez-vous avec votre compte <strong>Facebook/Gmail</strong> ou créez tout simplement un compte Transport One et laissé votre avis sur la page <a href="#/partenaires">Partneraires & avis</a>.</p>
@@ -51,7 +51,7 @@
         <p>Vous pouvez également évaluer votre course en laissant un avis sur notre page <strong>Facebook</strong>.</p>
       </div>
       <div class="col-md-6 py-2 hidden-sm-down">
-        <img class="mx-auto d-block img-fluid" src="../assets/screenshot4.png">
+        <img class="mx-auto d-block img-fluid" src="../assets/screenshot-login.jpg">
       </div>
     </div>
   </div>

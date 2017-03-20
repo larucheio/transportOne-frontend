@@ -2,11 +2,11 @@
   <div>
     <div class="jumbotron jumbotron-fluid bg-intro bg-cover-xl">
       <div class="container text-center">
-        <pricing class="py-5"></pricing>
-        <h2 class="text-white pt-5 text-uppercase"><strong>TRANSPORT AGRéE DE PERSONNES ÂgéES – ADULTES – ENFANTS</strong></h2>
-        <h2 class="text-white pt-3 text-uppercase"><strong>AVEC OU SANS MOBILITé RéDUITE</strong></h2>
-        <h2 class="text-white pt-3 text-uppercase"><strong>LA GARANTIE DU MEILLEUR PRIX SUR GENÈVE</strong></h2>
-        <h2 class="text-white pt-3 text-uppercase"><strong>TEL : 079.900.28.28</strong></h2>
+        <pricing class="py-2 py-md-5"></pricing>
+        <h2 class="text-white pt-4 pt-md-5 text-uppercase"><strong>TRANSPORT AGRéE DE PERSONNES ÂgéES – ADULTES – ENFANTS</strong></h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>AVEC OU SANS MOBILITé RéDUITE</strong></h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>LA GARANTIE DU MEILLEUR PRIX SUR GENÈVE</strong></h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>TEL : 079.900.28.28</strong></h2>
       </div>
     </div>
     <div class="container py-5 mb-4">
