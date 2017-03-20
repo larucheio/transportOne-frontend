@@ -15,8 +15,8 @@
       </div>
     </div>
     <div class="row mt-3">
-      <img class="mx-auto d-block hidden-md-up img-fluid" src="../assets/screenshot-options.jpg" alt="options">
       <div class="col-md-6 py-2">
+        <img class="pb-3 mx-auto d-block hidden-md-up img-fluid" src="../assets/screenshot-options.jpg" alt="options">
         <h2>VOTRE COURSE</h2>
         <p>Transport One met à disposition les services suivant, sélectionner les au besoin.</p>
         <ul>
@@ -43,8 +43,8 @@
       </div>
     </div>
     <div class="row mt-3">
-      <img class="mx-auto d-block hidden-md-up img-fluid" src="../assets/screenshot-login.jpg" alt="login">
       <div class="col-md-6 py-2">
+        <img class="pb-3 mx-auto d-block hidden-md-up img-fluid" src="../assets/screenshot-login.jpg" alt="login">
         <h2>ÉVALUEZ VOTRE COURSE</h2>
         <p>Une fois votre course terminée, n’hésitez pas à nous donner votre avis. Pour ce faire, connectez-vous avec votre compte <strong>Facebook/Gmail</strong> ou créez tout simplement un compte Transport One et laissé votre avis sur la page <a href="#/partenaires">Partneraires & avis</a>.</p>
         <p>Il vous suffit de noter et de laisser un commentaire sur la prestation et la qualité de notre service.</p>
