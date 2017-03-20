@@ -37,10 +37,10 @@
     </ul>
     <div class="row py-3">
       <div class="col-md-6">
-        <img src="../assets/car.jpg" class="img-fluid" alt="car">
+        <img src="../assets/car.jpg" class="img-fluid" alt="véhicule">
       </div>
       <div class="col-md-6">
-        <img src="../assets/inside-car.jpg" class="img-fluid" alt="inside car">
+        <img src="../assets/inside-car.jpg" class="img-fluid" alt="intérieur du véhicule">
       </div>
     </div>
     <h1 class="py-5 text-center">Laissez-vous donc transporter sereinement !</h1>
