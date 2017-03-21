@@ -17,7 +17,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon">De</span>
-              <select class="form-control btn-block" v-model.lazy="travel1.from" @change="getPrice">
+              <select class="form-control custom-select" v-model.lazy="travel1.from" @change="getPrice">
                 <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
               </select>
             </div>
@@ -27,7 +27,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon">à</span>
-              <select class="form-control btn-block" v-model.lazy="travel1.to" @change="getPrice">
+              <select class="form-control custom-select" v-model.lazy="travel1.to" @change="getPrice">
                 <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
               </select>
             </div>
@@ -47,7 +47,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-              <select class="form-control btn-block" v-model.lazy="travel1.time">
+              <select class="form-control custom-select" v-model.lazy="travel1.time">
                 <option v-for="time in times" v-bind:value="time">{{time}}</option>
               </select>
             </div>
@@ -61,7 +61,7 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon">De</span>
-                <select class="form-control btn-block" v-model.lazy="travel2.from" @change="getPrice">
+                <select class="form-control custom-select" v-model.lazy="travel2.from" @change="getPrice">
                   <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
                 </select>
               </div>
@@ -71,7 +71,7 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon">à</span>
-                <select class="form-control btn-block" v-model.lazy="travel2.to" @change="getPrice">
+                <select class="form-control custom-select" v-model.lazy="travel2.to" @change="getPrice">
                   <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
                 </select>
               </div>
@@ -91,7 +91,7 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                <select class="form-control btn-block" v-model.lazy="travel2.time">
+                <select class="form-control custom-select" v-model.lazy="travel2.time">
                   <option v-for="time in times" v-bind:value="time">{{time}}</option>
                 </select>
               </div>
