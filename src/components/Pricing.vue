@@ -120,10 +120,14 @@ if (month < 10) month = `0${month}`
 date = `${date.getFullYear()}-${month}-${day}`
 
 let times = []
-for (let i = currentTime + 1; i < currentTime + 25; i++) {
-  times.push(`${i%24}:00`)
+const hoursPerDay = 13
+const startTime = 6
+const lastHour = startTime + hoursPerDay
+if (currentTime < startTime || currentTime > lastHour) currentTime = startTime - 1
+for (let i = currentTime + 1; i < lastHour; i++) {
+  times.push(`${i % lastHour}:00`)
   for (let j = 15; j < 60; j+=15) {
-    times.push(`${i%24}:${j}`)
+    times.push(`${i % lastHour}:${j}`)
   }
 }
 
