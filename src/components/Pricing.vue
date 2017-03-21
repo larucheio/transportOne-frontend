@@ -17,7 +17,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon">De</span>
-              <select class="form-control custom-select" v-model.lazy="travel1.from" @change="getPrice">
+              <select id="selectTravel1From" class="form-control custom-select" v-model.lazy="travel1.from" @change="getPrice">
                 <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
               </select>
             </div>
@@ -27,7 +27,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon">à</span>
-              <select class="form-control custom-select" v-model.lazy="travel1.to" @change="getPrice">
+              <select id="selectTravel1To" class="form-control custom-select" v-model.lazy="travel1.to" @change="getPrice">
                 <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
               </select>
             </div>
@@ -61,7 +61,7 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon">De</span>
-                <select class="form-control custom-select" v-model.lazy="travel2.from" @change="getPrice">
+                <select id="selectTravel2From" class="form-control custom-select" v-model.lazy="travel2.from" @change="getPrice">
                   <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
                 </select>
               </div>
@@ -71,7 +71,7 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon">à</span>
-                <select class="form-control custom-select" v-model.lazy="travel2.to" @change="getPrice">
+                <select id="selectTravel2To" class="form-control custom-select" v-model.lazy="travel2.to" @change="getPrice">
                   <option v-for="region in regions" v-bind:value="region">{{region.name}}</option>
                 </select>
               </div>
@@ -133,7 +133,8 @@ let data = {
   travel2: {from: null, to: null, date: date, time: times[0], exist: false},
   price: 0,
   isLoading: false,
-  times: times
+  times: times,
+  updateReturn: 0
 }
 export default {
   props: {
@@ -182,10 +183,23 @@ export default {
       i18n: i18n
     })
   },
+  updated () {
+    // Each rendering updates 2 times and if we change the following value the elements are not rendered and nothing happens
+    if (this.updateReturn > 0) {
+      this.updateReturn--
+      if (this.updateReturn === 0) {
+          document.getElementById("selectTravel2From").selectedIndex = document.getElementById("selectTravel1To").selectedIndex
+          document.getElementById("selectTravel2To").selectedIndex = document.getElementById("selectTravel1From").selectedIndex
+        }
+    }
+  },
   methods: {
     changeTravelType: function (isRoundTrip) {
       if (this.travel2.exist === isRoundTrip) return
       this.travel2.exist = isRoundTrip
+      this.travel2.from = this.travel1.to
+      this.travel2.to = this.travel1.from
+      this.updateReturn = 2
       this.$emit('changeTravelType', isRoundTrip)
       this.getPrice()
     },
