@@ -112,7 +112,6 @@ import pikaday from 'pikaday'
 import i18n from '../i18n/fr-CH.json'
 
 let date = new Date()
-let currentTime = date.getHours()
 let day = date.getDate()
 if (day < 10) day = `0${day}`
 let month = date.getMonth()
@@ -123,13 +122,13 @@ let times = []
 const hoursPerDay = 13
 const startTime = 6
 const lastHour = startTime + hoursPerDay
-if (currentTime < startTime || currentTime > lastHour) currentTime = startTime - 1
-for (let i = currentTime + 1; i < lastHour; i++) {
+for (let i = startTime; i < lastHour; i++) {
   times.push(`${i % lastHour}:00`)
   for (let j = 15; j < 60; j+=15) {
     times.push(`${i % lastHour}:${j}`)
   }
 }
+times.push(`${lastHour}:00`)
 
 let data = {
   regions: null,
