@@ -177,7 +177,9 @@ export default {
       }, (response) => {})
     },
     getPrice: function () {
-      this.$http.get(`${api.pricing}/${this.priceToSet.from.id}@${this.priceToSet.to.id}`)
+    let places = [this.priceToSet.from.id, this.priceToSet.to.id]
+    places = places.sort()
+      this.$http.get(`${api.pricing}/${places[0]}@${places[1]}`)
       .then((response) => {
         this.priceToSet.price = response.body.CHF
       }, (response) => {
@@ -190,7 +192,9 @@ export default {
         this.$refs.editPriceSaveButton.showError('Veuillez remplir tous les champs.')
         return
       }
-      this.$http.post(`${api.pricing}/${this.priceToSet.from.id}@${this.priceToSet.to.id}`,
+      let places = [this.priceToSet.from.id, this.priceToSet.to.id]
+      places = places.sort()
+      this.$http.post(`${api.pricing}/${places[0]}@${places[1]}`,
         {'CHF': this.priceToSet.price},
         {headers: {Authorization: `Bearer ${auth.getToken()}`}})
       .then((response) => {
