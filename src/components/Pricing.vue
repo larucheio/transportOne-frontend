@@ -215,11 +215,15 @@ export default {
       this.price = 0
       let price
       this.isLoading = true
-      this.$http.get(`${api.pricing}/${this.travel1.from.id}@${this.travel1.to.id}`)
+      let places = [this.travel1.from.id, this.travel1.to.id]
+      places = places.sort()
+      this.$http.get(`${api.pricing}/${places[0]}@${places[1]}`)
       .then((response) => {
         price = response.body.CHF
         if (this.travel2.exist) {
-          this.$http.get(`${api.pricing}/${this.travel2.from.id}@${this.travel2.to.id}`)
+          let places = [this.travel2.from.id, this.travel2.to.id]
+          places = places.sort()
+          this.$http.get(`${api.pricing}/${places[0]}@${places[1]}`)
           .then((response) => {
             this.isLoading = false
             this.price = price + response.body.CHF
