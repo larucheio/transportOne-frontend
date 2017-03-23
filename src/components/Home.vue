@@ -3,10 +3,10 @@
     <div class="jumbotron jumbotron-fluid bg-intro bg-cover-xl">
       <div class="container text-center">
         <pricing class="py-2 py-md-5"></pricing>
-        <h2 class="text-white pt-4 pt-md-5 text-uppercase"><strong>Transport agréé de personnes âgées - adultes - enfants</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>Avec ou sans mobilité réduite</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>La garantie du meilleur prix sur Genève</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>Tel : 079.900.28.28</strong></h2>
+        <h2 class="text-white pt-4 pt-md-5 text-uppercase font-weight-bold">Transport agréé de personnes âgées - adultes - enfants</h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold">Avec ou sans mobilité réduite</h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold">La garantie du meilleur prix sur Genève</h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold">Tel : 079.900.28.28</h2>
       </div>
     </div>
     <div class="container py-5 mb-4">
