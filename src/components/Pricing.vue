@@ -4,10 +4,10 @@
   <div class="card bg-transparent text-center">
     <div class="btn-group btn-block" data-toggle="buttons">
       <label id="oneWayToggle" class="btn btn-toggle w-50" @click="changeTravelType(false)">
-        <input type="radio">Aller Simple
+        <input type="radio">Aller simple
       </label>
       <label id="roundTripToggle" class="btn btn-toggle w-50" @click="changeTravelType(true)">
-        <input type="radio">Aller-Retour
+        <input type="radio">Aller-retour
       </label>
     </div>
     <form class="card-block bg-white-08 rounded-bottom">

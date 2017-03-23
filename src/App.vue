@@ -18,10 +18,10 @@
               <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/reservation">Reservation</router-link>
+              <router-link class="nav-link" to="/reservation">Réservation</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/partenaires">Partenaires & avis</router-link>
+              <router-link class="nav-link" to="/partenaires">Partenaires &amp; avis</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/contact">Contact</router-link>

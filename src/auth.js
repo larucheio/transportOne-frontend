@@ -29,7 +29,7 @@ export default {
       localStorage.setItem('refresh_token', authResult.refreshToken)
       lock.getProfile(authResult.idToken, function (error, profile) {
         if (error) {
-          alert("Erreur: votre profile n'a pas été trouvé.")
+          alert("Erreur: votre profil n'a pas été trouvé.")
           return
         }
         localStorage.setItem('profile', JSON.stringify(profile))
@@ -38,7 +38,7 @@ export default {
       })
     })
     lock.on('authorization_error', (error) => {
-      alert("Erreur: echec de l'authorisation.")
+      alert("Erreur: échec de l'autorisation.")
     })
   },
   isAuthenticated () {

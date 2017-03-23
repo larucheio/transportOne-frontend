@@ -58,7 +58,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <p>Avec notre service attente vous n’avez plus de soucis à vous faire. Nos chauffeurs vous attendent dans le véhicule, salle d’attente, ou autre lieu et vous ramène à destination une fois votre rendez-vous terminé.</p>
+                    <p>Avec notre service attente, vous n’avez plus de soucis à vous faire. Nos chauffeurs vous attendent dans le véhicule, salle d’attente, ou autre lieu et vous ramènent à destination une fois votre rendez-vous terminé.</p>
                   </div>
                 </div>
               </div>
@@ -82,7 +82,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <p>Un de nos chauffeurs viens vous cherchez au domicile et vous accompagnes pour vos achats (magasin alimentaire, marché local, magasin de meuble, ...).</p>
+                    <p>Un de nos chauffeurs vient vous chercher au domicile et vous accompagne pour vos achats (magasin alimentaire, marché local, magasin de meuble...).</p>
                     <p>Nous ne restons pas uniquement dans le véhicule a attendre, nous venons avec vous afin de vous aider à porter vos achats et les places dans nos véhicules qui sont aisément adaptés pour placer toutes dimensions d’achat effectuer. Pour finir nous vous raccompagnons à domicile et vous aidons a déposer les commissions effectuées chez vous.</p>
                 </div>
               </div>
@@ -127,7 +127,7 @@ import auth from '../auth'
 let data = {
   user: {firstName: '', lastName: '', tel: '', email: ''},
   price: 0,
-  priceDetailsTravel1: 'Faite une demande de devis pour connaitre le prix exact',
+  priceDetailsTravel1: 'Faites une demande de devis pour connaitre le prix exact',
   priceDetailsTravel2: 'Aucun',
   travel1: {from: '', to: '', date: null, time: null},
   travel2: {from: '', to: '', date: null, time: null, exist: false},
@@ -138,9 +138,9 @@ let data = {
   isSubscribing: true,
   commentText: `Bonjour,
 
-Merci de nous faire part des éventuelles informations supplémentaires, entre autre si la personne est en fauteuil roulant ou par exemple si nous devons monter chercher la personne à son domicile.
+Merci de nous faire part des éventuelles informations supplémentaires, entre autres si la personne est en fauteuil roulant ou par exemple si nous devons monter chercher la personne à son domicile.
 
-D’autres détails telle que « Code d’entrée » ou « appeler le client une fois que nous sommes là » peuvent être aussi annoté.`
+D’autres détails tels que « Code d’entrée » ou « appeler le client une fois que nous sommes là » peuvent être aussi annotés.`
 }
 export default {
   name: 'home',
@@ -309,7 +309,7 @@ Commentaire: ${this.comment}`
       return total
     },
     displayedGroupePrice: function () {
-      return this.options.groupe ? 'Plus de 8 personnes: Prix doublé' : ''
+      return this.options.groupe ? 'Plus de 8 personnes: prix doublé' : ''
     },
     displayedPrice: function () {
       return this.price !== 0 ? this.price : 'à partir de 25'
