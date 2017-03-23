@@ -3,17 +3,17 @@
     <div class="jumbotron jumbotron-fluid bg-intro bg-cover-xl">
       <div class="container text-center">
         <pricing class="py-2 py-md-5"></pricing>
-        <h2 class="text-white pt-4 pt-md-5 text-uppercase"><strong>TRANSPORT AGRéE DE PERSONNES ÂgéES – ADULTES – ENFANTS</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>AVEC OU SANS MOBILITé RéDUITE</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>LA GARANTIE DU MEILLEUR PRIX SUR GENÈVE</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>TEL : 079.900.28.28</strong></h2>
+        <h2 class="text-white pt-4 pt-md-5 text-uppercase"><strong>Transport agréé de personnes âgées - adultes - enfants</strong></h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>Avec ou sans mobilité réduite</strong></h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>La garantie du meilleur prix sur Genève</strong></h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>Tel : 079.900.28.28</strong></h2>
       </div>
     </div>
     <div class="container py-5 mb-4">
       <div class="row text-center p-3">
         <div class="col-md-3">
           <i class="fa fa-usd fa-5x" aria-hidden="true"></i>
-          <h2 class="font-weight-bold m-3 text-uppercase h4">GARANTIE DU PRIX LE PLUS BAS</h2>
+          <h2 class="font-weight-bold m-3 text-uppercase h4">Garantie du prix le plus bas</h2>
           <p>Faites donc des économies avec nos prix les plus bas sur Genève ! Nos tarifs sont fixes et garantis lors de la réservation.</p>
         </div>
         <div class="col-md-3">
