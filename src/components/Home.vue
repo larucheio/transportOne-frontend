@@ -6,7 +6,7 @@
         <h2 class="text-white pt-4 pt-md-5 text-uppercase font-weight-bold">Transport agréé de personnes âgées - adultes - enfants</h2>
         <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold">Avec ou sans mobilité réduite</h2>
         <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold">La garantie du meilleur prix sur Genève</h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold"><a href="tel:+41799002828" class="text-white">Tel : 079.900.28.28</a></h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold"><a href="tel:+41799002828" class="text-white">Tel : 079 900 28 28</a></h2>
       </div>
     </div>
     <div class="container py-5 mb-4">

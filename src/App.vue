@@ -6,7 +6,7 @@
         <div class="to-bar2"></div>
         <div class="to-bar3"></div>
       </div>
-      <router-link class="navbar-brand mr-2" to="/home"><img src="./assets/logo.svg" height="30" alt="logo"></router-link>
+      <router-link class="navbar-brand mr-2" to="/home"><img src="./assets/logo.svg" height="30" alt="Transport One logo"></router-link>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <h1 class="h6 my-auto">
