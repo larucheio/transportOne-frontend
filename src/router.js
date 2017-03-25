@@ -20,5 +20,6 @@ const routes = [
   { path: '/*', redirect: '/home' }
 ]
 export const router = new VueRouter({
+  mode: 'history',
   routes // short for routes: routes
 })
