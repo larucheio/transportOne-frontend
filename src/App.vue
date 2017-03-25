@@ -18,10 +18,10 @@
               <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/reservation">Reservation</router-link>
+              <router-link class="nav-link" to="/reservation">Réservation</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/partenaires">Partenaires & avis</router-link>
+              <router-link class="nav-link" to="/partenaires">Partenaires &amp; avis</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/contact">Contact</router-link>
@@ -45,7 +45,7 @@
         <div class="row text-center align-items-center">
           <div class="col-lg-3 py-2">
             <p class="m-0">
-              <i class="fa fa-phone mr-1"></i>079 900 28 28
+              <i class="fa fa-phone mr-1"></i><a href="tel:+41799002828" class="text-muted">079 900 28 28</a>
               <br><i class="fa fa-envelope mr-1"></i><a href='mailto:info@transportone.ch' class="text-muted">info@transportone.ch</a>
             </p>
           </div>

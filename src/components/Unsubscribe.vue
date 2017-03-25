@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <div class="section">
-      <h1>Désinscription à la newsletter</h1>
+      <h1>Désinscription de la newsletter</h1>
       <div class="form-group">
         <custom-input ref="email" label="Email à désinscrire" type="text" v-model="email" errorMessage="L'email n'est pas valide." placeholder="nom@domain.ch" min="1" regexp="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"></custom-input>
         <custom-button ref="unsubscribeButton" @click="unsubscribe" text="Désinscrire" pendingText="Désinscription" successText="Désinscrit"></custom-button>

@@ -3,33 +3,33 @@
     <div class="jumbotron jumbotron-fluid bg-intro bg-cover-xl">
       <div class="container text-center">
         <pricing class="py-2 py-md-5"></pricing>
-        <h2 class="text-white pt-4 pt-md-5 text-uppercase"><strong>TRANSPORT AGRéE DE PERSONNES ÂgéES – ADULTES – ENFANTS</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>AVEC OU SANS MOBILITé RéDUITE</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>LA GARANTIE DU MEILLEUR PRIX SUR GENÈVE</strong></h2>
-        <h2 class="text-white pt-2 pt-md-3 text-uppercase"><strong>TEL : 079.900.28.28</strong></h2>
+        <h2 class="text-white pt-4 pt-md-5 text-uppercase font-weight-bold">Transport agréé de personnes âgées - adultes - enfants</h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold">Avec ou sans mobilité réduite</h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold">La garantie du meilleur prix sur Genève</h2>
+        <h2 class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold"><a href="tel:+41799002828" class="text-white">Tel : 079.900.28.28</a></h2>
       </div>
     </div>
     <div class="container py-5 mb-4">
       <div class="row text-center p-3">
         <div class="col-md-3">
           <i class="fa fa-usd fa-5x" aria-hidden="true"></i>
-          <h2 class="font-weight-bold m-3 text-uppercase h4">GARANTIE DU PRIX LE PLUS BAS</h2>
+          <h2 class="font-weight-bold m-3 text-uppercase h4">Garantie du prix le plus bas</h2>
           <p>Faites donc des économies avec nos prix les plus bas sur Genève ! Nos tarifs sont fixes et garantis lors de la réservation.</p>
         </div>
         <div class="col-md-3">
           <i class="fa fa-hand-paper-o fa-5x" aria-hidden="true"></i>
           <h2 class="font-weight-bold m-3 text-uppercase h4">Annulation gratuite</h2>
-          <p>Un changement de programme? aucun souci. Vous disposez d&#39;une annulation gratuite avec un préavis de 24 heures. (par téléphone ou par email).</p>
+          <p>Un changement de programme? Aucun souci. Vous disposez d'une annulation gratuite avec un préavis de 24 heures. (par téléphone ou par email).</p>
         </div>
         <div class="col-md-3">
           <i class="fa fa-clock-o fa-5x" aria-hidden="true"></i>
           <h2 class="font-weight-bold m-3 text-uppercase h4">Service dans les temps</h2>
-          <p>Grace à notre connaissance minutieuse de Genève et de ses environs, nous garantissons un service ponctuel et une arrivée à destination dans les temps.</p>
+          <p>Grâce à notre connaissance minutieuse de Genève et de ses environs, nous garantissons un service ponctuel et une arrivée à destination dans les temps.</p>
         </div>
         <div class="col-md-3">
           <i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i>
           <h2 class="font-weight-bold m-3 text-uppercase h4">Chauffeurs professionels</h2>
-          <p>L&#39;ensemble de nos chauffeurs Transport One sont assurés et agréés. C’est pourquoi nous garantissons un service soigné, sécurisé et de qualité.</p>
+          <p>L'ensemble de nos chauffeurs Transport One sont assurés et agréés. C’est pourquoi nous garantissons un service soigné, sécurisé et de qualité.</p>
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@
             </ul>
           </div>
           <div class="col-md-6 mt-5">
-            <p>A destination de :</p>
+            <p>À destination de :</p>
             <ul class="fa-ul">
               <li><i class="fa-li fa fa-map-marker"></i>Rendez-vous médicaux</li>
               <li><i class="fa-li fa fa-map-marker"></i>Centre de bien-être</li>
@@ -71,7 +71,7 @@
             <i class="fa fa-pause-circle-o fa-4x" aria-hidden="true"></i>
           </div>
           <div class="col-md-11">
-            <p>Avec notre service "<strong>attente</strong>" vous n’avez plus de soucis à vous faire. Nos chauffeurs vous attendent dans le véhicule, salle d’attente, ou autre lieu et vous ramène à destination une fois votre rendez-vous terminé.</p>
+            <p>Avec notre service « <strong>attente</strong> » vous n’avez plus de soucis à vous faire. Nos chauffeurs vous attendent dans le véhicule, salle d’attente, ou autre lieu et vous ramènent à destination une fois votre rendez-vous terminé.</p>
           </div>
         </div>
         <div class="row my-3">
@@ -79,8 +79,8 @@
             <i class="fa fa-shopping-basket fa-3x" aria-hidden="true"></i>
           </div>
           <div class="col-md-11">
-            <p>De plus, cette année nous avons mis en place un service nommé “<strong>Commission</strong>” :</p>
-            <p>Un de nos chauffeurs vient vous chercher à votre domicile et vous accompagne pour vos achats (magasin alimentaire, marché local, magasin de meuble, ...).</p>
+            <p>De plus, cette année nous avons mis en place un service nommé « <strong>Commission</strong> » :</p>
+            <p>Un de nos chauffeurs vient vous chercher à votre domicile et vous accompagne pour vos achats (magasin alimentaire, marché local, magasin de meuble...).</p>
             <p>De plus, nous ne restons pas uniquement dans le véhicule à attendre, nous venons avec vous afin de vous aider à porter vos achats et les placer dans nos véhicules qui sont aisément adaptés pour transporter toutes dimensions d’achat effectué. Pour finir, nous vous raccompagnons à domicile et vous aidons à déposer les commissions réalisées chez vous.</p>
           </div>
         </div>
