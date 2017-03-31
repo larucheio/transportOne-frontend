@@ -1,1 +1,1 @@
-Sitemap: https://transportone.ch/static/sitemap.txt
+Sitemap: https://transportone.ch/static/sitemap.xml
