@@ -3,13 +3,13 @@
     <div class="jumbotron jumbotron-fluid bg-contact bg-cover-xl">
       <div class="container">
         <img src="../assets/logo.svg" alt="Logo" height="100" width="200">
-        <h2 class="h4">15 chemin de vers
+        <p class="h4">15 chemin de vers
           <br>1228 plan-les-Ouates
           <br><br><i class="fa fa-female mr-1" aria-hidden="true"></i>Bernadette LANGEL
           <br><i class="fa fa-male  mr-1" aria-hidden="true"></i>Timothy Taylor LANGEL
           <br><br><i class="fa fa-phone mr-1"></i><a href="tel:+41799002828" class="text-muted">079 900 28 28</a>
           <br><i class="fa fa-envelope mr-1"></i><a href='mailto:info@transportone.ch' class="text-muted">info@transportone.ch</a>
-        </h2>
+        </p>
       </div>
     </div>
     <div class="container mt-5">
