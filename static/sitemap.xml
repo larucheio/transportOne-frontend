@@ -2,30 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://transportone.ch/</loc>
-    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://transportone.ch/home</loc>
-    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://transportone.ch/commentcamarche</loc>
-    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://transportone.ch/vehicule</loc>
-    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://transportone.ch/reservation</loc>
-    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://transportone.ch/partenaires</loc>
-    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://transportone.ch/contact</loc>
-    <changefreq>daily</changefreq>
   </url>
 </urlset>
