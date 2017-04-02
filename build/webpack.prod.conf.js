@@ -48,7 +48,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         ? 'index.html'
         : config.build.index,
       template: 'index.html',
-      inject: true,
+      inject: 'head',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
