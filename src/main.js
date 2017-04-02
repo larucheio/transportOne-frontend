@@ -18,9 +18,12 @@ window.Tether = require('tether')
 require('bootstrap')
 
 const App = Vue.extend(require('./App.vue'))
-new App({
-  router
-}).$mount('#app')
+
+document.addEventListener('DOMContentLoaded', function () {
+  new App({
+    router
+  }).$mount('#app')
+})
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {

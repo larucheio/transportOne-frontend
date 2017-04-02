@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <nav id="navbar" class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded px-3 text-uppercase bg-lightgrey">
       <div class="to-navbar-toggler navbar-toggler-right hidden-lg-up px-3" @click="animeHamburgerButton" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <div class="to-bar1"></div>
@@ -129,6 +129,8 @@ $(document).ready(function () {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: red;
+  color:red;
 }
 
 .component-fade-enter-active, .component-fade-leave-active {
