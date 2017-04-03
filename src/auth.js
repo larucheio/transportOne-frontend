@@ -64,7 +64,7 @@ export default {
     localStorage.removeItem('id_token_expiration')
     localStorage.removeItem('refreshToken')
     router.app.refreshAuthStatus()
-    router.push('/home')
+    router.push('/')
   },
   getProfile () {
     return JSON.parse(localStorage.getItem('profile'))
