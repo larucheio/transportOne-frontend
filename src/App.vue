@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <nav id="navbar" class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded px-3 text-uppercase bg-lightgrey">
       <div class="to-navbar-toggler navbar-toggler-right hidden-lg-up px-3" @click="animeHamburgerButton" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <div class="to-bar1"></div>
@@ -122,15 +122,6 @@ $(document).ready(function () {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .1s ease;
 }
