@@ -1,5 +1,5 @@
 import Auth0Lock from 'auth0-lock'
-import router from './router.js'
+import {router} from './router.js'
 
 const options = {
   theme: {
