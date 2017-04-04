@@ -1,12 +1,12 @@
 <template>
-  <div class="card">
-    <div class="card-header p-0">
-      <ul class="nav nav-pills card-header-pills m-0">
+  <div class="card text-center">
+    <div class="card-header p-0 border-0">
+      <ul class="nav nav-tabs card-header-tabs m-0">
         <li class="nav-item w-50">
-          <a class="nav-link active" href="#">Aller simple</a>
+          <a class="nav-link border-0 active" href="#">Aller simple</a>
         </li>
         <li class="nav-item w-50">
-          <a class="nav-link" href="#">Aller retour</a>
+          <a class="nav-link border-0" href="#">Aller retour</a>
         </li>
       </ul>
     </div>
@@ -15,12 +15,12 @@
 
       <div class="row">
         <div class="col-sm-6 form-group">
-          <select class="custom-select" v-model="travel1.from" @change="getPrice">
+          <select class="custom-select w-100" v-model="travel1.from" @change="getPrice">
             <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
           </select>
         </div>
         <div class="col-sm-6 form-group">
-          <select class="custom-select" v-model="travel1.to" @change="getPrice">
+          <select class="custom-select w-100" v-model="travel1.to" @change="getPrice">
             <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
           </select>
         </div>
