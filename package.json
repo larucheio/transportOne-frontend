@@ -1,7 +1,7 @@
 {
   "name": "transportone",
-  "version": "1.0.0",
-  "description": "Transport One web application",
+  "version": "0.0.0",
+  "description": "Transport One - Web Application",
   "author": "Julien Grünhagel <julien@laruche.io>",
   "private": true,
   "dependencies": {
@@ -16,6 +16,7 @@
     "precommit": "npm run lint"
   },
   "devDependencies": {
+    "axios": "^0.16.0",
     "babel-eslint": "^7.1.1",
     "eslint": "^3.15.0",
     "eslint-config-standard": "^6.2.1",
