@@ -4,6 +4,9 @@
 
 ## Build Setup
 
+Copy `config.sample.json` to `config.json` and populate the file with the
+correct variables.
+
 ``` bash
 # install dependencies
 $ npm install # Or yarn install
