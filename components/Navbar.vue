@@ -1,7 +1,11 @@
 <template>
   <header>
     <nuxt-link to="/">Accueil</nuxt-link>
-    <nuxt-link to="/partenaires">Partenaires</nuxt-link>
+    <nuxt-link to="/commentcamarche">Comment ça marche?</nuxt-link>
+    <nuxt-link to="/vehicule">Véhicule</nuxt-link>
+    <nuxt-link to="/reservation">Réservation</nuxt-link>
+    <nuxt-link to="/partenaires">Partenaires & avis</nuxt-link>
+    <nuxt-link to="/contact">Contact</nuxt-link>
     <nuxt-link v-if="isAdmin" to="/admin">Admin</nuxt-link>
     <nuxt-link v-if="!isAuthenticated" to="/auth/sign-in">Sign In</nuxt-link>
     <nuxt-link v-else to="/auth/sign-off">Sign Off</nuxt-link>
