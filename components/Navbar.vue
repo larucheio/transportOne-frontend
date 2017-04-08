@@ -10,6 +10,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
+          <nuxt-link to="/commentcamarche" class="nav-link">Comment ça marche?</nuxt-link>
+        </li>
+        <li class="nav-item">
           <nuxt-link to="/vehicule" class="nav-link">Véhicule</nuxt-link>
         </li>
         <li class="nav-item">
