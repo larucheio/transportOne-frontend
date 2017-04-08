@@ -3,10 +3,10 @@
     <div class="card-header p-0 border-0">
       <ul class="nav nav-tabs card-header-tabs m-0">
         <li class="nav-item w-50">
-          <a class="nav-link border-0 active" href="#">Aller simple</a>
+          <a class="nav-link border-0 active" href="#" data-toggle="tab" @click="roundTrip(false)">Aller simple</a>
         </li>
         <li class="nav-item w-50">
-          <a class="nav-link border-0" href="#">Aller retour</a>
+          <a class="nav-link border-0" href="#" data-toggle="tab" @click="roundTrip(true)">Aller retour</a>
         </li>
       </ul>
     </div>
@@ -15,12 +15,12 @@
 
       <div class="row">
         <div class="col-sm-6 form-group">
-          <select class="custom-select w-100" v-model="travel1.from" @change="getPrice">
+          <select class="custom-select w-100" v-model="travel[0].from" @change="getPrice">
             <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
           </select>
         </div>
         <div class="col-sm-6 form-group">
-          <select class="custom-select w-100" v-model="travel1.to" @change="getPrice">
+          <select class="custom-select w-100" v-model="travel[0].to" @change="getPrice">
             <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
           </select>
         </div>
@@ -31,6 +31,32 @@
         </div>
         <div class="col-sm-6 form-group">
           <input type="time" class="form-control" name="" value="">
+        </div>
+      </div>
+
+      <div v-if="isRoundTrip">
+        <div>
+          Retour
+        </div>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <select class="custom-select w-100" v-model="travel[1].from" @change="getPrice">
+              <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
+            </select>
+          </div>
+          <div class="col-sm-6 form-group">
+            <select class="custom-select w-100" v-model="travel[1].to" @change="getPrice">
+              <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <input type="date" class="form-control" name="" value="">
+          </div>
+          <div class="col-sm-6 form-group">
+            <input type="time" class="form-control" name="" value="">
+          </div>
         </div>
       </div>
 
@@ -47,7 +73,11 @@ export default {
   data: () => ({
     regions: [],
     price: '',
-    travel1: {from: null, to: null}
+    travel: [
+      {from: null, to: null},
+      {from: null, to: null}
+    ],
+    isRoundTrip: false
   }),
   created () {
     axios
@@ -58,18 +88,29 @@ export default {
           return a.priority + a.name < b.priority + b.name ? -1 : 1
         })
         this.regions = regions
-        this.travel1 = {from: regions[0].id, to: regions[0].id}
+        this.travel = [
+          {from: regions[0].id, to: regions[0].id},
+          {from: regions[0].id, to: regions[0].id}
+        ]
         this.getPrice()
       })
   },
   methods: {
+    getPriceForATravel (travel) {
+      return axios.get(`${api.pricing}/${travel.from}@${travel.to}`)
+    },
     getPrice () {
-      let places = [this.travel1.from, this.travel1.to]
-      axios
-        .get(`${api.pricing}/${places[0]}@${places[1]}`)
-        .then((res) => {
-          this.price = res.data.CHF
-        })
+      let x = this
+      axios.all([this.getPriceForATravel(this.travel[0]), this.getPriceForATravel(this.travel[1])])
+        .then(axios.spread(function (travel1, travel2) {
+          x.price = 0
+          x.price += travel1.data.CHF
+          x.isRoundTrip ? x.price += travel2.data.CHF : null
+        }))
+    },
+    roundTrip: function (isRoundTrip) {
+      this.isRoundTrip = isRoundTrip
+      this.getPrice()
     }
   }
 }
