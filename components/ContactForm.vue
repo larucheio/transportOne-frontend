@@ -16,7 +16,7 @@
         <input type="tel" class="form-control" id="tel">
       </div>
       <div class="form-group col-md-6">
-        <label for="email">Email address</label>
+        <label for="email">Adresse e-mail</label>
         <input type="email" class="form-control" id="email">
       </div>
     </div>
