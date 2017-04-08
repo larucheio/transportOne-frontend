@@ -1,3 +1,5 @@
+const webpack = require('webpack')
+
 module.exports = {
   /*
   ** Router config
@@ -16,15 +18,15 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' }
-    ],
-    script: [
-      { src: 'https://code.jquery.com/jquery-3.1.1.slim.min.js' },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js' },
-      { src: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  /*
+  ** CSS configuration
+  */
+  css: [
+    { src: '~assets/css/main.css', lang: 'scss' }
+  ],
   /*
   ** Customize the progress-bar color
   */
@@ -33,6 +35,16 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['jquery', 'tether', 'bootstrap'],
+    plugins: [
+      // set shortcuts as global for bootstrap
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        'Tether': 'tether'
+      })
+    ],
     /*
     ** Run ESLINT on save
     */
@@ -47,6 +59,12 @@ module.exports = {
       }
     }
   },
+  /*
+  ** Plugins
+  */
+  plugins: [
+    '~plugins/bootstrap.js'
+  ],
   /*
   ** Environement variables
   */
