@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid py-0 py-sm-5">
       <div class="container rounded">
         <div class="row">
           <div class="col-sm-6 text-sm-right">
