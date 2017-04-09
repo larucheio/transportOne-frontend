@@ -5,7 +5,8 @@ module.exports = {
   ** Router config
   */
   router: {
-    middleware: 'check-auth'
+    middleware: 'check-auth',
+    linkActiveClass: 'active'
   },
   /*
   ** Headers of the page
