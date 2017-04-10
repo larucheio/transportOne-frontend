@@ -1,4 +1,4 @@
-const root = 'https://x1ckxqbe9g.execute-api.eu-west-1.amazonaws.com/dev/'
+const root = 'https://blq5mtwbv5.execute-api.eu-west-1.amazonaws.com/dev/'
 
 export default {
   pricing: `${root}pricing`,
