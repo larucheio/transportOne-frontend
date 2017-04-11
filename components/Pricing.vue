@@ -97,15 +97,16 @@ export default {
   },
   methods: {
     getPriceForATravel (travel) {
-      return axios.get(`${api.pricing}/${travel.from}@${travel.to}`)
+      let places = [travel.from, travel.to].sort()
+      return axios.get(`${api.pricing}/${places[0]}@${places[1]}`)
     },
     getPrice () {
       let x = this
       axios.all([this.getPriceForATravel(this.travel[0]), this.getPriceForATravel(this.travel[1])])
         .then(axios.spread(function (travel1, travel2) {
           x.price = 0
-          x.price += travel1.data.CHF
-          x.isRoundTrip ? x.price += travel2.data.CHF : null
+          x.price += parseInt(travel1.data.CHF)
+          x.isRoundTrip ? x.price += parseInt(travel2.data.CHF) : null
         }))
     },
     roundTrip: function (isRoundTrip) {
