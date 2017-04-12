@@ -67,12 +67,45 @@
         C’est pourquoi nous vous encourageons vivement à noter la qualité de
         votre transport et à nous laisser votre avis !
       </p>
-      <textarea name="name" rows="8" cols="80"></textarea>
-      <button type="submit" name="button">Envoyer</button>
+
+      <submit-review @updateReviewsList="updateReviewsList"/>
 
       <hr>
       <h2>Avis</h2>
-      <p>review placeholder</p>
+      <div v-for="review in reviews">
+        <review :review="review"/>
+      </div>
     </section>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+import api from '~components/apiroutes.js'
+
+import Review from '~components/reviews/Review.vue'
+import SubmitReview from '~components/reviews/Submit.vue'
+
+export default {
+  data: () => ({
+    reviews: [],
+    reviewsPeriod: new Date().getFullYear()
+  }),
+  created: function () {
+    this.updateReviewsList()
+  },
+  methods: {
+    updateReviewsList: function () {
+      axios
+        .get(`${api.reviews}/${this.reviewsPeriod}`)
+        .then((res) => {
+          this.reviews = res.data.data.Items
+        })
+    }
+  },
+  components: {
+    Review,
+    SubmitReview
+  }
+}
+</script>
