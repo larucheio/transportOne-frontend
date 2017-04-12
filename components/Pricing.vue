@@ -15,22 +15,47 @@
 
       <div class="row">
         <div class="col-sm-6 form-group">
-          <select class="custom-select w-100" v-model="travel[0].from" @change="getPrice">
-            <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
-          </select>
+          <el-select v-model="travel1_from" filterable placeholder="De" class="w-100">
+            <el-option
+              v-for="region in regions"
+              :label="region.name"
+              :value="region.id">
+            </el-option>
+          </el-select>
         </div>
         <div class="col-sm-6 form-group">
-          <select class="custom-select w-100" v-model="travel[0].to" @change="getPrice">
-            <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
-          </select>
+          <el-select v-model="travel1_to" filterable placeholder="À" class="w-100">
+            <el-option
+              v-for="region in regions"
+              :label="region.name"
+              :value="region.id">
+            </el-option>
+          </el-select>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6 form-group">
-          <input type="date" class="form-control" name="" value="">
+          <el-date-picker
+            v-model="travel1_date"
+            type="date"
+            placeholder="Date"
+            :clearable="false"
+            class="w-100"
+            >
+          </el-date-picker>
         </div>
         <div class="col-sm-6 form-group">
-          <input type="time" class="form-control" name="" value="">
+          <el-time-select
+            v-model="travel1_time"
+            :picker-options="{
+              start: '06:00',
+              step: '00:15',
+              end: '19:00'
+            }"
+            placeholder="Heure"
+            :clearable="false"
+            class="w-100">
+          </el-time-select>
         </div>
       </div>
 
@@ -40,22 +65,47 @@
         </div>
         <div class="row">
           <div class="col-sm-6 form-group">
-            <select class="custom-select w-100" v-model="travel[1].from" @change="getPrice">
-              <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
-            </select>
+            <el-select v-model="travel2_from" filterable placeholder="De" class="w-100">
+              <el-option
+                v-for="region in regions"
+                :label="region.name"
+                :value="region.id">
+              </el-option>
+            </el-select>
           </div>
           <div class="col-sm-6 form-group">
-            <select class="custom-select w-100" v-model="travel[1].to" @change="getPrice">
-              <option v-for="region in regions" v-bind:value="region.id">{{region.name}}</option>
-            </select>
+            <el-select v-model="travel2_to" filterable placeholder="À" class="w-100">
+              <el-option
+                v-for="region in regions"
+                :label="region.name"
+                :value="region.id">
+              </el-option>
+            </el-select>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6 form-group">
-            <input type="date" class="form-control" name="" value="">
+            <el-date-picker
+              v-model="travel2_date"
+              type="date"
+              placeholder="Date"
+              :clearable="false"
+              class="w-100"
+              >
+            </el-date-picker>
           </div>
           <div class="col-sm-6 form-group">
-            <input type="time" class="form-control" name="" value="">
+            <el-time-select
+              v-model="travel2_time"
+              :picker-options="{
+                start: '06:00',
+                step: '00:15',
+                end: '19:00'
+              }"
+              placeholder="Heure"
+              :clearable="false"
+              class="w-100">
+            </el-time-select>
           </div>
         </div>
       </div>
@@ -72,11 +122,15 @@ import api from '~components/apiroutes.js'
 export default {
   data: () => ({
     regions: [],
-    price: '',
-    travel: [
-      {from: null, to: null},
-      {from: null, to: null}
-    ],
+    price: 'à partir de 25',
+    travel1_from: '',
+    travel1_to: '',
+    travel1_date: '',
+    travel1_time: '',
+    travel2_from: '',
+    travel2_to: '',
+    travel2_date: '',
+    travel2_time: '',
     isRoundTrip: false
   }),
   created () {
@@ -88,24 +142,29 @@ export default {
           return a.priority + a.name < b.priority + b.name ? -1 : 1
         })
         this.regions = regions
-        this.travel = [
-          {from: regions[0].id, to: regions[0].id},
-          {from: regions[0].id, to: regions[0].id}
-        ]
         this.getPrice()
       })
+  },
+  watch: {
+    travel1_from: function () { this.getPrice() },
+    travel1_to: function () { this.getPrice() },
+    travel2_from: function () { this.getPrice() },
+    travel2_to: function () { this.getPrice() }
   },
   methods: {
     getPriceForATravel (travel) {
       let places = [travel.from, travel.to].sort()
       return axios.get(`${api.pricing}/${places[0]}@${places[1]}`)
     },
-    getPrice () {
+    getPrice: function () {
       let x = this
-      axios.all([this.getPriceForATravel(this.travel[0]), this.getPriceForATravel(this.travel[1])])
+      let travel1 = {from: this.travel1_from, to: this.travel1_to, date: this.travel1_date, time: this.travel1_time}
+      let travel2 = {from: this.travel2_from, to: this.travel2_to, date: this.travel2_date, time: this.travel2_time}
+      axios.all([this.getPriceForATravel(travel1), this.getPriceForATravel(travel2)])
         .then(axios.spread(function (travel1, travel2) {
           x.price = 0
           x.price += parseInt(travel1.data.CHF)
+          console.log(x.price)
           x.isRoundTrip ? x.price += parseInt(travel2.data.CHF) : null
         }))
     },
