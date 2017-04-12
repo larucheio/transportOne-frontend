@@ -5,10 +5,7 @@
       <div class="media-body">
         <div class="d-flex justify-content-start">
           <strong  class="mr-2">{{review.username}}</strong>
-          <span v-for="id in 5" class="text-primary">
-            <i v-if="id > review.rate" class="fa fa-star-o fa-lg" aria-hidden="true"></i>
-            <i v-else class="fa fa-star fa-lg" aria-hidden="true"></i>
-          </span>
+          <el-rate v-model="review.rate" disabled></el-rate>
           <small class="ml-auto">{{formatedDate}}</small>
         </div>
         <p>{{review.review}}</p>
