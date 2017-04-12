@@ -64,7 +64,8 @@ module.exports = {
   ** Plugins
   */
   plugins: [
-    '~plugins/bootstrap.js'
+    '~plugins/bootstrap.js',
+    '~plugins/element-ui.js'
   ],
   /*
   ** Environement variables
