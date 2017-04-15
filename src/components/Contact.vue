@@ -109,7 +109,6 @@ export default {
       const text = `Nom: ${this.user.firstName} ${this.user.lastName}
 Tel: ${this.user.tel} Email: ${this.user.email}
 Message: ${this.message}`
-      const self = this
       this.$http.post(`${api.contact}`, {'data': text, 'subject': 'Contact', 'source': this.user.email})
       .then((response) => {
         this.$refs.sendButton.showSuccess()

@@ -14,7 +14,7 @@ import TransportOneHeader from './components/partials/Header.vue'
 import TransportOneFooter from './components/partials/Footer.vue'
 
 export default {
-  data() {
+  data () {
     return {
       isAuthenticated: false,
       isAdmin: false

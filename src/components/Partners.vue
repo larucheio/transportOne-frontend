@@ -126,18 +126,20 @@ export default {
       const profile = auth.getProfile()
       const username = profile.username ? profile.username : profile.given_name
       this.$http.post(`${api.reviews}`,
-        {'userId': profile.user_id,
-        'review': this.newReview,
-        'username': username,
-        'userPic': profile.picture,
-        'createdAt': Date.now().toString(),
-        'period': new Date().getFullYear().toString(),
-        'rate': this.rate},
+        {
+          'userId': profile.user_id,
+          'review': this.newReview,
+          'username': username,
+          'userPic': profile.picture,
+          'createdAt': Date.now().toString(),
+          'period': new Date().getFullYear().toString(),
+          'rate': this.rate
+        },
         {headers: {Authorization: `Bearer ${auth.getToken()}`}})
         .then((response) => {
           this.$refs.sendReviewButton.showSuccess()
-          this.reviews.unshift(
-            {'userId': profile.user_id,
+          this.reviews.unshift({
+            'userId': profile.user_id,
             'review': this.newReview,
             'username': username,
             'userPic': profile.picture,
@@ -155,7 +157,4 @@ export default {
       }
     }
   }
-  </script>
-
-<style scoped>
-</style>
+</script>

@@ -58,30 +58,30 @@ export default {
       auth.logout()
     },
     animeHamburgerButton () {
-      $('.to-navbar-toggler').toggleClass("to-change")
+      $('.to-navbar-toggler').toggleClass('to-change')
     }
   }
 }
 let lastScroll = 0
 $(window).scroll(function () {
   if ($(window).scrollTop() - lastScroll > 50) {
-    $('#navbar').addClass("to-navbar-hidden")
+    $('#navbar').addClass('to-navbar-hidden')
     lastScroll = $(window).scrollTop()
   } else if ($(window).scrollTop() - lastScroll < -50) {
-    $('#navbar').removeClass("to-navbar-hidden")
+    $('#navbar').removeClass('to-navbar-hidden')
     lastScroll = $(window).scrollTop()
   }
 })
 
-//collapse mobile menu on click
+// collapse mobile menu on click
 $(document).ready(function () {
   $('.navbar-nav li a, .navbar-brand').click(function (event) {
     if ($(event.target).is('a')) {
       $('.collapse').collapse('hide')
-      $('.to-navbar-toggler').removeClass("to-change")
+      $('.to-navbar-toggler').removeClass('to-change')
       window.scrollTo(0, 0)
     }
-    return false;
+    return false
   })
 })
 </script>

@@ -48,7 +48,7 @@ export default {
       })
     },
     setReview: function () {
-      this.$http.post(`${api.reviews}`,  {
+      this.$http.post(`${api.reviews}`, {
         'userId': this.review.userId,
         'review': this.review.review,
         'username': this.review.username,
@@ -56,14 +56,14 @@ export default {
         'createdAt': this.review.createdAt,
         'period': this.review.period,
         'rate': this.review.rate
-        },
-        {headers: {Authorization: `Bearer ${auth.getToken()}`}}).then((response) => {
-        this.$refs.undoButton.showSuccess()
-        this.showUndoButton = false
-        this.showDeleteButton = true
-      }, (response) => {
-        this.$refs.undoButton.showError()
-      })
+      }, {
+        headers: {Authorization: `Bearer ${auth.getToken()}`}}).then((response) => {
+          this.$refs.undoButton.showSuccess()
+          this.showUndoButton = false
+          this.showDeleteButton = true
+        }, (response) => {
+          this.$refs.undoButton.showError()
+        })
     }
   }
 }
