@@ -1,15 +1,44 @@
 <template>
   <div>
-    <div class="jumbotron jumbotron-fluid bg-contact bg-cover-xl">
-      <div class="container">
-        <img src="../assets/logo.svg" alt="Logo" height="100" width="200">
-        <p class="h4">15 chemin de vers
-          <br>1228 plan-les-Ouates
-          <br><br><i class="fa fa-female mr-1" aria-hidden="true"></i>Bernadette LANGEL
-          <br><i class="fa fa-male  mr-1" aria-hidden="true"></i>Timothy Taylor LANGEL
-          <br><br><i class="fa fa-phone mr-1"></i><a href="tel:+41799002828" class="text-muted">079 900 28 28</a>
-          <br><i class="fa fa-envelope mr-1"></i><a href='mailto:info@transportone.ch' class="text-muted">info@transportone.ch</a>
-        </p>
+    <div class="jumbotron jumbotron-fluid py-0 py-sm-5">
+      <div class="container rounded">
+        <div class="row">
+          <div class="col-sm-6 text-sm-right">
+            <img src="~assets/logo.svg" alt="Transport One" width="200" itemprop="image" class="mb-4">
+          </div>
+          <div class="col-sm-6">
+            <div itemscope itemtype="http://schema.org/LocalBusiness">
+              <p itemprop="name">
+                <strong class="text-uppercase">Transport One</strong>
+              </p>
+              <i class="fa fa-map-marker"></i>
+              <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <span itemprop="streetAddress">15 chemin de vers</span><br>
+                <span itemprop="postalCode">1228</span>, <span itemprop="addressLocality">Plan-les-Ouates</span><br>
+                <span itemprop="addressRegion">Genève</span>, <span itemprop="addressCountry">Suisse</span>
+              </address>
+              <p>
+                <i class="fa fa-female"></i><i class="fa fa-male"></i></br>
+                <span itemprop="founders" itemscope itemtype="https://schema.org/Person">
+                  <span itemprop="givenName">Bernadette </span><span itemprop="familyName">LANGEL</span>
+                </span> & <br>
+                <span itemprop="founders" itemscope itemtype="https://schema.org/Person">
+                  <span itemprop="givenName">Timothy Taylor </span><span itemprop="familyName">LANGEL</span>
+                </span>
+              </p>
+              <p>
+                <i class="fa fa-phone"></i></br>
+                <a href="tel:+41799002828" itemprop="telephone" content="+41799002828">+41 (0) 79 900 28 28</a><br>
+                <a href="mailto:info@transportone.ch" itemprop="email" content="info@transportone.ch">info@transportone.ch</a>
+              </p>
+              <p>
+                <i class="fa fa-clock-o"></i><br>
+                <span itemprop="openingHours" content="Mo,Tu,We,Th,Fr,Sa,Su 06:00-19:00">Du lundi au dimanche, de 6h à 19h</span>
+              </p>
+              <span class="d-none" itemprop="priceRange">$</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="container mt-5">
@@ -87,4 +116,14 @@ Message: ${this.message}`
 </script>
 
 <style scoped>
+.jumbotron {
+  background-image: url('~assets/img/contact/jumbotron.jpg');
+  background-size: cover;
+}
+
+.jumbotron .container {
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 64px;
+}
 </style>
