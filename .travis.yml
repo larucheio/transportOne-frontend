@@ -1,0 +1,33 @@
+language: node_js
+node_js:
+- '7'
+install:
+- npm i -g travis-ci-cloudfront-invalidation
+- npm i
+script:
+- sh ./deploy/create-config.sh
+- npm run generate
+deploy:
+  on:
+    branch: master
+  provider: s3
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  bucket: transportone.ch
+  region: eu-west-1
+  skip_cleanup: true
+  local_dir: dist
+  acl: public_read
+  on:
+    branch: dev
+  provider: s3
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  bucket: dev.transportone.ch
+  region: eu-west-1
+  skip_cleanup: true
+  local_dir: dist
+  acl: public_read
+after_deploy:
+- test $TRAVIS_BRANCH = "master" && travis-ci-cloudfront-invalidation -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY
+  -c $CLOUDFRONT_DISTRIBUTION_ID -i '/*' -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST
