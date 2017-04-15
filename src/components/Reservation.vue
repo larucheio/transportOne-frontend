@@ -147,6 +147,14 @@ export default {
   data () {
     return data
   },
+  head: {
+    title: {
+      inner: 'Réservation - Transport One'
+    },
+    meta: [
+      { name: 'description', content: 'Réserverz votre trajet dès aujourd\'hui sur notre site internet.', id: 'description' }
+    ]
+  },
   components: { 'pricing': Pricing },
   mounted () {
     this.initMap()

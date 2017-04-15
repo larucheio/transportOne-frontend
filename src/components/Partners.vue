@@ -135,6 +135,14 @@ export default {
       rate: 0
     }
   },
+  head: {
+    title: {
+      inner: 'Partenaires et Avis - Transport One'
+    },
+    meta: [
+      { name: 'description', content: 'Transport One est en collaboration avec de nombreux instituts, mairies, foyers, associations, fondations et autres clients privés.', id: 'description' }
+    ]
+  },
   mounted () {
     this.$http.get(`${api.reviews}/${this.reviewsPeriod}`)
     .then((response) => {

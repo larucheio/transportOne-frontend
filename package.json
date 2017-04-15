@@ -12,7 +12,8 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
-    "vue": "^2.0.1"
+    "vue": "^2.0.1",
+    "vue-head": "^2.0.10"
   },
   "devDependencies": {
     "auth0-lock": "^10.12.1",

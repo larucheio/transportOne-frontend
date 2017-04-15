@@ -77,6 +77,14 @@ export default {
       message: ''
     }
   },
+  head: {
+    title: {
+      inner: 'Contact - Transport One'
+    },
+    meta: [
+      { name: 'description', content: 'Contactez-nous pour toute question ou réservation et nous vous répondrons avec plaisir.', id: 'description' }
+    ]
+  },
   mounted () {
     if (auth.isAuthenticated()) {
       this.user.firstName = auth.getProfile().given_name

@@ -46,3 +46,16 @@
     <h1 class="py-5 text-center">Laissez-vous donc transporter sereinement !</h1>
   </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: {
+      inner: 'Véhicules - Transport One'
+    },
+    meta: [
+      { name: 'description', content: 'Découvrez nos véhicules et équipements pour un transport agréable en tout sécurité.', id: 'description' }
+    ]
+  }
+}
+</script>
