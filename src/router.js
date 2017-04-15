@@ -21,5 +21,6 @@ const routes = [
 ]
 export const router = new VueRouter({
   mode: 'history',
+  linkActiveClass: 'active',
   routes // short for routes: routes
 })
