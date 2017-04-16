@@ -147,6 +147,14 @@ export default {
   data () {
     return data
   },
+  head: {
+    title: {
+      inner: 'Réservation - Transport One'
+    },
+    meta: [
+      { name: 'description', content: 'Réserverz votre trajet dès aujourd\'hui sur notre site internet.', id: 'description' }
+    ]
+  },
   components: { 'pricing': Pricing },
   mounted () {
     this.initMap()
@@ -187,7 +195,7 @@ export default {
       }
       const self = this
       this.directionsService.route(request, function (result, status) {
-        if (status == 'OK') {
+        if (status === 'OK') {
           self.directionsDisplay.setDirections(result)
         }
       })
@@ -293,8 +301,8 @@ Commentaire: ${this.comment}`
       if (this.user.email) reservation.email = this.user.email
       if (this.travel2.exist) {
         reservation.from2 = this.travel2.from
-        reservation.to2 = this.travel2.to,
-        reservation.date2 = this.travel2.date,
+        reservation.to2 = this.travel2.to
+        reservation.date2 = this.travel2.date
         reservation.time2 = this.travel2.time
       }
       if (this.comment) reservation.comment = this.comment

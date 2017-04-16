@@ -177,8 +177,8 @@ export default {
       }, (response) => {})
     },
     getPrice: function () {
-    let places = [this.priceToSet.from.id, this.priceToSet.to.id]
-    places = places.sort()
+      let places = [this.priceToSet.from.id, this.priceToSet.to.id]
+      places = places.sort()
       this.$http.get(`${api.pricing}/${places[0]}@${places[1]}`)
       .then((response) => {
         this.priceToSet.price = response.body.CHF
@@ -226,7 +226,7 @@ export default {
         this.$refs.addRegionSaveButton.showError('Veuillez remplir tous les champs.')
         return
       }
-      const id = this.regionToAdd.name.replace(/[^A-Za-z0-9]+/g, "")
+      const id = this.regionToAdd.name.replace(/[^A-Za-z0-9]+/g, '')
       this.$http.post(`${api.regions}/${id}`,
         this.regionToAdd,
         {headers: {Authorization: `Bearer ${auth.getToken()}`}})
@@ -273,7 +273,7 @@ export default {
   },
   components: {
     'reservation': Reservation
-  },
+  }
 }
 </script>
 

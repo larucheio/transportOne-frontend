@@ -20,7 +20,7 @@ export default {
     placeholder: null,
     validation: {
       type: Function,
-      default: function () {return true}
+      default: function () { return true }
     },
     rows: null,
     min: {default: 0},
@@ -49,7 +49,7 @@ export default {
     },
     isValid (value) {
       this.$emit('input', value)
-      if (value.length < this.min) this.error = (this.min == 1) ? `Veuillez remplir le champ.` : `Veuillez entrer au moins ${this.min} caractères.`
+      if (value.length < this.min) this.error = (this.min === 1) ? `Veuillez remplir le champ.` : `Veuillez entrer au moins ${this.min} caractères.`
       else if (value.length > this.max) this.error = `Veuillez entrer au maximum ${this.max} caractères.`
       else if ((this.regexpObject && !this.regexpObject.test(value)) && value.length > 0 || !this.validation(value)) this.error = this.errorMessage
       else {

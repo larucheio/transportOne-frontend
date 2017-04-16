@@ -22,9 +22,9 @@ self.addEventListener('fetch', function (event) {
         // Cache hit - return cached response and don't fetch the network response
         // uncomment it if you want to retrieve only the cashed response (in case you want to avoid data traffic),
         // then you would need to update the service worker's version to update the cache
-        /*if (response) {
-          return response
-        }*/
+        // if (response) {
+        //   return response
+        // }
 
         // IMPORTANT: Clone the request. A request is a stream and
         // can only be consumed once. Since we are consuming this

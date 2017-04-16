@@ -52,7 +52,7 @@ export default {
       this.errorText = this.error
       setTimeout(() => {
         if (this.isPending) this.showError('Pas de réponse, veuillez vérifier votre connexion.')
-      }, 10000);
+      }, 10000)
     },
     showSuccess () {
       this.isPending = false
@@ -63,7 +63,7 @@ export default {
         this.icon = null
         this.buttonText = this.text
         this.buttonClass = this.customClass
-      }, 2000);
+      }, 2000)
     },
     showError (errorMessage) {
       if (errorMessage) this.errorText = errorMessage
@@ -77,7 +77,7 @@ export default {
         this.icon = null
         this.buttonText = this.text
         this.buttonClass = this.customClass
-      }, 2000);
+      }, 2000)
     },
     clicked () {
       if (!this.isPending) {

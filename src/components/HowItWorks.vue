@@ -56,3 +56,16 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: {
+      inner: 'Comment ça marche? - Transport One'
+    },
+    meta: [
+      { name: 'description', content: 'Découvrez comment utiliser notre site internet pour réserver une course en moins de deux minutes.', id: 'description' }
+    ]
+  }
+}
+</script>
