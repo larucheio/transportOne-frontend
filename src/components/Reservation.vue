@@ -68,7 +68,7 @@
             <label class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" aria-describedby="comissionHelp"  v-model.lazy="options.comission" @click="options.waiting = false; options.comission = true">
               <span class="custom-control-indicator"></span>
-              <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Comission</span>
+              <span class="custom-control-description"><i class="fa fa-shopping-basket mx-1" aria-hidden="true"></i>Commission</span>
               <small id="comissionHelp" class="form-text text-muted mx-2">CHF 15.-/30min</small>
             </label>
             <i class="fa fa-info-circle text-primary pointer" aria-hidden="true" data-toggle="modal" data-target="#comissionInfo"></i>
