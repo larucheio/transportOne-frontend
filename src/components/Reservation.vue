@@ -76,7 +76,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="comissionInfoTitle">Comission</h5>
+                    <h5 class="modal-title" id="comissionInfoTitle">Commission</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -138,7 +138,7 @@ let data = {
   isSubscribing: true,
   commentText: `Bonjour,
 
-Merci de nous faire part des éventuelles informations supplémentaires, entre autres si la personne est en fauteuil roulant ou par exemple si nous devons monter chercher la personne à son domicile.
+Merci de nous faire part d'éventuelles informations supplémentaires, entre autres si la personne est en fauteuil roulant ou par exemple si nous devons monter chercher la personne à son domicile.
 
 D’autres détails tels que « Code d’entrée » ou « appeler le client une fois que nous sommes là » peuvent être aussi annotés.`
 }
