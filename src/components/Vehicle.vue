@@ -35,12 +35,20 @@
       <li>Équipement de sécurité, poignées de sécurité</li>
       <li>Siège pour bébé</li>
     </ul>
-    <div class="row py-3">
-      <div class="col-md-6">
-        <img src="../assets/car.jpg" class="img-fluid" alt="véhicule">
-      </div>
-      <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6 py-3">
         <img src="../assets/inside-car.jpg" class="img-fluid" alt="intérieur du véhicule">
+      </div>
+      <div class="col-md-6 py-3">
+        <img src="../assets/front-car.jpg" class="img-fluid" alt="avant du véhicule">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 py-3">
+        <img src="../assets/side-car.jpg" class="img-fluid" alt="coté du véhicule">
+      </div>
+      <div class="col-md-6 py-3">
+        <img src="../assets/back-car.jpg" class="img-fluid" alt="derrière du véhicule">
       </div>
     </div>
     <h1 class="py-5 text-center">Laissez-vous donc transporter sereinement !</h1>
