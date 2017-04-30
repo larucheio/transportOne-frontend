@@ -13,7 +13,7 @@ const options = {
   language: 'fr',
   auth: {
     redirectUrl: 'https://transportone.ch',
-    responseType: 'code',
+    responseType: 'token',
     params: {
       scope: 'openid app_metadata'
     },
