@@ -34,7 +34,7 @@
     </div>
     <div class="jumbotron jumbotron-fluid bg-geneva bg-cover-xl text-center text-white">
       <div class="container">
-        <h4 class="py-5">Fondé il y a plus de 20 ans, Transport One est une entreprise familiale agréée dans le transport accompagné de personnes âgées - adultes - enfants - personnes à mobilité réduite.</h4>
+        <p class="py-5 h4">Fondé il y a plus de 20 ans, Transport One est une entreprise familiale agréée dans le transport accompagné de personnes âgées - adultes - enfants - personnes à mobilité réduite.</p>
       </div>
     </div>
     <div class="container">

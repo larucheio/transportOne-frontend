@@ -8,28 +8,26 @@
     <router-link class="navbar-brand mr-2" to="/"><img src="/static/logo.svg" height="30" alt="Transport One logo"></router-link>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <h1 class="h6 my-auto">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/reservation">Réservation</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/partenaires">Partenaires &amp; avis</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/contact">Contact</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
-          </li>
-        </ul>
-      </h1>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <router-link class="nav-link" to="/commentcamarche">Comment ça marche?</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/vehicule">Véhicule</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/reservation">Réservation</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/partenaires">Partenaires &amp; avis</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/contact">Contact</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/admin" v-if="isAdmin">Admin</router-link>
+        </li>
+      </ul>
       <div class="navbar-nav ml-auto">
         <button class="btn btn-primary"  @click="login" v-if="!isAuthenticated">Se connecter</button>
         <button class="btn btn-primary"  @click="logout" v-else="isAuthenticated">Se déconnecter</button>
