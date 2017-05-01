@@ -3,7 +3,7 @@
     <div class="jumbotron jumbotron-fluid bg-intro bg-cover-xl">
       <div class="container text-center">
         <pricing class="py-2 py-md-5"></pricing>
-        <h1 class="text-white pt-4 pt-md-5 text-uppercase font-weight-bold h2">Transport accompagné de personnes âgées - adultes - enfants avec ou sans mobilité réduite</h1>
+        <h1 class="text-white pt-4 pt-md-5 text-uppercase font-weight-bold h2">Transport accompagné de personnes âgées - adultes - enfants - personnes à mobilité réduite</h1>
         <p class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold h2">La garantie du meilleur prix sur Genève</p>
         <p class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold h2"><a href="tel:+41799002828" class="text-white">Tel : 079 900 28 28</a></p>
       </div>
@@ -34,7 +34,7 @@
     </div>
     <div class="jumbotron jumbotron-fluid bg-geneva bg-cover-xl text-center text-white">
       <div class="container">
-        <h4 class="py-5">Fondé il y a plus de 20 ans, Transport One est une entreprise familiale agréée dans le transport accompagné de personnes âgées – adultes – enfants.</h4>
+        <h4 class="py-5">Fondé il y a plus de 20 ans, Transport One est une entreprise familiale agréée dans le transport accompagné de personnes âgées - adultes - enfants - personnes à mobilité réduite.</h4>
       </div>
     </div>
     <div class="container">
