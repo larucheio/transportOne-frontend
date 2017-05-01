@@ -3,7 +3,7 @@
     <div class="jumbotron jumbotron-fluid bg-intro bg-cover-xl">
       <div class="container text-center">
         <pricing class="py-2 py-md-5"></pricing>
-        <h1 class="text-white pt-4 pt-md-5 text-uppercase font-weight-bold h2">Transport accompagné de personnes âgées - adultes - enfants avec ou sans mobilité réduite</h1>
+        <h1 class="text-white pt-4 pt-md-5 text-uppercase font-weight-bold h2">Transport accompagné de personnes âgées - adultes - enfants - personnes à mobilité réduite</h1>
         <p class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold h2">La garantie du meilleur prix sur Genève</p>
         <p class="text-white pt-2 pt-md-3 text-uppercase font-weight-bold h2"><a href="tel:+41799002828" class="text-white">Tel : 079 900 28 28</a></p>
       </div>
@@ -34,7 +34,7 @@
     </div>
     <div class="jumbotron jumbotron-fluid bg-geneva bg-cover-xl text-center text-white">
       <div class="container">
-        <h4 class="py-5">Fondé il y a plus de 20 ans, Transport One est une entreprise familiale agréée dans le transport accompagné de personnes âgées – adultes – enfants.</h4>
+        <p class="py-5 h4">Fondé il y a plus de 20 ans, Transport One est une entreprise familiale agréée dans le transport accompagné de personnes âgées - adultes - enfants - personnes à mobilité réduite.</p>
       </div>
     </div>
     <div class="container">
@@ -42,8 +42,14 @@
         <h2 class="text-uppercase mb-4">Nos services</h2>
         <p>Transport One permet à tout le monde d’être transporté et accompagné durant leurs déplacements dans notre rayonnante ville de Genève et de ses environs.</p>
         <p>Notre engagement professionnel garantit un service ponctuel de qualité ainsi qu’un accompagnement soigné et sécurisé avec chauffeur privé.</p>
-        <p>Nous avons l'expérience et le savoir-faire pour le transport accompagné de personnes à mobilité réduite, comme les personnes âgées ou handicapées.</p>
-        <p>Laissez-vous donc transporter sereinement tout en faisant des économies !</p>
+        <div class="row">
+        <div class="col-md-1 text-center mb-3">
+          <img src="../assets/mobilité réduite.png" alt="Personnes handicapées ou à mobilité réduite" width="72" height="72">
+        </div>
+          <div class="col-md-11">
+            <p>Nous avons l'expérience et le savoir-faire pour le transport accompagné de personnes à mobilité réduite, comme les personnes âgées ou handicapées.</p>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-6 mt-5">
             <p>Clientèle :</p>
@@ -84,6 +90,7 @@
             <p>De plus, nous ne restons pas uniquement dans le véhicule à attendre, nous venons avec vous afin de vous aider à porter vos achats et les placer dans nos véhicules qui sont aisément adaptés pour transporter toutes dimensions d’achat effectué. Pour finir, nous vous raccompagnons à domicile et vous aidons à déposer les commissions réalisées chez vous. Pour finir, nous vous raccompagnons et vous aidons à déposer les commissions réalisées à votre domicile.</p>
           </div>
         </div>
+        <p>Laissez-vous donc transporter sereinement tout en faisant des économies !</p>
       </div>
     </div>
   </div>
