@@ -20,6 +20,9 @@ export default {
       isAdmin: false
     }
   },
+  created () {
+    auth.handleAuthentication()
+  },
   methods: {
     refreshAuthStatus () {
       this.isAuthenticated = auth.isAuthenticated()

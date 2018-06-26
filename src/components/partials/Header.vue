@@ -46,10 +46,6 @@ export default {
     'isAuthenticated',
     'isAdmin'
   ],
-  mounted () {
-    auth.init()
-    auth.refreshToken()
-  },
   methods: {
     login () {
       auth.login()

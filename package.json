@@ -14,11 +14,11 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "auth0-js": "^9.6.1",
     "vue": "^2.0.1",
     "vue-head": "^2.0.10"
   },
   "devDependencies": {
-    "auth0-lock": "^10.12.1",
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.2.2",
@@ -63,13 +63,13 @@
     "lolex": "^1.4.0",
     "mocha": "^3.1.0",
     "nightwatch": "^0.9.8",
-    "node-sass": "^3.10.1",
+    "node-sass": "^4.9.0",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "phantomjs-prebuilt": "^2.1.3",
     "pikaday": "^1.5.1",
     "resolve-url-loader": "^1.6.0",
-    "sass-loader": "^4.0.2",
+    "sass-loader": "^7.0.3",
     "selenium-server": "2.53.1",
     "serviceworker-loader": "^0.1.0",
     "shelljs": "^0.7.4",

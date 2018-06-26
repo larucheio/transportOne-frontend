@@ -1,55 +1,28 @@
-import Auth0Lock from 'auth0-lock'
+// import Auth0Lock from 'auth0-lock'
 import {router} from './router.js'
+import auth0 from 'auth0-js'
 
-const options = {
-  theme: {
-    primaryColor: '#f39c12',
-    logo: 'https://transportone.ch/static/logo.svg'
-  },
-  languageDictionary: {
-    emailInputPlaceholder: 'name@email.com',
-    title: 'Se connecter'
-  },
-  language: 'fr',
-  auth: {
-    redirectUrl: 'https://transportone.ch',
-    responseType: 'token',
-    params: {
-      scope: 'openid app_metadata'
-    },
-    sso: true
-  }
-}
-
-const lock = new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options)
 export default {
-  init () {
-    router.app.refreshAuthStatus()
-    lock.on('authenticated', function (authResult) {
-      localStorage.setItem('id_token', authResult.idToken)
-      localStorage.setItem('id_token_expiration', Date.now() + 35000000)
-      localStorage.setItem('refresh_token', authResult.refreshToken)
-      lock.getProfile(authResult.idToken, function (error, profile) {
-        if (error) {
-          alert("Erreur: votre profil n'a pas été trouvé.")
-          return
-        }
-        localStorage.setItem('profile', JSON.stringify(profile))
-        router.app.refreshAuthStatus()
-        lock.hide()
-      })
-    })
-    lock.on('authorization_error', () => {
-      alert("Erreur: échec de l'autorisation.")
-    })
-  },
+  auth0: new auth0.WebAuth({
+    domain: process.env.AUTH0_DOMAIN,
+    clientID: process.env.AUTH0_CLIENT_ID,
+    redirectUri: process.env.SITE_URL,
+    audience: 'https://transportone.eu.auth0.com/userinfo',
+    responseType: 'token id_token',
+    scope: 'openid profile app_metadata'
+  }),
   isAuthenticated () {
-    if (localStorage.getItem('id_token')) return true
-    return false
+    // Check whether the current time is past the
+    // Access Token's expiry time
+    let expiresAt = JSON.parse(localStorage.getItem('expires_at'))
+    return new Date().getTime() < expiresAt
   },
   isAdmin () {
     const profile = localStorage.getItem('profile')
-    if (profile && JSON.parse(profile).app_metadata && JSON.parse(profile).app_metadata.isAdmin) return true
+    if (profile && JSON.parse(profile)['https://transportone.ch/role'] &&
+      JSON.parse(profile)['https://transportone.ch/role'].isAdmin) {
+      return true
+    }
     return false
   },
   getAuthHeader () {
@@ -58,13 +31,14 @@ export default {
     }
   },
   login () {
-    lock.show()
+    this.auth0.authorize()
   },
   logout () {
+    localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
+    localStorage.removeItem('expires_at')
     localStorage.removeItem('profile')
-    localStorage.removeItem('id_token_expiration')
-    localStorage.removeItem('refreshToken')
+
     router.app.refreshAuthStatus()
     router.push('/')
   },
@@ -102,5 +76,27 @@ export default {
         this.logout()
       })
     }
+  },
+  handleAuthentication () {
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult)
+        router.replace('home')
+      } else if (err) {
+        router.replace('home')
+        console.log(err)
+      }
+    })
+  },
+  setSession (authResult) {
+    // Set the time that the Access Token will expire at
+    let expiresAt = JSON.stringify(
+      authResult.expiresIn * 1000 + new Date().getTime()
+    )
+    localStorage.setItem('profile', JSON.stringify(authResult.idTokenPayload))
+    localStorage.setItem('access_token', authResult.accessToken)
+    localStorage.setItem('id_token', authResult.idToken)
+    localStorage.setItem('expires_at', expiresAt)
+    router.app.refreshAuthStatus()
   }
 }

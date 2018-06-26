@@ -183,6 +183,7 @@ export default {
       .then((response) => {
         this.priceToSet.price = response.body.CHF
       }, (response) => {
+        console.log(response);
         this.priceToSet.price = 0
       })
     },
